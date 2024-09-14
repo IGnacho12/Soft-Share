@@ -2,13 +2,18 @@
 // Conexión a la base de datos | Tabla de programas destacados
 import { neon } from "@neondatabase/serverless";
 const sql = neon("postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require");
+
+// Consulta inicial para mostrar los programas al cargar la página
 const response = await sql`SELECT * FROM programas`;
 ---
 
 <article>
   <h2>Programas destacados👑</h2>
 
-  <article class="contenedor">
+  <!-- Botón para recargar los programas sin refrescar la página -->
+  <button id="reloadPrograms">Recargar Programas</button>
+
+  <article id="programList" class="contenedor">
     {
       response.map((programa) => (
         <div class="div-container">
@@ -34,6 +39,60 @@ const response = await sql`SELECT * FROM programas`;
   </article>
 </article>
 
+<script type="module">
+  import { neon } from "https://cdn.skypack.dev/@neondatabase/serverless";
+
+  // Configura la conexión a la base de datos Neon
+  const sql = neon(
+    "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
+  );
+
+  // Función para cargar y mostrar los programas en la página
+  async function loadPrograms() {
+    try {
+      const programs = await sql`SELECT * FROM programas`;
+      const programList = document.getElementById("programList");
+
+      // Limpiar la lista de programas actual
+      programList.innerHTML = "";
+
+      // Recorrer los programas y agregarlos al DOM
+      programs.forEach((programa) => {
+        const programDiv = document.createElement("div");
+        programDiv.classList.add("div-container");
+
+        programDiv.innerHTML = `
+          <header>
+            <img
+              src="${programa.link_de_imagen}"
+              alt="${programa.nombre}"
+              onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
+            />
+            <h3>
+              <a
+                rel="noreferrer"
+                href="${programa.link_de_descarga}"
+              >
+                ${programa.nombre}
+              </a>
+            </h3>
+          </header>
+          <span>${programa.detalles}</span>
+        `;
+
+        programList.appendChild(programDiv);
+      });
+    } catch (error) {
+      console.error("Error al cargar los programas:", error);
+    }
+  }
+
+  // Manejador del botón de recarga
+  document.getElementById("reloadPrograms").addEventListener("click", () => {
+    loadPrograms();
+  });
+</script>
+
 <style>
   h2 {
     border-bottom: 2px solid var(--text-gray-color);
@@ -45,6 +104,7 @@ const response = await sql`SELECT * FROM programas`;
     grid-template-columns: repeat(3, 1fr);
     gap: 9px 3px;
   }
+
   header {
     display: flex;
     gap: 4px;
@@ -67,5 +127,26 @@ const response = await sql`SELECT * FROM programas`;
   a {
     text-decoration: none;
     color: unset;
+  }
+
+  /* Botón de recarga */
+  button {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .div-container {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
   }
 </style>
