@@ -1,0 +1,71 @@
+---
+// Conexión a la base de datos | Tabla de programas destacados
+import { neon } from "@neondatabase/serverless";
+const sql = neon("postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require");
+const response = await sql`SELECT * FROM programas`;
+---
+
+<article>
+  <h2>Programas destacados</h2>
+
+  <article class="contenedor">
+    {
+      response.map((programa) => (
+        <div class="div-container">
+          <header>
+            <img
+              src={programa.link_de_imagen}
+              alt={programa.nombre}
+              onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
+            />
+            <h3>
+              <a
+                rel="noreferrer"
+                href={programa.link_de_descarga}
+              >
+                {programa.nombre}
+              </a>
+            </h3>
+          </header>
+          <span>{programa.detalles}</span>
+        </div>
+      ))
+    }
+  </article>
+</article>
+
+<style>
+  h2 {
+    border-bottom: 2px solid var(--text-gray-color);
+    margin-bottom: 10px;
+  }
+
+  article.contenedor {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px 3px;
+  }
+  header {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  img {
+    height: 32px;
+    width: auto;
+  }
+
+  span {
+    margin-top: 5px;
+    color: var(--text-gray-color);
+    width: 98%;
+    display: block;
+    text-wrap: pretty;
+  }
+
+  a {
+    text-decoration: none;
+    color: unset;
+  }
+</style>
