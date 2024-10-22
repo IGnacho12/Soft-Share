@@ -7,7 +7,7 @@ import Layout from "../layouts/Layout.astro";
     <h1>Agrega Tus Programas</h1>
     <form id="programForm">
       <div class="input-group">
-        <input type="text" id="nombre" name="nombre" required />
+        <input type="text" id="nombre" name="nombre" minlength="2" maxlength="20" required />
         <label for="">Nombre</label>
       </div>
 
@@ -17,27 +17,25 @@ import Layout from "../layouts/Layout.astro";
       </div>
 
       <div class="input-group">
-          <input
-            type="url"
-            id="link_de_descarga"
-            name="link_de_descarga"
-            required
-          />
+        <input
+          type="url"
+          id="link_de_descarga"
+          name="link_de_descarga"
+          required
+        />
         <label for="link_de_descarga">Link de Descarga</label>
       </div>
 
       <div class="input-group">
-          <input id="detalles" name="detalles" required></input>
-          <label for="detalles">Detalles</label>
+        <input id="detalles" name="detalles" minlength="10" maxlength="80" required />
       </div>
-
+      <label for="detalles">Detalles</label>
       <button type="submit">Enviar</button>
     </form>
-  </main>
-  <div class="hola">
 
-  </div>
+  </main>
 </Layout>
+<div class="hola"></div>
 
 <script type="module">
   import { neon } from "https://cdn.skypack.dev/@neondatabase/serverless";
@@ -47,18 +45,18 @@ import Layout from "../layouts/Layout.astro";
     "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
   );
 
+
   // Manejador del evento de envío del formulario
-  document
-    .getElementById("programForm")
-    .addEventListener("submit", async (event) => {
+  document.getElementById("programForm").addEventListener("submit", async (event) => {
       event.preventDefault(); // Evitar que el formulario recargue la página
 
       // Obtener los valores del formulario
       const nombre = document.getElementById("nombre").value;
       const link_de_imagen = document.getElementById("link_de_imagen").value;
-      const link_de_descarga =
-        document.getElementById("link_de_descarga").value;
+      const link_de_descarga = document.getElementById("link_de_descarga").value;
       const detalles = document.getElementById("detalles").value;
+
+
 
       // Realiza la consulta directamente a Neon desde el frontend
       try {
@@ -68,14 +66,11 @@ import Layout from "../layouts/Layout.astro";
                 RETURNING *`;
 
         console.log("Programa guardado:", response);
-        alert("Programa guardado con éxito");
       } catch (error) {
         console.error("Error al guardar el programa:", error);
         alert("Hubo un error al guardar el programa");
       }
     });
-
-    
 </script>
 
 <style>

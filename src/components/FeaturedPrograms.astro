@@ -1,67 +1,36 @@
----
-// Conexión a la base de datos | Tabla de programas destacados
-import { neon } from "@neondatabase/serverless";
-const sql = neon("postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require");
-
-// Consulta inicial para mostrar los programas al cargar la página
-const response = await sql`SELECT * FROM programas`;
----
-
 <article>
   <h2>Programas destacados👑</h2>
 
-  <!-- Botón para recargar los programas sin refrescar la página -->
-  <button id="reloadPrograms">Recargar Programas</button>
+  <button id="reloadButton"><img src="reload.svg" alt=""></button>
 
   <article id="programList" class="contenedor">
-    {
-      response.map((programa) => (
-        <div class="div-container">
-          <header>
-            <img
-              src={programa.link_de_imagen}
-              alt={programa.nombre}
-              onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
-            />
-            <h3>
-              <a
-                rel="noreferrer"
-                href={programa.link_de_descarga}
-              >
-                {programa.nombre}
-              </a>
-            </h3>
-          </header>
-          <span>{programa.detalles}</span>
-        </div>
-      ))
-    }
+    <!-- Los programas se cargarán aquí -->
   </article>
 </article>
 
 <script type="module">
   import { neon } from "https://cdn.skypack.dev/@neondatabase/serverless";
 
-  // Configura la conexión a la base de datos Neon
   const sql = neon(
     "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
   );
 
-  // Función para cargar y mostrar los programas en la página
-  async function loadPrograms() {
-    try {
-      const programs = await sql`SELECT * FROM programas`;
-      const programList = document.getElementById("programList");
+  LoadPrograms()
 
-      // Limpiar la lista de programas actual
-      programList.innerHTML = "";
+  const reload_button = document.getElementById("reloadButton");
 
-      // Recorrer los programas y agregarlos al DOM
-      programs.forEach((programa) => {
-        const programDiv = document.createElement("div");
-        programDiv.classList.add("div-container");
+  reload_button.addEventListener("click", () => LoadPrograms())
 
-        programDiv.innerHTML = `
+  async function LoadPrograms() {
+    const response = await sql`SELECT * FROM programas`;
+
+    const programList = document.getElementById("programList");
+
+    // Actualiza el contenido del contenedor con los nuevos programas
+    programList.innerHTML = response
+      .map(
+        (programa) => `
+        <div class="div-container">
           <header>
             <img
               src="${programa.link_de_imagen}"
@@ -69,84 +38,84 @@ const response = await sql`SELECT * FROM programas`;
               onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
             />
             <h3>
-              <a
-                rel="noreferrer"
-                href="${programa.link_de_descarga}"
-              >
+              <a rel="noreferrer" href="${programa.link_de_descarga}">
                 ${programa.nombre}
               </a>
             </h3>
           </header>
           <span>${programa.detalles}</span>
-        `;
+        </div>
+      `
+      )
+      .join("");
 
-        programList.appendChild(programDiv);
-      });
-    } catch (error) {
-      console.error("Error al cargar los programas:", error);
-    }
-  }
+    // Aplicar estilos desde JavaScript
+    const div_container = programList.querySelectorAll("div"); // Cambié 'ancores' a 'anchors'
+    div_container.forEach((div) => {
+      div.style.padding = "10px"
+    });
 
-  // Manejador del botón de recarga
-  document.getElementById("reloadPrograms").addEventListener("click", () => {
-    loadPrograms();
-  });
+
+
+    const h2 = document.querySelector("h2");
+    h2.style.borderBottom = "2px solid var(--text-gray-color)";
+    h2.style.marginBottom = "10px";
+
+    const contenedor = document.querySelector("article.contenedor");
+    contenedor.style.display = "grid";
+    contenedor.style.gridTemplateColumns = "repeat(3, 1fr)";
+    contenedor.style.gap = "9px 3px";
+
+    const headers = programList.querySelectorAll("header");
+    headers.forEach((header) => {
+      header.style.display = "flex";
+      header.style.gap = "4px";
+      header.style.alignItems = "center";
+    });
+
+    const images = programList.querySelectorAll("img");
+    images.forEach((img) => {
+      img.style.height = "32px";
+      img.style.width = "auto";
+    });
+
+    const anchors = programList.querySelectorAll("a"); // Cambié 'ancores' a 'anchors'
+    anchors.forEach((a) => {
+      a.style.textDecoration = "none"; // Aplica el estilo a los enlaces
+      a.style.color = "unset"; // Define un color específico
+    });
+
+    const spans = programList.querySelectorAll("span");
+    spans.forEach((span) => {
+      span.style.marginTop = "5px";
+      span.style.color = "var(--text-gray-color)";
+      span.style.width = "98%";
+      span.style.display = "block";
+    });
+  };
 </script>
 
+
 <style>
-  h2 {
-    border-bottom: 2px solid var(--text-gray-color);
-    margin-bottom: 10px;
-  }
+  #reloadButton {
+  position: fixed;
+  top: 60px;
+  right: 30px;
+  border: none;
+  transition: 0.3s ease; /* Definimos la transición aquí */
+  cursor: pointer;
+  transform: rotate(0deg); /* Estado inicial */
+  background-color: var(--background-color);
+}
 
-  article.contenedor {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 9px 3px;
-  }
 
-  header {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-  }
+#reloadButton:hover {
+  transform: rotate(90deg); /* Rotamos el botón al hacer hover */
+}
 
-  img {
-    height: 32px;
-    width: auto;
-  }
 
-  span {
-    margin-top: 5px;
-    color: var(--text-gray-color);
-    width: 98%;
-    display: block;
-    text-wrap: pretty;
-  }
+#reloadButton img {
+  height: 32px; /* Cambié 'size' a 'height' para que funcione correctamente */
+}
 
-  a {
-    text-decoration: none;
-    color: unset;
-  }
-
-  /* Botón de recarga */
-  button {
-    margin: 10px 0;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-
-  button:hover {
-    background-color: #0056b3;
-  }
-
-  .div-container {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
 </style>
