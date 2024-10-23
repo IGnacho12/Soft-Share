@@ -1,7 +1,7 @@
 <article>
   <h2>Programas destacados👑</h2>
 
-  <button id="reloadButton"><img src="reload.svg" alt=""></button>
+  <button id="reloadButton"><img src="reload.svg" alt="" /></button>
 
   <article id="programList" class="contenedor">
     <!-- Los programas se cargarán aquí -->
@@ -15,11 +15,11 @@
     "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
   );
 
-  LoadPrograms()
+  LoadPrograms();
 
   const reload_button = document.getElementById("reloadButton");
 
-  reload_button.addEventListener("click", () => LoadPrograms())
+  reload_button.addEventListener("click", () => LoadPrograms());
 
   async function LoadPrograms() {
     const response = await sql`SELECT * FROM programas`;
@@ -49,13 +49,34 @@
       )
       .join("");
 
-    // Aplicar estilos desde JavaScript
+    // Observar el ancho de la pantalla para hacer un diseño responsive
+    window.addEventListener("resize", responsive);
+
+    // Llamada incial
+    responsive();
+
+    function responsive() {
+      // Conseguir el ancho de la pantalla
+      const size = window.innerWidth;
+
+      const contenedor = document.querySelector("article.contenedor");
+
+      if (size <= 730) {
+        // Pantalla menor a 730px 
+        contenedor.style.gridTemplateColumns = "100%";
+      } else if (size <= 1200) {
+        // Pantalla menor a 1200px 
+        contenedor.style.gridTemplateColumns = "50% 50%";
+      } else {
+        // Pantalla mayor a 1200px
+        contenedor.style.gridTemplateColumns = "33.33% 33.33% 33.33%";
+      }
+    }
+
     const div_container = programList.querySelectorAll("div"); // Cambié 'ancores' a 'anchors'
     div_container.forEach((div) => {
-      div.style.padding = "10px"
+      div.style.padding = "10px";
     });
-
-
 
     const h2 = document.querySelector("h2");
     h2.style.borderBottom = "2px solid var(--text-gray-color)";
@@ -63,7 +84,6 @@
 
     const contenedor = document.querySelector("article.contenedor");
     contenedor.style.display = "grid";
-    contenedor.style.gridTemplateColumns = "33.33% 33.33% 33.33%";
     contenedor.style.gap = "9px 3px";
 
     const headers = programList.querySelectorAll("header");
@@ -91,32 +111,28 @@
       span.style.color = "var(--text-gray-color)";
       span.style.width = "98%";
       span.style.display = "block";
-      span.style.overflowWrap = "break-word"
+      span.style.overflowWrap = "break-word";
     });
-  };
+  }
 </script>
-
 
 <style>
   #reloadButton {
-  position: fixed;
-  top: 60px;
-  right: 30px;
-  border: none;
-  transition: 0.3s ease; /* Definimos la transición aquí */
-  cursor: pointer;
-  transform: rotate(0deg); /* Estado inicial */
-  background-color: var(--background-color);
-}
+    position: fixed;
+    top: 60px;
+    right: 30px;
+    border: none;
+    transition: 0.3s ease; /* Definimos la transición aquí */
+    cursor: pointer;
+    transform: rotate(0deg); /* Estado inicial */
+    background-color: var(--background-color);
+  }
 
+  #reloadButton:hover {
+    transform: rotate(90deg); /* Rotamos el botón al hacer hover */
+  }
 
-#reloadButton:hover {
-  transform: rotate(90deg); /* Rotamos el botón al hacer hover */
-}
-
-
-#reloadButton img {
-  height: 32px; /* Cambié 'size' a 'height' para que funcione correctamente */
-}
-
+  #reloadButton img {
+    height: 32px; /* Cambié 'size' a 'height' para que funcione correctamente */
+  }
 </style>
