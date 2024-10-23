@@ -7,18 +7,18 @@ import Layout from "../layouts/Layout.astro";
     <h1>Agrega Tus Programas</h1>
     <form id="programForm">
       <div class="input-group">
-        <input type="text" id="nombre" name="nombre" minlength="2" maxlength="20" required />
+        <input type="text" id="nombre" minlength="2" maxlength="20" required />
         <label for="">Nombre</label>
       </div>
 
       <div class="input-group">
-        <input type="url" id="link_de_imagen" name="link_de_imagen" required />
+        <input type="text" id="link_de_imagen" required />
         <label for="link_de_imagen">Link de Imagen</label>
       </div>
 
       <div class="input-group">
         <input
-          type="url"
+          type="text"
           id="link_de_descarga"
           name="link_de_descarga"
           required
@@ -27,9 +27,9 @@ import Layout from "../layouts/Layout.astro";
       </div>
 
       <div class="input-group">
-        <input id="detalles" name="detalles" minlength="10" maxlength="80" required />
+        <input id="detalles" minlength="10" maxlength="80" required />
+        <label for="detalles">Detalles</label>
       </div>
-      <label for="detalles">Detalles</label>
       <button type="submit">Enviar</button>
     </form>
 
@@ -45,7 +45,6 @@ import Layout from "../layouts/Layout.astro";
     "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
   );
 
-
   // Manejador del evento de envío del formulario
   document.getElementById("programForm").addEventListener("submit", async (event) => {
       event.preventDefault(); // Evitar que el formulario recargue la página
@@ -55,6 +54,12 @@ import Layout from "../layouts/Layout.astro";
       const link_de_imagen = document.getElementById("link_de_imagen").value;
       const link_de_descarga = document.getElementById("link_de_descarga").value;
       const detalles = document.getElementById("detalles").value;
+
+      // Comprobación de URL 
+      if  (!URL.canParse(link_de_descarga) || !URL.canParse(link_de_imagen)) {
+        alert("No se han ingresado url en los campos de link")
+        return
+      }
 
 
 
@@ -131,5 +136,9 @@ import Layout from "../layouts/Layout.astro";
     top: 0;
     font-size: 14px;
     background-color: var(--background-color);
+  }
+
+  #detalles {
+    height: 60px;
   }
 </style>

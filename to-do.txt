@@ -1,1 +1,3 @@
-En la sección de agregar programa algunos elementos se comportan de manera inesperada
+Verificar que lo que se ponga en el input es una URl, no se puede reaizar desde el frontend por que rompe estilos, así que habría que hacerlo con JavaScript
+
+Verificar que el input del usuario no este ya en la base de datos para evitar duplicación

@@ -63,7 +63,7 @@
 
     const contenedor = document.querySelector("article.contenedor");
     contenedor.style.display = "grid";
-    contenedor.style.gridTemplateColumns = "repeat(3, 1fr)";
+    contenedor.style.gridTemplateColumns = "33.33% 33.33% 33.33%";
     contenedor.style.gap = "9px 3px";
 
     const headers = programList.querySelectorAll("header");
@@ -91,6 +91,7 @@
       span.style.color = "var(--text-gray-color)";
       span.style.width = "98%";
       span.style.display = "block";
+      span.style.overflowWrap = "break-word"
     });
   };
 </script>
