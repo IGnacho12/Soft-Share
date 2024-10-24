@@ -30,9 +30,8 @@ import Layout from "../layouts/Layout.astro";
         <input id="detalles" minlength="10" maxlength="80" required />
         <label for="detalles">Detalles</label>
       </div>
-      <button type="submit">Enviar</button>
+      <button type="submit" id="black-button">Enviar</button>
     </form>
-
   </main>
 </Layout>
 <div class="hola"></div>
@@ -46,22 +45,23 @@ import Layout from "../layouts/Layout.astro";
   );
 
   // Manejador del evento de envío del formulario
-  document.getElementById("programForm").addEventListener("submit", async (event) => {
+  document
+    .getElementById("programForm")
+    .addEventListener("submit", async (event) => {
       event.preventDefault(); // Evitar que el formulario recargue la página
 
       // Obtener los valores del formulario
       const nombre = document.getElementById("nombre").value;
       const link_de_imagen = document.getElementById("link_de_imagen").value;
-      const link_de_descarga = document.getElementById("link_de_descarga").value;
+      const link_de_descarga =
+        document.getElementById("link_de_descarga").value;
       const detalles = document.getElementById("detalles").value;
 
-      // Comprobación de URL 
-      if  (!URL.canParse(link_de_descarga) || !URL.canParse(link_de_imagen)) {
-        alert("No se han ingresado url en los campos de link")
-        return
+      // Comprobación de URL
+      if (!URL.canParse(link_de_descarga) || !URL.canParse(link_de_imagen)) {
+        alert("No se han ingresado url en los campos de link");
+        return;
       }
-
-
 
       // Realiza la consulta directamente a Neon desde el frontend
       try {
@@ -79,6 +79,24 @@ import Layout from "../layouts/Layout.astro";
 </script>
 
 <style>
+
+:root{
+  /* FONT */
+  --font: 'Poppins', sans-serif;;
+
+  /* COLORS */
+  --bg-color: white;
+  --conic-gradient: conic-gradient(
+    #FF2E2E,
+    #FF831E,
+    #FCFF51,
+    #58FF57,
+    #575FFF,
+    #D257FF,
+    #FF57E5,
+    #FF1556
+  );
+}
   .hola {
     height: 200px;
   }
@@ -138,7 +156,61 @@ import Layout from "../layouts/Layout.astro";
     background-color: var(--background-color);
   }
 
-  #detalles {
-    height: 60px;
+  #black-button {
+    height: 3em;
+    width: 8em;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform, box-shadow 0.3s ease;
   }
+
+  #black-button:hover {
+    box-shadow: 0px	1px 15px 3px  rgba(0, 0, 0, 0.2);
+  }
+
+  #black-button::before {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 350%;
+    background: var(--conic-gradient);
+  }
+
+  #black-button::after {
+    content: "Enviar";
+    position: absolute;
+    background-color: var(--bg-color);
+    width: 95%;
+    height: 89%;
+    border-radius: 0.4em;
+    font-size: 1rem;
+    color: black;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  #black-button:hover::before {
+    animation: spin 1.5s infinite linear;
+  }
+
+  @keyframes slidebg {
+    to {
+      background-position: 20vw;
+    }
+  }
+
+  
+@keyframes spin {
+  to{
+    transform: rotate(360deg);
+  }
+}
 </style>
