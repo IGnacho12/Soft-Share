@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Subir Programa">
   <main id="UploadProgram">
     <h1>Agrega Tus Programas</h1>
-    <a href="/UploadTutorial">Comó subir correctamente una utilidad</a>
+    <a href="/UploadTutorial">Comó subir correctamente un archivo</a>
     <form id="programForm">
       <div class="input-group">
         <input
@@ -160,6 +160,34 @@ import Layout from "../layouts/Layout.astro";
       #ff1556
     );
   }
+
+  a {
+  position: fixed;
+  top: 1px;
+  left: 1px;
+  align-items: center;
+	font-size: 0.8rem;
+	font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 6px;
+  color: var(--text-color);
+  border: none;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+	transition: box-shadow 0.3s ease;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+	
+
+	&:hover {
+		box-shadow: 0px	1px 10px 1px  rgba(0, 0, 0, 0.1);
+    text-decoration: underline;
+		cursor: pointer;
+	}}
+
+
   .hola {
     height: 200px;
   }
