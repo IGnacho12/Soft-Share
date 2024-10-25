@@ -7,12 +7,24 @@ import Layout from "../layouts/Layout.astro";
     <h1>Agrega Tus Programas</h1>
     <form id="programForm">
       <div class="input-group">
-        <input type="text" id="nombre" minlength="2" maxlength="20" required />
-        <label for="">Nombre</label>
+        <input
+          type="text"
+          id="nombre"
+          minlength="2"
+          maxlength="20"
+          title="Ingresa el nombre de tu soft🚀 (hasta máximo 20 caracteres)"
+          required
+        />
+        <label for="nombre">Nombre</label>
       </div>
 
       <div class="input-group">
-        <input type="text" id="link_de_imagen" required />
+        <input
+          type="text"
+          id="link_de_imagen"
+          title="Ingresa el link de la imagen que contiene el logo de tu soft🚀"
+          required
+        />
         <label for="link_de_imagen">Link de Imagen</label>
       </div>
 
@@ -21,13 +33,20 @@ import Layout from "../layouts/Layout.astro";
           type="text"
           id="link_de_descarga"
           name="link_de_descarga"
+          title="Ingresa el link directo de descarga de tu soft🚀"
           required
         />
         <label for="link_de_descarga">Link de Descarga</label>
       </div>
 
       <div class="input-group">
-        <input id="detalles" minlength="10" maxlength="80" required />
+        <input
+          id="detalles"
+          minlength="10"
+          maxlength="80"
+          title="Ingresa los detalles de tu soft🚀 (hasta máximo 80 caracteres)"
+          required
+        />
         <label for="detalles">Detalles</label>
       </div>
       <button type="submit" id="black-button">Enviar</button>
@@ -37,14 +56,20 @@ import Layout from "../layouts/Layout.astro";
 <div class="hola"></div>
 
 <script type="module">
+  // Definir variables para el acceso a la base de datos
   import { neon } from "https://cdn.skypack.dev/@neondatabase/serverless";
 
-  // Configura la conexión a la base de datos Neon
   const sql = neon(
     "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
   );
 
-  // Manejador del evento de envío del formulario
+  // ---------- IMPORTANTE PASOS A SEGUIR ---------- //
+  // 1. Conseguir los datos del usuario
+  // 2. Comprobar que los inputs que contienen url contengan una url con "URL.canParse" de JavaScript
+  // 3. Comprobar que el usuario no esta ingresando ningún campo que ya exista en la base de datos
+  // 4. Ingresar los datos a la Base De Datos
+
+  // ---------- PASO 1 ---------- //
   document
     .getElementById("programForm")
     .addEventListener("submit", async (event) => {
@@ -53,50 +78,73 @@ import Layout from "../layouts/Layout.astro";
       // Obtener los valores del formulario
       const nombre = document.getElementById("nombre").value;
       const link_de_imagen = document.getElementById("link_de_imagen").value;
-      const link_de_descarga =
-        document.getElementById("link_de_descarga").value;
+      const link_de_descarga = document.getElementById("link_de_descarga").value;
       const detalles = document.getElementById("detalles").value;
 
-      // Comprobación de URL
+      const userValuesArray = [
+        nombre,
+        link_de_imagen,
+        link_de_descarga,
+        detalles,
+      ];
+
+      // ---------- PASO 2 ---------- //
       if (!URL.canParse(link_de_descarga) || !URL.canParse(link_de_imagen)) {
         alert("No se han ingresado url en los campos de link");
         return;
       }
 
-      // Realiza la consulta directamente a Neon desde el frontend
-      try {
-        const response = await sql`
+      // ---------- PASO 3 ---------- //
+
+      const db_content = await sql`Select * from programas`;
+      const arrayFinal = [];
+      db_content.forEach((object) => {
+        for (const key in object) {
+          arrayFinal.push(object[key]);
+        }
+      });
+      console.log(arrayFinal);
+
+      const respuestas = [
+        "Nombre",
+        "Link de Imagen",
+        "Link de Descargar",
+        "Detalles",
+      ];
+
+      for (let i = 0; i < userValuesArray.length; i++) {
+        if (arrayFinal.includes(userValuesArray[i])) {
+          console.log(`Ha falldo ${respuestas[i]}`);
+          return
+        }
+      }
+
+      // ---------- PASO 4 ---------- //
+      const response = await sql`
                 INSERT INTO programas (nombre, link_de_imagen, link_de_descarga, detalles)
                 VALUES (${nombre}, ${link_de_imagen}, ${link_de_descarga}, ${detalles})
                 RETURNING *`;
-
-        console.log("Programa guardado:", response);
-      } catch (error) {
-        console.error("Error al guardar el programa:", error);
-        alert("Hubo un error al guardar el programa");
-      }
     });
 </script>
 
 <style>
+  :root {
+    /* FONT */
+    --font: "Poppins", sans-serif;
 
-:root{
-  /* FONT */
-  --font: 'Poppins', sans-serif;;
-
-  /* COLORS */
-  --bg-color: white;
-  --conic-gradient: conic-gradient(
-    #FF2E2E,
-    #FF831E,
-    #FCFF51,
-    #58FF57,
-    #575FFF,
-    #D257FF,
-    #FF57E5,
-    #FF1556
-  );
-}
+    /* COLORS */
+    --bg-color: white;
+    --conic-gradient: conic-gradient(
+      #ff2e2e,
+      #ff831e,
+      #fcff51,
+      #58ff57,
+      #575fff,
+      #d257ff,
+      #ff57e5,
+      #ff1556
+    );
+  }
   .hola {
     height: 200px;
   }
@@ -166,11 +214,13 @@ import Layout from "../layouts/Layout.astro";
     justify-content: center;
     overflow: hidden;
     cursor: pointer;
-    transition: transform, box-shadow 0.3s ease;
+    transition:
+      transform,
+      box-shadow 0.3s ease;
   }
 
   #black-button:hover {
-    box-shadow: 0px	1px 15px 3px  rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 15px 3px rgba(0, 0, 0, 0.2);
   }
 
   #black-button::before {
@@ -196,7 +246,6 @@ import Layout from "../layouts/Layout.astro";
     justify-content: center;
   }
 
-
   #black-button:hover::before {
     animation: spin 1.5s infinite linear;
   }
@@ -207,10 +256,9 @@ import Layout from "../layouts/Layout.astro";
     }
   }
 
-  
-@keyframes spin {
-  to{
-    transform: rotate(360deg);
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
-}
 </style>
