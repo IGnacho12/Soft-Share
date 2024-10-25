@@ -106,14 +106,18 @@ import Layout from "../layouts/Layout.astro";
       console.log(arrayFinal);
 
       const respuestas = [
-        "Nombre",
-        "Link de Imagen",
-        "Link de Descargar",
-        "Detalles",
+        "Soft-Share ya tiene un soft con ese nombre😵",
+        "Soft-Share ya tiene un soft con esa imagen😵",
+        "Soft-Share ya tiene un soft con ese link de descarga😵",
+        "Soft-Share ya tiene un soft con esos detalles😵",
       ];
 
       for (let i = 0; i < userValuesArray.length; i++) {
         if (arrayFinal.includes(userValuesArray[i])) {
+          const errorEl = document.getElementById("error-message")
+          const errorFather = document.getElementById("error-father")
+          errorFather.style.display = "block"
+          errorEl.innerText = `${respuestas[i]}`
           console.log(`Ha falldo ${respuestas[i]}`);
           return
         }

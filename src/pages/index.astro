@@ -3,9 +3,11 @@ import Layout from "../layouts/Layout.astro";
 import NavTables from "../components/NavTables.astro";
 import FeaturedPrograms from "../components/FeaturedPrograms.astro";
 import UploadProgram from "../components/UploadProgram.astro";
+import Alert from "../components/Alert.astro";
 ---
 
 <Layout title="Soft-Share">
+  <Alert/>
   <main>
     <h1>Soft-Share</h1>
     <p class="presentation">
@@ -14,7 +16,6 @@ import UploadProgram from "../components/UploadProgram.astro";
       comunidad y vota por los mejores. Aprovecha una plataforma colaborativa
       para explorar, contribuir y mejorar tus recursos informáticos.
     </p>
-
     <NavTables />
 		<FeaturedPrograms />
 		<UploadProgram />
