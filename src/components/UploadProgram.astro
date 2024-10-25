@@ -116,10 +116,20 @@ import Layout from "../layouts/Layout.astro";
         if (arrayFinal.includes(userValuesArray[i])) {
           const errorEl = document.getElementById("error-message")
           const errorFather = document.getElementById("error-father")
-          errorFather.style.display = "block"
+          errorFather.style.display = "flex"
           errorEl.innerText = `${respuestas[i]}`
           console.log(`Ha falldo ${respuestas[i]}`);
           return
+        } else {
+          const errorFather = document.getElementById("error-father")
+          errorFather.style.display = "none"
+          const successEl = document.getElementById("success-message")
+          const successFather = document.getElementById("success-father")
+          successEl.innerText = "El programa se a guardado con éxito ✅"
+          successFather.style.display = "flex"
+          setTimeout(() => {
+            successFather.style.display = "none"
+          }, 3000);
         }
       }
 
