@@ -41,6 +41,9 @@ import { ViewTransitions } from 'astro:transitions';
     margin: 0;
     padding: 0;
   }
+  html {
+    scroll-behavior: smooth;
+  }
 
   body {
     height: 100%;
@@ -52,7 +55,6 @@ import { ViewTransitions } from 'astro:transitions';
 
     background-color: var(--background-color);
     color: var(--text-color);
-    scroll-behavior: smooth;
   }
   ::selection {
     color: white;
