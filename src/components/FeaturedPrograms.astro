@@ -1,5 +1,12 @@
+---
+import SearchBtn from "./Search-btn.astro";
+---
+
 <article>
-  <h2>Programas destacados👑</h2>
+  <div class="holas">
+    <h2>Programas destacados👑</h2>
+    <SearchBtn />
+  </div>
 
   <button id="reloadButton"><img src="reload.svg" alt="" /></button>
 
@@ -20,6 +27,54 @@
   const reload_button = document.getElementById("reloadButton");
 
   reload_button.addEventListener("click", () => LoadPrograms());
+
+  // Agregar evento para cuando se presione enter en el input para buscar
+  const inputElement = document.querySelector("#input");
+  inputElement.addEventListener("keydown", async (event) => {
+    if (event.key === "Enter") {
+      // Detecta si se presionó Enter
+      console.log("se presiono enter");
+      const InputValue = inputElement.value
+      inputElement.value = ""; // Limpia el input después de enviar el valor (opcional)
+      inputElement.classList.remove("widthInput");
+      console.log("se presiono enter2");
+
+      const response = await sql`SELECT * FROM programas WHERE LOWER(nombre) LIKE LOWER(${`%${InputValue}%`})`;
+
+      // Comprueba si el resultado la busqueda retorna algun valor
+      if (response.length < 1) {
+        alert("nada para ti")
+        return
+      }
+      console.log(response);
+
+      const programList = document.getElementById("programList");
+
+      // Actualiza el contenido del contenedor con los nuevos programas
+      programList.innerHTML = response
+        .map(
+          (programa) => `
+        <div class="div-container">
+          <header>
+            <img
+              src="${programa.link_de_imagen}"
+              alt="${programa.nombre}"
+              onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
+            />
+            <h3>
+              <a rel="noreferrer" href="${programa.link_de_descarga}">
+                ${programa.nombre}
+              </a>
+            </h3>
+          </header>
+          <span>${programa.detalles}</span>
+        </div>
+      `
+        )
+        .join("");
+        makeStyles()
+    }
+  });
 
   async function LoadPrograms() {
     const response = await sql`SELECT * FROM programas`;
@@ -48,9 +103,11 @@
       `
       )
       .join("");
-
+      makeStyles()
+  }
     // Observar el ancho de la pantalla para hacer un diseño responsive
-    window.addEventListener("resize", responsive);
+    function makeStyles() {
+      window.addEventListener("resize", responsive);
 
     // Llamada incial
     responsive();
@@ -62,10 +119,10 @@
       const contenedor = document.querySelector("article.contenedor");
 
       if (size <= 730) {
-        // Pantalla menor a 730px 
+        // Pantalla menor a 730px
         contenedor.style.gridTemplateColumns = "100%";
       } else if (size <= 1200) {
-        // Pantalla menor a 1200px 
+        // Pantalla menor a 1200px
         contenedor.style.gridTemplateColumns = "50% 50%";
       } else {
         // Pantalla mayor a 1200px
@@ -113,10 +170,15 @@
       span.style.display = "block";
       span.style.overflowWrap = "break-word";
     });
-  }
+    }
 </script>
 
 <style>
+  .holas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   #reloadButton {
     position: fixed;
     top: 60px;
