@@ -28,52 +28,50 @@ import SearchBtn from "./Search-btn.astro";
 
   reload_button.addEventListener("click", () => LoadPrograms());
 
-  // Agregar evento para cuando se presione enter en el input para buscar
+  // Escuchar el cambio en el input para realizar la búsqueda sin esperar Enter
   const inputElement = document.querySelector("#input");
-  inputElement.addEventListener("keydown", async (event) => {
-    if (event.key === "Enter") {
-      // Detecta si se presionó Enter
-      console.log("se presiono enter");
-      const InputValue = inputElement.value
-      inputElement.value = ""; // Limpia el input después de enviar el valor (opcional)
-      inputElement.classList.remove("widthInput");
-      console.log("se presiono enter2");
+  inputElement.addEventListener("input", async () => {
+    const InputValue = inputElement.value;
 
-      const response = await sql`SELECT * FROM programas WHERE LOWER(nombre) LIKE LOWER(${`%${InputValue}%`})`;
+    // Evitar hacer la consulta si el campo está vacío
+    if (!InputValue.trim()) return;
 
-      // Comprueba si el resultado la busqueda retorna algun valor
-      if (response.length < 1) {
-        alert("No se ha encontrado ningún programa con ese nombre...")
-        return
-      }
-      console.log(response);
+    console.log("Realizando búsqueda...");
 
-      const programList = document.getElementById("programList");
+    const response = await sql`SELECT * FROM programas WHERE LOWER(nombre) LIKE LOWER(${`%${InputValue}%`})`;
 
-      // Actualiza el contenido del contenedor con los nuevos programas
-      programList.innerHTML = response
-        .map(
-          (programa) => `
-        <div class="div-container">
-          <header>
-            <img
-              src="${programa.link_de_imagen}"
-              alt="${programa.nombre}"
-              onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
-            />
-            <h3>
-              <a rel="noreferrer" href="${programa.link_de_descarga}">
-                ${programa.nombre}
-              </a>
-            </h3>
-          </header>
-          <span>${programa.detalles}</span>
-        </div>
-      `
-        )
-        .join("");
-        makeStyles()
+    // Comprueba si la búsqueda retorna algún valor
+    if (response.length < 1) {
+      alert("No se ha encontrado ningún programa con ese nombre...");
+      return;
     }
+
+    const programList = document.getElementById("programList");
+
+    // Actualiza el contenido del contenedor con los nuevos programas
+    programList.innerHTML = response
+      .map(
+        (programa) => `
+          <div class="div-container">
+            <header>
+              <img
+                src="${programa.link_de_imagen}"
+                alt="${programa.nombre}"
+                onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
+              />
+              <h3>
+                <a rel="noreferrer" href="${programa.link_de_descarga}">
+                  ${programa.nombre}
+                </a>
+              </h3>
+            </header>
+            <span>${programa.detalles}</span>
+          </div>
+        `
+      )
+      .join("");
+
+    makeStyles();
   });
 
   async function LoadPrograms() {
@@ -85,31 +83,33 @@ import SearchBtn from "./Search-btn.astro";
     programList.innerHTML = response
       .map(
         (programa) => `
-        <div class="div-container">
-          <header>
-            <img
-              src="${programa.link_de_imagen}"
-              alt="${programa.nombre}"
-              onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
-            />
-            <h3>
-              <a rel="noreferrer" href="${programa.link_de_descarga}">
-                ${programa.nombre}
-              </a>
-            </h3>
-          </header>
-          <span>${programa.detalles}</span>
-        </div>
-      `
+          <div class="div-container">
+            <header>
+              <img
+                src="${programa.link_de_imagen}"
+                alt="${programa.nombre}"
+                onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
+              />
+              <h3>
+                <a rel="noreferrer" href="${programa.link_de_descarga}">
+                  ${programa.nombre}
+                </a>
+              </h3>
+            </header>
+            <span>${programa.detalles}</span>
+          </div>
+        `
       )
       .join("");
-      makeStyles()
-  }
-    // Observar el ancho de la pantalla para hacer un diseño responsive
-    function makeStyles() {
-      window.addEventListener("resize", responsive);
 
-    // Llamada incial
+    makeStyles();
+  }
+
+  // Observar el ancho de la pantalla para hacer un diseño responsive
+  function makeStyles() {
+    window.addEventListener("resize", responsive);
+
+    // Llamada inicial
     responsive();
 
     function responsive() {
@@ -130,7 +130,7 @@ import SearchBtn from "./Search-btn.astro";
       }
     }
 
-    const div_container = programList.querySelectorAll("div"); // Cambié 'ancores' a 'anchors'
+    const div_container = programList.querySelectorAll("div");
     div_container.forEach((div) => {
       div.style.padding = "10px";
     });
@@ -156,10 +156,10 @@ import SearchBtn from "./Search-btn.astro";
       img.style.width = "auto";
     });
 
-    const anchors = programList.querySelectorAll("a"); // Cambié 'ancores' a 'anchors'
+    const anchors = programList.querySelectorAll("a");
     anchors.forEach((a) => {
-      a.style.textDecoration = "none"; // Aplica el estilo a los enlaces
-      a.style.color = "unset"; // Define un color específico
+      a.style.textDecoration = "none";
+      a.style.color = "unset";
     });
 
     const spans = programList.querySelectorAll("span");
@@ -170,7 +170,7 @@ import SearchBtn from "./Search-btn.astro";
       span.style.display = "block";
       span.style.overflowWrap = "break-word";
     });
-    }
+  }
 </script>
 
 <style>
@@ -184,17 +184,17 @@ import SearchBtn from "./Search-btn.astro";
     top: 60px;
     right: 30px;
     border: none;
-    transition: 0.3s ease; /* Definimos la transición aquí */
+    transition: 0.3s ease;
     cursor: pointer;
-    transform: rotate(0deg); /* Estado inicial */
+    transform: rotate(0deg);
     background-color: var(--background-color);
   }
 
   #reloadButton:hover {
-    transform: rotate(90deg); /* Rotamos el botón al hacer hover */
+    transform: rotate(90deg);
   }
 
   #reloadButton img {
-    height: 32px; /* Cambié 'size' a 'height' para que funcione correctamente */
+    height: 32px;
   }
 </style>
