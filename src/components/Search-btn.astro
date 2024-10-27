@@ -6,23 +6,44 @@
 </div>
 
 <script>
-  const btnElement = document.getElementById("btn");
+  function configurarListeners() {
+    const btnElement = document.getElementById("btn");
+    const inputElement = document.getElementById("input");
 
-  // Entra el mouse
-  btnElement.addEventListener("mouseover", () => {
-    const inputElement = document.querySelector("#input") as HTMLInputElement;
-    inputElement.classList.add("widthInput");
-    inputElement.focus()
-    console.log("esta focus")
-    
-  });
-  //Sale el mouse
-  btnElement.addEventListener("mouseout", () => {
-    const inputElement = document.querySelector("#input") as HTMLInputElement;
-    inputElement.classList.remove("widthInput");
-    inputElement.blur()
-    inputElement.value = ""
-  });
+    if (!btnElement || !inputElement) return;
+
+    // Remover cualquier listener previo para evitar duplicados
+    btnElement.removeEventListener("mouseover", mouseOverHandler);
+    btnElement.removeEventListener("mouseout", mouseOutHandler);
+
+    // Definir los manejadores de eventos
+    function mouseOverHandler() {
+      inputElement.classList.add("widthInput");
+      inputElement.focus();
+      console.log("Input en focus");
+    }
+
+    function mouseOutHandler() {
+      inputElement.classList.remove("widthInput");
+      inputElement.blur();
+      inputElement.value = "";
+    }
+
+    // Agregar los event listeners
+    btnElement.addEventListener("mouseover", mouseOverHandler);
+    btnElement.addEventListener("mouseout", mouseOutHandler);
+  }
+
+  // Configurar verificación periódica cada 500 ms
+  setInterval(() => {
+    const btnElement = document.getElementById("btn");
+    if (btnElement) {
+      configurarListeners();
+    }
+  }, 500);
+
+  // Ejecutar al cargar el DOM
+  document.addEventListener("DOMContentLoaded", configurarListeners);
 </script>
 
 <style>
@@ -31,42 +52,31 @@
   }
 
   input {
-    width: 0px; /* Agregar unidad para ancho */
+    width: 0px;
     margin: 0;
     padding: 0;
     border: 0;
-    transition: scale, width 0.5s ease;
-    border: none;
+    transition: width 0.5s ease;
     outline: none;
     font-family: 'Geist';
-    background-color: var(--background-color);
     font-weight: bold;
-
-    &:placeholder {
-      padding: 5px;
-    }
+    background-color: var(--background-color);
   }
 
   .btn {
-    position: ;
     padding: 2px;
-    transition: transform 2s ease; /* Cambiado a `transform` */
-
-    /* Aplicar el efecto de hover correctamente */
+    transition: transform 0.2s ease;
   }
 
-  /* Corrección para el hover */
   .btn:hover {
     transform: scale(1.3);
   }
 
   .widthInput {
-    transition: width 0.5s ease;
     width: 15em;
     background-color: #fff;
     border-radius: 10px;
     border: 3px solid black;
     padding-left: 15px;
-
   }
 </style>
