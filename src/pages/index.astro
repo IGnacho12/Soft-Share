@@ -8,23 +8,25 @@ import SuccessAlert from "../components/SuccessAlert.astro";
 ---
 
 <Layout title="Soft-Share">
-  <Alert/>
-  <SuccessAlert/>
-  
+  <Alert />
+  <SuccessAlert />
+
   <main>
     <h1>Soft-Share</h1>
     <p class="presentation">
       Encuentra una variedad de herramientas informáticas, desde aplicaciones
-      completas hasta scripts útiles. Comparte tus propios programas con la
+      completas hasta scripts útiles. <font color="008f39" >Comparte</font> tus propios programas con la
       comunidad y vota por los mejores. Aprovecha una plataforma colaborativa
-      para explorar, contribuir y mejorar tus recursos informáticos.
+      para <font color="094293" >explorar</font> , <font color="a65e2e">obtener</font> y  
+      <font color="4b0082" >contribuir</font>  tus <span>recursos informáticos.</span>
     </p>
     <NavTables />
-		<FeaturedPrograms />
-		<UploadProgram />
+    <FeaturedPrograms />
+    <UploadProgram />
   </main>
 
   <style>
+
     main {
       width: 70%;
       display: flex;
@@ -32,7 +34,7 @@ import SuccessAlert from "../components/SuccessAlert.astro";
     }
 
     span {
-      color: var(--text-gray-color);
+      font-weight: 500;
     }
 
     p.presentation {
@@ -42,5 +44,6 @@ import SuccessAlert from "../components/SuccessAlert.astro";
     div.hola {
       height: 200px;
     }
+
   </style>
 </Layout>

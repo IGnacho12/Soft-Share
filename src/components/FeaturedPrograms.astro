@@ -38,7 +38,8 @@ import SearchBtn from "./Search-btn.astro";
 
     console.log("Realizando búsqueda...");
 
-    const response = await sql`SELECT * FROM programas WHERE LOWER(nombre) LIKE LOWER(${`%${InputValue}%`})`;
+    const response =
+      await sql`SELECT * FROM programas WHERE LOWER(nombre) LIKE LOWER(${`%${InputValue}%`})`;
 
     // Comprueba si la búsqueda retorna algún valor
     if (response.length < 1) {
@@ -57,6 +58,9 @@ import SearchBtn from "./Search-btn.astro";
               <img
                 src="${programa.link_de_imagen}"
                 alt="${programa.nombre}"
+                width="32"
+                height="32"
+                loading="lazy"
                 onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
               />
               <h3>
