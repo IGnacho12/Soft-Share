@@ -79,7 +79,8 @@ import SearchBtn from "./Search-btn.astro";
   });
 
   async function LoadPrograms() {
-    const response = await sql`SELECT * FROM programas`;
+    const response = await sql`SELECT * FROM programas
+ORDER BY nombre ASC`;
 
     const programList = document.getElementById("programList");
 
