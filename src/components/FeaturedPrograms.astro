@@ -33,7 +33,10 @@ import SearchBtn from "./Search-btn.astro";
     const InputValue = document.querySelector("#input").value;
 
     // Evitar hacer la consulta si el campo está vacío
-    if (!InputValue.trim()) return;
+    if (!InputValue.trim()) {
+      LoadPrograms()
+      return;
+    }
 
     console.log("Realizando búsqueda...");
 
