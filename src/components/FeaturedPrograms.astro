@@ -24,7 +24,9 @@ import SearchBtn from "./Search-btn.astro";
 
   LoadPrograms();
 
-  document.getElementById("reloadButton").addEventListener("click", () => LoadPrograms());
+  document
+    .getElementById("reloadButton")
+    .addEventListener("click", () => LoadPrograms());
 
   // Escuchar el cambio en el input para realizar la búsqueda sin esperar Enter
   document.querySelector("#input").addEventListener("input", async () => {
@@ -40,10 +42,29 @@ import SearchBtn from "./Search-btn.astro";
 
     // Comprueba si la búsqueda retorna algún valor
     if (response.length < 1) {
-      alert("No se ha encontrado ningún programa con ese nombre...");
+      document.getElementById("programList").innerHTML = `
+      <article>
+         <h4>No se han encontrado resultados para su búsqueda.</h4> 
+         <p>Puede volver a cargar todos los programas con el botón *Todos los programas🚀*</p>
+      </article>
+      `;
+
+
+  const article = programList.querySelector("article");
+      programList.style.display = "flex";
+      programList.style.flexDirection = "column";
+      programList.style.alignSelf = "center";
+      programList.style.placeSelf = "center";
+      programList.style.marginBottom = "20px";
+      article.style.margin = "40px";
+
+    const h4 = programList.querySelector("h4")
+    h4.style.fontSize = "1.4rem"
+
+    programList.querySelector("p").style.color = "gray"
       return;
     }
- 
+
     // Actualiza el contenido del contenedor con los nuevos programas
     document.getElementById("programList").innerHTML = response
       .map(
