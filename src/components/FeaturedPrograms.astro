@@ -27,9 +27,8 @@ import SearchBtn from "./Search-btn.astro";
   document.getElementById("reloadButton").addEventListener("click", () => LoadPrograms());
 
   // Escuchar el cambio en el input para realizar la búsqueda sin esperar Enter
-  const inputElement = document.querySelector("#input");
-  inputElement.addEventListener("input", async () => {
-    const InputValue = inputElement.value;
+  document.querySelector("#input").addEventListener("input", async () => {
+    const InputValue = document.querySelector("#input").value;
 
     // Evitar hacer la consulta si el campo está vacío
     if (!InputValue.trim()) return;
