@@ -69,14 +69,12 @@ import SearchBtn from "./Search-btn.astro";
         `
       )
       .join("");
-
     makeStyles();
   });
 
 
   // Función cargar programas
-  async function LoadPrograms(query) {
-    const userQuery = query
+  async function LoadPrograms() {
     const response = await sql`SELECT * FROM programas
 ORDER BY nombre ASC`;
 
