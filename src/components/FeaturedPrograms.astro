@@ -43,7 +43,7 @@ import SearchBtn from "./Search-btn.astro";
       alert("No se ha encontrado ningún programa con ese nombre...");
       return;
     }
-
+ 
     // Actualiza el contenido del contenedor con los nuevos programas
     document.getElementById("programList").innerHTML = response
       .map(
@@ -76,7 +76,7 @@ import SearchBtn from "./Search-btn.astro";
   // Función cargar programas
   async function LoadPrograms() {
     const response = await sql`SELECT * FROM programas
-ORDER BY nombre ASC`;
+    ORDER BY nombre ASC`;
 
     // Actualiza el contenido del contenedor con los nuevos programas
     document.getElementById("programList").innerHTML = response
@@ -114,7 +114,6 @@ ORDER BY nombre ASC`;
     function responsive() {
       // Conseguir el ancho de la pantalla
       const size = window.innerWidth;
-
       const contenedor = document.querySelector("article.contenedor");
 
       if (size <= 730) {

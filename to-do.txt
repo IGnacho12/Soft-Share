@@ -10,6 +10,8 @@ hacer que el boton de reload reaccione el la última cosa que quiso hacer le usu
 
 Optimizar las imagenes
 
-En ciertas ocasiones cuando recargas mucho la página el ordenamiento alfabético de los programas no se cumple.
+En ciertas ocasiones cuando recargas mucho la página el ordenamiento alfabético de los programas no se cumple. 
 
 Reusar los alerts, ya que estos estan duplicados y solo cambian las líneas de los colores.
+
+Implementar que programas destacados sea diferentes de todos los programas, esto no tiene mucho sentido hasta que hayan mas de 40 programas
