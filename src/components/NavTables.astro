@@ -4,7 +4,6 @@
   <a href="#UploadProgram">Subir Programa</a>
 </nav>
 
-
 <script type="module">
   import { neon } from "https://cdn.skypack.dev/@neondatabase/serverless";
 
@@ -14,42 +13,42 @@
 
   LoadPrograms();
 
-  const allPrograms = document.querySelector("#AllPrograms")
+  const allPrograms = document.querySelector("#AllPrograms");
   allPrograms.addEventListener("click", () => LoadPrograms());
 
   // Agregar evento para cuando se presione enter en el input para buscar
   async function LoadPrograms() {
-    const response = await sql`SELECT * FROM programas`;
-
-    const programList = document.getElementById("programList");
+    const response = await sql`SELECT * FROM programas
+ORDER BY nombre ASC`;
 
     // Actualiza el contenido del contenedor con los nuevos programas
-    programList.innerHTML = response
+    document.getElementById("programList").innerHTML = response
       .map(
         (programa) => `
-        <div class="div-container">
-          <header>
-            <img
-              src="${programa.link_de_imagen}"
-              alt="${programa.nombre}"
-              onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
-            />
-            <h3>
-              <a rel="noreferrer" href="${programa.link_de_descarga}">
-                ${programa.nombre}
-              </a>
-            </h3>
-          </header>
-          <span>${programa.detalles}</span>
-        </div>
-      `
+          <div class="div-container">
+            <header>
+              <img
+                src="${programa.link_de_imagen}"
+                alt="${programa.nombre}"
+                onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
+              />
+              <h3>
+                <a rel="noreferrer" href="${programa.link_de_descarga}">
+                  ${programa.nombre}
+                </a>
+              </h3>
+            </header>
+            <span>${programa.detalles}</span>
+          </div>
+        `
       )
       .join("");
-      makeStyles()
+
+    makeStyles();
   }
-    // Observar el ancho de la pantalla para hacer un diseño responsive
-    function makeStyles() {
-      window.addEventListener("resize", responsive);
+  // Observar el ancho de la pantalla para hacer un diseño responsive
+  function makeStyles() {
+    window.addEventListener("resize", responsive);
 
     // Llamada incial
     responsive();
@@ -112,37 +111,36 @@
       span.style.display = "block";
       span.style.overflowWrap = "break-word";
     });
-    }
+  }
 </script>
 
 <style>
   a {
-  display: flex;
-  align-items: center;
-	font-size: 0.9rem;
-	font-weight: bold;
-  padding: 6px 14px;
-  border-radius: 6px;
-  color: var(--text-color);
-  background: #fff;
-  border: none;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-	transition: box-shadow 0.3s ease;
-  text-decoration: none;
-	
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 6px;
+    color: var(--text-color);
+    background: #fff;
+    border: none;
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    transition: box-shadow 0.3s ease;
+    text-decoration: none;
 
-	&:hover {
-		box-shadow: 0px	1px 10px 1px  rgba(0, 0, 0, 0.2);
-		cursor: pointer;
-	}
-	}
-	nav {
+    &:hover {
+      box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+  }
+  nav {
     margin-top: 3rem;
     margin-bottom: 4rem;
-		display: flex;
-		justify-content: space-around;
-	}
+    display: flex;
+    justify-content: space-around;
+  }
 </style>
