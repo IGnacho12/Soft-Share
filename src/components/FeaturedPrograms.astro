@@ -44,10 +44,8 @@ import SearchBtn from "./Search-btn.astro";
       return;
     }
 
-    const programList = document.getElementById("programList");
-
     // Actualiza el contenido del contenedor con los nuevos programas
-    programList.innerHTML = response
+    document.getElementById("programList").innerHTML = response
       .map(
         (programa) => `
           <div class="div-container">
