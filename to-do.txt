@@ -7,3 +7,7 @@ hacer que el boton de reload reaccione el la última cosa que quiso hacer le usu
 si se entra y se sale de la documentación de como subir un archivo correctamente, la búsqueda deja de funcionar | Solucionado ✅
 
 Optimizar las imagenes
+
+En ciertas ocasiones cuando recargas mucho la página el ordenamiento alfabético de los programas no se cumple.
+
+Hacer un read.me acorde al proyecto.
