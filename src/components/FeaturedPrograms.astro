@@ -3,10 +3,10 @@ import SearchBtn from "./Search-btn.astro";
 ---
 
 <article>
-  <div class="holas">
+  <header>
     <h2>Programas destacados👑</h2>
     <SearchBtn />
-  </div>
+  </header>
 
   <button id="reloadButton"><img src="reload.svg" alt="" /></button>
 
@@ -24,9 +24,7 @@ import SearchBtn from "./Search-btn.astro";
 
   LoadPrograms();
 
-  const reload_button = document.getElementById("reloadButton");
-
-  reload_button.addEventListener("click", () => LoadPrograms());
+  document.getElementById("reloadButton").addEventListener("click", () => LoadPrograms());
 
   // Escuchar el cambio en el input para realizar la búsqueda sin esperar Enter
   const inputElement = document.querySelector("#input");
@@ -78,7 +76,10 @@ import SearchBtn from "./Search-btn.astro";
     makeStyles();
   });
 
-  async function LoadPrograms() {
+
+  // Función cargar programas
+  async function LoadPrograms(query) {
+    const userQuery = query
     const response = await sql`SELECT * FROM programas
 ORDER BY nombre ASC`;
 
@@ -179,7 +180,7 @@ ORDER BY nombre ASC`;
 </script>
 
 <style>
-  .holas {
+  header {
     display: flex;
     align-items: center;
     justify-content: space-between;

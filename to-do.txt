@@ -1,13 +1,15 @@
 Verificar que el input del usuario no este ya en la base de datos para evitar duplicación ✅
 
+Hacer un read.me acorde al proyecto. ✅
+
+si se entra y se sale de la documentación de como subir un archivo correctamente, la búsqueda deja de funcionar  ✅
+
 Agregar una modal para indicar que se debe ingresar valores validos en los inputs
 
 hacer que el boton de reload reaccione el la última cosa que quiso hacer le usuari por ejemplo, cargar los programas destacados es diferente a cargar todos los programas, a también filtrar por el nombre de un programa
-
-si se entra y se sale de la documentación de como subir un archivo correctamente, la búsqueda deja de funcionar | Solucionado ✅
 
 Optimizar las imagenes
 
 En ciertas ocasiones cuando recargas mucho la página el ordenamiento alfabético de los programas no se cumple.
 
-Hacer un read.me acorde al proyecto.
+Reusar los alerts, ya que estos estan duplicados y solo cambian las líneas de los colores.
