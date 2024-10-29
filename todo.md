@@ -1,6 +1,7 @@
 # Soft Share - To Do List
 
 ## UI (Estética) - No Hecho
+- [ ] Arreglar el favicon de la página.
 
 
 ## Funcionalidad - No Hecho
