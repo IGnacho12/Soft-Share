@@ -76,6 +76,9 @@ import Layout from "../layouts/Layout.astro";
     .addEventListener("submit", async (event) => {
       event.preventDefault(); // Evitar que el formulario recargue la página
 
+      const submitButton = document.getElementById("black-button");
+      submitButton.disabled = true; // Deshabilita el botón para evitar múltiples envíos
+
       // Obtener los valores del formulario
       const nombre = document.getElementById("nombre").value;
       const link_de_imagen = document.getElementById("link_de_imagen").value;
@@ -92,7 +95,8 @@ import Layout from "../layouts/Layout.astro";
 
       // ---------- PASO 2 ---------- //
       if (!URL.canParse(link_de_descarga) || !URL.canParse(link_de_imagen)) {
-        alert("No se han ingresado url en los campos de link");
+        document.getElementById("error-message").innerText = `No se han ingresado URL validas.`;
+        document.getElementById("error-father").style.display = "flex";
         return;
       }
 
@@ -123,8 +127,7 @@ import Layout from "../layouts/Layout.astro";
           const repetitiveImagesAllowed =
             "https://2.bp.blogspot.com/-IWs9wvWmHQg/Xu4aReIqOzI/AAAAAAAAYCI/DQrCgJ05TZcRBxgsMYTkY0Vm7lRITsG0wCLcBGAsYHQ/s1600/UltraISO%2BPremium%2BEdition.png";
 
-
-            // Si no encuentra la imagen del usuario dentro de las imagenes permitidas, prosigue con el error de dato repetido.
+          // Si no encuentra la imagen del usuario dentro de las imagenes permitidas, prosigue con el error de dato repetido.
           if (!userValuesArray[i].includes(repetitiveImagesAllowed)) {
             const errorEl = document.getElementById("error-message");
             const errorFather = document.getElementById("error-father");
@@ -135,7 +138,6 @@ import Layout from "../layouts/Layout.astro";
           } else {
             console.log("Imagen repetida permitida");
           }
-
         } else {
           const errorFather = document.getElementById("error-father");
           errorFather.style.display = "none";
@@ -147,6 +149,7 @@ import Layout from "../layouts/Layout.astro";
             successFather.style.display = "none";
           }, 3000);
         }
+        submitButton.disabled = false; // Reactiva el botón una vez ya se ha subido o dado error el recursos a subir
       }
 
       // ---------- PASO 4 ---------- //
