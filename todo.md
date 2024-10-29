@@ -1,7 +1,7 @@
 # Soft Share - To Do List
 
 ## UI (Estética) - No Hecho
-
+- [x] Cuando se sube un sof y la alerta de success se muestra dice "Error: Se ha subido el archivo correctamente"
 
 ## Funcionalidad - No Hecho
 - [ ] Optimizar las imágenes.
