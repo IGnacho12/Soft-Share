@@ -4,22 +4,34 @@ interface Props {
 }
 
 const { title } = Astro.props;
-import { ViewTransitions } from 'astro:transitions';
-
+import { ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Programas, Utilidades, Scripts, Juegos, encuentralos y subelos en segundos con soft-share.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="Software, Subir, Descargar, Donwload, Upload, Share">
-    <link data-default-icon="/Windows_98.ico" rel="shortcut icon" href="/Windows_98.ico" />
+    <meta
+      name="description"
+      content="Programas, Utilidades, Scripts, Juegos, encuentralos y subelos en segundos con soft-share."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="keywords"
+      content="Software, Subir, Descargar, Donwload, Upload, Share"
+    />
+    <!-- Logo - https://realfavicongenerator.net -->
+    <link rel="icon" type="image/png" href="/logo.png" sizes="512x512" />
+    <!-- End Logo -->
+    <meta name="apple-mobile-web-app-title" content="Soft-Share page" />
+    <link rel="manifest" href="/logo.png/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="google-site-verification" content="hzbJZ4KQX_hvr8hMcKMdm5PNV71vwFUSSmTcx7zjmh4" />
+    <meta
+      name="google-site-verification"
+      content="hzbJZ4KQX_hvr8hMcKMdm5PNV71vwFUSSmTcx7zjmh4"
+    />
     <title>{title}</title>
-    <ViewTransitions/>
+    <ViewTransitions />
   </head>
   <body>
     <slot />
