@@ -2,6 +2,7 @@
 
 ## UI (Estética) - No Hecho
 - [ ] Arreglar el favicon de la página.
+- [ ] Las imágenes no deberían ser seleccionados con el user select.
 
 
 ## Funcionalidad - No Hecho
