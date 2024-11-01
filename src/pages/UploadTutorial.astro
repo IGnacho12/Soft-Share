@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Subir Archivos Guía">
   <aside>
+    <a href="/" id="go-back"><img id="go-back-img"src="go-back.svg" alt=""></a>
     <h3>Temas de Interés</h3>
 
     <div class="contenedor-aside">
@@ -145,6 +146,59 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <style>
+/* Botón de Regreso */
+#go-back {
+  position: absolute;
+  left: 5px;
+  border: none;
+  background-color: none;
+  background: none;
+  width: 32px;
+  height: auto;
+  cursor: pointer;
+}
+
+/* Imagen dentro del botón */
+#go-back-img {
+  box-shadow: none;
+  animation: rotateInfinite 0.7s linear infinite; /* Rotación continua */
+  transition: opacity 0.5s ease; /* Transición suave para opacidad */
+}
+
+/* Efecto de hover para detener rotación y desaparecer */
+#go-back-img:hover {
+  opacity: 0; /* Desvanece la imagen */
+  animation: none; /* Detiene la animación */
+  transform: rotate(0deg); /* Reinicia a rotación 0 */
+}
+
+/* Aparece de nuevo con fundido */
+#go-back:hover #go-back-img {
+  animation: fadeIn 1s ease forwards; /* Fundido al reaparecer */
+}
+
+/* Animación de rotación infinita */
+@keyframes rotateInfinite {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animación de fundido al reaparecer */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+
   a {
     text-decoration: none;
     color: var(--text-color);
@@ -282,3 +336,6 @@ import Layout from "../layouts/Layout.astro";
     scroll-margin-top: 4em;
   }
 </style>
+
+<script>
+</script>
