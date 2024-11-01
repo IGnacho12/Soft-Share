@@ -3,10 +3,29 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Subir Archivos Guía">
+  <aside>
+    <h3>Temas de Interés</h3>
+
+    <div class="contenedor-aside">
+      <div>
+        <h4>¿Qué poner en ...?</h4>
+        <ul>
+          <li><a href="#nombre">Nombre</a></li>
+          <li><a href="#linkDeImagen">Link de imagen</a></li>
+          <li><a href="#linkDeDescarga">Link de descarga</a></li>
+          <li><a href="#detalles">Detalles</a></li>
+        </ul>
+      </div>
+      <h4><a href="#generar">Generar link de descarga</a></h4>
+      <h4><a href="#proximamente">Próximamente...</a></h4>
+    </div>
+  </aside>
   <main>
-    <h1>Subir un archivo, programa o utilidad</h1>
+    <!-- Tutorial Básico -->
+
     <article>
-      <h3>Nombre</h3>
+      <h1>Subir un archivo, programa o utilidad</h1>
+      <h3 id="nombre">Nombre</h3>
       <p>
         El nombre es lo más fácil, si queres puedes incluir la versión del
         programa, la extensión del archivo o si es crackeado. Ej
@@ -16,66 +35,230 @@ import Layout from "../layouts/Layout.astro";
         <li>Archivo con Nombres.txt</li>
         <li>Programa Crakeado</li>
       </ul>
-      <h3>Link de Imagen</h3>
+      <h3 id="linkDeImagen">Link de Imagen</h3>
       <p>
-        Para utilizar cualquier imagen como logo de tu programa, esta debe estar subida a internet y ser accesible mediante una URL. Una vez que hayas decidido qué imagen quieres usar, haz clic derecho sobre ella y selecciona 'Copiar dirección de imagen'. Esa es la URL que necesitarás utilizar.
+        Para utilizar cualquier imagen como logo de tu programa, esta debe estar
+        subida a internet y ser accesible mediante una URL. Una vez que hayas
+        decidido qué imagen quieres usar, haz clic derecho sobre ella y
+        selecciona 'Copiar dirección de imagen'. Esa es la URL que necesitarás
+        utilizar.
       </p>
       <img src="example-image.webp" alt="Imagen guía" />
-      <h3>Link de Descarga</h3>
+      <h3 id="linkDeDescarga">Link de Descarga</h3>
       <p>
-        Primero, busca el botón que permite descargar el archivo que deseas subir; luego, haz clic derecho sobre él y selecciona 'Copiar dirección de enlace'. Esa será la URL que deberás utilizar.
+        Primero, busca el botón que permite descargar el archivo que deseas
+        subir; luego, haz clic derecho sobre él y selecciona 'Copiar dirección
+        de enlace'. Esa será la URL que deberás utilizar.
       </p>
       <img src="example-image2.webp" alt="Imagen guía" />
-      
-      <h3>Detalles</h3>
+
+      <h3 id="detalles">Detalles</h3>
       <p>
-        Describe brevemente tu programa. Si haz subido un archivo comprimido (.rar - .7z - etc) puedes usar este campo para proporcionar contraseña si es que la necesita.
+        Describe brevemente tu programa. Si haz subido un archivo comprimido
+        (.rar - .7z - etc) puedes usar este campo para proporcionar contraseña
+        si es que la necesita.
       </p>
+    </article>
+    <article>
+      <h1 id="generar">Generar un Enlace de Descarga</h1>
+      <p>
+        Si tu archivo no está disponible en línea y se encuentra en tu
+        dispositivo, puedes subirlo y generar un enlace utilizando MediaFire.
+        Recomiendo este servicio por las siguientes razones:
+      </p>
+      <ul>
+        <li>Registro en menos de 40 segundos.</li>
+        <li>No se requieren datos personales.</li>
+        <li>Capacidad de almacenamiento de 10 GB.</li>
+        <li>Permite subir cualquier tipo de archivo.</li>
+        <li>Genera enlaces para descargar archivos o carpetas.</li>
+      </ul>
+      <h3>
+        Almacenar en MediaFire
+        <img
+          class="mediafire"
+          src="https://cdn.worldvectorlogo.com/logos/mediafire-1.svg"
+          alt="Logo de MediaFire"
+        />
+      </h3>
+      <p>
+        Para crear una cuenta, necesitarás proporcionar tu nombre, apellido,
+        correo electrónico y una contraseña. Si prefieres no usar tu correo
+        personal, puedes optar por un <font color="blue"
+          ><a href="https://temp-mail.io/" target="_blank">correo temporal</a
+          ></font
+        >. Luego, completa los campos restantes con la información
+        correspondiente.
+      </p>
+      <img
+        src="example-image3.png"
+        alt="Imagen de ejemplo para crear una cuenta en MediaFire"
+      />
+      <p>
+        Una vez registrado, accederás al panel de usuario. Presiona el botón
+        "UPLOAD" señalado para subir tu archivo.
+      </p>
+      <img src="example-image4.png" alt="Botón para subir archivo" />
+      <p>
+        Después de subir tu archivo, haz clic en el botón señalado para copiar
+        la URL de descarga. Luego pega la dirección en la barra de búsqueda de
+        tu navegador
+      </p>
+      <img src="example-image5.png" alt="Copiar URL de descarga" />
+      <img src="example-image6.png" alt="Copiar URL de descarga" />
+      <p>
+        Esto te llevará a una página donde podrás descargar tu archivo
+        directamente. A continuación, sigue este <font color="blue"
+          ><a href="#linkDeDescarga">paso</a></font
+        >.
+      </p>
+    </article>
+    <article>
+      <h1 id="proximamente">Próximamente</h1>
+      <p>
+        La siguiente lista contiene funcionalidades no completadas o
+        funcionalidades que se desean añadir a futuro. Gracias por tú paciencia!
+      </p>
+      <ul>
+        <li>
+          Establecer un control sobre el tamaño de las imágenes que sube el
+          usuario.
+        </li>
+        <li>
+          Implementar la funcionalidad del botón "Programas destacados".
+        </li>
+        <li>
+          Hacer que el botón reload reaccione a la última acción del usuario.
+        </li>
+        <li>
+          Agregar una sección que explique como subir archivos muy grandes.
+        </li>
+        <li>
+          Sistema de registro simple, permitiendo los votos para los soft de la
+          página.
+        </li><li>
+          Agregar un Glosario.
+        </li>
+      </ul>
     </article>
   </main>
 </Layout>
 
 <style>
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+  }
+
+  a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  /* Contenedor del sidebar */
+  aside::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari y Edge */
+  }
+
+  aside {
+    position: fixed; /* Fija el aside en su posición */
+    top: 0;
+    left: 0;
+    width: 16rem; /* Ancho del aside */
+    height: 100vh; /* Altura completa de la pantalla */
+    padding: 1rem;
+    overflow-y: auto; /* Permite desplazamiento en el aside */
+  }
+
+  aside h3 {
+    font-size: 1.1rem;
+    display: inline-block;
+  }
+  aside ul {
+    display: inline-block;
+    height: auto;
+    padding: 0.5em 1em;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  aside li {
+    padding: 2px 0px;
+    margin-bottom: 0.2em;
+  }
+
+  .contenedor-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+  }
+
+  /* Contenedor principal */
   main {
-    width: 70%;
+    margin-left: 10rem; /* Espacio para que main no se superponga con aside */
+    float: right; /* Coloca main a la derecha del aside */
+    width: calc(
+      100% - 10rem
+    ); /* Ajusta el ancho de main para que sea responsive */
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 200px;
   }
+
+  /* Otros estilos para el contenido */
   h1 {
     margin-top: 1.5rem;
   }
+
   p {
     font-weight: 600;
     color: rgb(71, 71, 71);
     margin-bottom: 1rem;
+    text-wrap: pretty;
   }
+
   h1 {
     font-size: 2.5rem;
     align-self: center;
+    margin-bottom: 20px;
   }
+
   h3 {
     font-size: 1.8rem;
     border-bottom: 0.15rem solid black;
     margin-bottom: 10px;
     margin-top: 5rem;
   }
+
   img {
     border-radius: 2px;
-    box-shadow: 0px 0.5px 5px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0.5px 5px 1px rgba(0, 0, 0, 0.2);
     margin-left: 5px;
-    width: 493px;
     align-self: center;
-    
+    max-width: 80%;
+    margin-bottom: 1.3em;
   }
+  .mediafire {
+    margin-bottom: 0;
+  }
+
+  h3 img {
+    display: inline;
+    width: 1.5em;
+    box-shadow: none;
+  }
+
   article {
     width: 70%;
     display: flex;
     flex-direction: column;
-    /* background-color: rgba(83, 83, 83, 0.123); */
+    margin-bottom: 3em;
   }
-  ul {
+
+  article ul {
     display: inline-block;
     background-color: rgba(128, 128, 128, 0.2);
     height: auto;
@@ -87,17 +270,15 @@ import Layout from "../layouts/Layout.astro";
     list-style-type: none;
   }
 
-  li {
+  article li {
     padding: 2px 0px;
   }
-  code {
-  }
 
-  span {
-    color: var(--text-gray-color);
-  }
-
-  div.hola {
-    height: 200px;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    scroll-margin-top: 4em;
   }
 </style>

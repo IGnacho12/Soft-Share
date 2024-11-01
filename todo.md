@@ -3,7 +3,7 @@
 ## UI (Estética) - No Hecho
 - [ ] Arreglar el favicon de la página.
 - [ ] Las imágenes no deberían ser seleccionados con el user select.
-- [ ] Implementar una sección que explique al usuario donde puede subir sus archivos para ser descargados mediante un link.
+- [ ] Agregar una sección que explique como subir archivos muy grandes.
 
 ## Funcionalidad - No Hecho
 - [ ] Optimizar las imágenes.
@@ -17,6 +17,7 @@
 - [x] Hacer un `README` acorde al proyecto.
 - [x] Agregar una modal para indicar que se deben ingresar valores válidos en los inputs.
 - [x] Cuando se sube un sof y la alerta de success se muestra dice "Error: Se ha subido el archivo correctamente"
+- [x] Implementar una sección que explique al usuario donde puede subir sus archivos para ser descargados mediante un link.
 
 
 ## Funcionalidad - Hecho
