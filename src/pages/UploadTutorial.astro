@@ -4,7 +4,9 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Subir Archivos Guía">
   <aside>
-    <a href="/" id="go-back"><img id="go-back-img"src="go-back.svg" alt=""></a>
+    <a href="/" id="go-back"
+      ><img id="go-back-img" src="go-back.svg" alt="" /></a
+    >
     <h3>Temas de Interés</h3>
 
     <div class="contenedor-aside">
@@ -92,21 +94,21 @@ import Layout from "../layouts/Layout.astro";
         correspondiente.
       </p>
       <img
-        src="example-image3.png"
+        src="example-image3.webp"
         alt="Imagen de ejemplo para crear una cuenta en MediaFire"
       />
       <p>
         Una vez registrado, accederás al panel de usuario. Presiona el botón
         "UPLOAD" señalado para subir tu archivo.
       </p>
-      <img src="example-image4.png" alt="Botón para subir archivo" />
+      <img src="example-image4.webp" alt="Botón para subir archivo" />
       <p>
         Después de subir tu archivo, haz clic en el botón señalado para copiar
         la URL de descarga. Luego pega la dirección en la barra de búsqueda de
         tu navegador
       </p>
-      <img src="example-image5.png" alt="Copiar URL de descarga" />
-      <img src="example-image6.png" alt="Copiar URL de descarga" />
+      <img src="example-image5.webp" alt="Copiar URL de descarga" />
+      <img src="example-image6.webp" alt="Copiar URL de descarga" />
       <p>
         Esto te llevará a una página donde podrás descargar tu archivo
         directamente. A continuación, sigue este <font color="blue"
@@ -125,9 +127,7 @@ import Layout from "../layouts/Layout.astro";
           Establecer un control sobre el tamaño de las imágenes que sube el
           usuario.
         </li>
-        <li>
-          Implementar la funcionalidad del botón "Programas destacados".
-        </li>
+        <li>Implementar la funcionalidad del botón "Programas destacados".</li>
         <li>
           Hacer que el botón reload reaccione a la última acción del usuario.
         </li>
@@ -137,67 +137,63 @@ import Layout from "../layouts/Layout.astro";
         <li>
           Sistema de registro simple, permitiendo los votos para los soft de la
           página.
-        </li><li>
-          Agregar un Glosario.
-        </li>
+        </li><li>Agregar un Glosario.</li>
       </ul>
     </article>
   </main>
 </Layout>
 
 <style>
-/* Botón de Regreso */
-#go-back {
-  position: absolute;
-  left: 5px;
-  border: none;
-  background-color: none;
-  background: none;
-  width: 32px;
-  height: auto;
-  cursor: pointer;
-}
-
-/* Imagen dentro del botón */
-#go-back-img {
-  box-shadow: none;
-  animation: rotateInfinite 0.7s linear infinite; /* Rotación continua */
-  transition: opacity 0.5s ease; /* Transición suave para opacidad */
-}
-
-/* Efecto de hover para detener rotación y desaparecer */
-#go-back-img:hover {
-  opacity: 0; /* Desvanece la imagen */
-  animation: none; /* Detiene la animación */
-  transform: rotate(0deg); /* Reinicia a rotación 0 */
-}
-
-/* Aparece de nuevo con fundido */
-#go-back:hover #go-back-img {
-  animation: fadeIn 1s ease forwards; /* Fundido al reaparecer */
-}
-
-/* Animación de rotación infinita */
-@keyframes rotateInfinite {
-  0% {
-    transform: rotate(0deg);
+  /* Botón de Regreso */
+  #go-back {
+    position: absolute;
+    left: 5px;
+    border: none;
+    background-color: none;
+    background: none;
+    width: 32px;
+    height: auto;
+    cursor: pointer;
   }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
-/* Animación de fundido al reaparecer */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+  /* Imagen dentro del botón */
+  #go-back-img {
+    box-shadow: none;
+    animation: rotateInfinite 0.7s linear infinite; /* Rotación continua */
+    transition: opacity 0.5s ease; /* Transición suave para opacidad */
   }
-  to {
-    opacity: 1;
+
+  /* Efecto de hover para detener rotación y desaparecer */
+  #go-back-img:hover {
+    opacity: 0; /* Desvanece la imagen */
+    animation: none; /* Detiene la animación */
+    transform: rotate(0deg); /* Reinicia a rotación 0 */
   }
-}
 
+  /* Aparece de nuevo con fundido */
+  #go-back:hover #go-back-img {
+    animation: fadeIn 1s ease forwards; /* Fundido al reaparecer */
+  }
 
+  /* Animación de rotación infinita */
+  @keyframes rotateInfinite {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Animación de fundido al reaparecer */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   a {
     text-decoration: none;
@@ -209,8 +205,7 @@ import Layout from "../layouts/Layout.astro";
     cursor: pointer;
   }
   /* Contenedor del sidebar */
-  aside::-webkit-scrollbar,
-  body::-webkit-scrollbar {
+  aside::-webkit-scrollbar {
     display: none; /* Chrome, Safari y Edge */
   }
 
@@ -337,5 +332,4 @@ import Layout from "../layouts/Layout.astro";
   }
 </style>
 
-<script>
-</script>
+<script></script>
