@@ -27,7 +27,7 @@ import Layout from "../layouts/Layout.astro";
       "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
     );
     const response =
-      await sql`Select autor, comentario, fecha from comentarios`;
+      await sql`Select autor, comentario, fecha from comentarios order by id desc`;
       console.log(`TODOS LOS COMENTARIOS SON ${response}`);
     document.getElementById("commentsSection").innerHTML = response
       .map(

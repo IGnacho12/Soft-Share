@@ -42,24 +42,47 @@ import Layout from "../layouts/Layout.astro";
   const sql = neon(
     "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
   );
+  let lastCommentTime = null; // Almacena la hora del último comentario
 
   document
     .getElementById("enviar-comentario")
     .addEventListener("click", async (event) => {
-      event.preventDefault()
+      event.preventDefault();
 
       const autor = document.getElementById("autor").value;
       const comentario = document.getElementById("comentario").value;
-      const fecha = GetDateARG()
+      const fecha = GetDateARG();
 
+      // Verificar si han pasado al menos 2 minutos desde el último comentario
+      if (!canCommentAgain()) {
+        alert("Debes esperar al menos 2 minutos antes de comentar nuevamente.");
+        return;
+      }
 
-      const response = await sql`
+      try {
+        const response = await sql`
                 INSERT INTO comentarios (autor, comentario, fecha)
                 VALUES (${autor}, ${comentario}, ${fecha})
                 `;
-
-      loadComments()
+        lastCommentTime = new Date(); // Actualizar la hora del último comentario
+        loadComments();
+      } catch (error) {
+        console.error("Error al insertar el comentario:", error);
+      }
     });
+
+  function canCommentAgain() {
+    if (!lastCommentTime) {
+      // Si no hay un último comentario, permitir comentar
+      return true;
+    }
+
+    const currentTime = new Date(); // Hora actual
+    const diffInMilliseconds = currentTime - lastCommentTime; // Diferencia en ms
+    const diffInMinutes = diffInMilliseconds / (1000 * 60); // Convertir a minutos
+
+    return diffInMinutes >= 2; // Permitir si han pasado 2 minutos o más
+  }
 
   function GetDateARG() {
     const fullDate = new Date();
@@ -84,8 +107,7 @@ import Layout from "../layouts/Layout.astro";
       "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
     );
     const response =
-      await sql`Select autor, comentario, fecha from comentarios`;
-      console.log(`TODOS LOS COMENTARIOS SON ${response}`);
+      await sql`Select autor, comentario, fecha from comentarios order by id desc`;
     document.getElementById("commentsSection").innerHTML = response
       .map(
         (comentario) => `
