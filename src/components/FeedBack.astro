@@ -1,0 +1,274 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Comentarios">
+  <main>
+    <article>
+      <h2>¡Déjame un comentario!🪅</h2>
+    </article>
+
+    <form id="programForm">
+      <div class="input-group">
+        <input
+          type="text"
+          id="autor"
+          minlength="2"
+          maxlength="20"
+          title="Ingresa el nombre de tu soft🚀 (hasta máximo 20 caracteres)"
+          required
+        />
+        <label for="nombre">¿Quién eres?👀</label>
+      </div>
+
+      <div class="input-group">
+        <input
+          type="text"
+          id="comentario"
+          title="Dejame tu sugerencia, problema, crítica o simplemente un saludo🥰"
+          required
+        />
+        <label for="comentario">Tú comentario 🧐</label>
+      </div>
+
+      <button type="submit" id="enviar-comentario">Enviar</button>
+    </form>
+  </main>
+</Layout>
+
+<script type="module">
+  import { neon } from "https://cdn.skypack.dev/@neondatabase/serverless";
+
+  const sql = neon(
+    "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
+  );
+
+  document
+    .getElementById("enviar-comentario")
+    .addEventListener("click", async (event) => {
+      event.preventDefault()
+
+      const autor = document.getElementById("autor").value;
+      const comentario = document.getElementById("comentario").value;
+      const fecha = GetDateARG()
+
+
+      const response = await sql`
+                INSERT INTO comentarios (autor, comentario, fecha)
+                VALUES (${autor}, ${comentario}, ${fecha})
+                `;
+
+      loadComments()
+    });
+
+  function GetDateARG() {
+    const fullDate = new Date();
+    const options = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    };
+    const formattedDate = fullDate.toLocaleString("en-US", options);
+
+    // Separar fecha y hora para personalizar el formato
+    const [datePart, timePart] = formattedDate.split(", ");
+    const [month, day, year] = datePart.split("/");
+    const resultString = `${day}/${month}/${year} ${timePart}`;
+    return resultString;
+  }
+  async function loadComments() {
+    const sql = neon(
+      "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
+    );
+    const response =
+      await sql`Select autor, comentario, fecha from comentarios`;
+      console.log(`TODOS LOS COMENTARIOS SON ${response}`);
+    document.getElementById("commentsSection").innerHTML = response
+      .map(
+        (comentario) => `
+          <article>
+        <div><h3>${comentario.autor}</h3>
+          <span>${comentario.fecha}</span>
+        </div>
+        
+        <p>${comentario.comentario}</p>
+      </article>
+        `
+      )
+      .join("");
+    makeStyles();
+
+    function makeStyles() {
+      const commentsSection = document.getElementById("commentsSection");
+
+      const colors = [
+        "rgba(176, 229, 124, 0.5)", // Verde pastel transparente
+        "rgba(108, 155, 207, 0.5)", // Azul pastel transparente
+        "rgba(243, 199, 169, 0.5)", // Naranja pastel transparente
+        "rgba(193, 163, 224, 0.5)", // Morado pastel transparente
+      ];
+
+      const comentarios_container = commentsSection.querySelectorAll("article");
+      comentarios_container.forEach((El) => {
+        El.style.marginBottom = "3rem";
+        El.style.padding = "1rem";
+        El.style.borderRadius = "10px";
+        El.style.boxShadow = `1px 1px 10px 0px rgba(0, 0, 0, 0.2)`;
+        El.style.wordBreak = "break-word"; // Asegura que las palabras largas se rompan si es necesario
+        El.style.overflowWrap = "break-word";
+      });
+
+      const h3 = commentsSection.querySelectorAll("h3");
+      h3.forEach((El) => {
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        El.style.fontSize = "1rem";
+        El.style.backgroundColor = `${color}`;
+        El.style.display = "inline-block";
+        El.style.borderRadius = "6px";
+        El.style.padding = "0.2rem";
+      });
+
+      const p = commentsSection.querySelectorAll("p");
+      p.forEach((El) => {
+        El.style.fontStyle = "italic";
+        El.style.marginLeft = "1rem";
+        El.style.padding = "1rem";
+      });
+      const span = commentsSection.querySelectorAll("span");
+      span.forEach((El) => {
+        El.style.fontWeight = "bold";
+        El.style.fontSize = "0.9rem";
+      });
+      const div = commentsSection.querySelectorAll("div");
+      div.forEach((El) => {
+        El.style.display = "flex";
+        El.style.justifyContent = "space-between";
+      });
+    }
+  }
+</script>
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .input-group {
+    position: relative;
+    margin: 20px 0;
+  }
+
+  .input-group label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: black;
+    padding: 0 5px;
+    pointer-events: none;
+    transition: 0.5s;
+  }
+
+  .input-group input {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    color: #000;
+    padding: 0 15px;
+    background: transparent;
+    border: 2px solid #ccc;
+    outline: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: black;
+    }
+  }
+
+  .input-group input:focus ~ label,
+  .input-group input:valid ~ label {
+    top: 0;
+    font-size: 14px;
+    background-color: var(--background-color);
+  }
+
+  #nombre {
+    width: 12rem;
+  }
+
+  #comentario {
+    width: 30rem;
+    height: 5rem;
+  }
+
+  button {
+    height: 3em;
+    width: 9em;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition:
+      transform,
+      box-shadow 0.3s ease;
+  }
+
+  button:hover {
+    box-shadow: 0px 1px 15px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  button::before {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 350%;
+    background: var(--conic-gradient);
+  }
+
+  button::after {
+    content: "Comentar";
+    position: absolute;
+    background-color: var(--bg-color);
+    width: 95%;
+    height: 89%;
+    border-radius: 0.4em;
+    font-size: 1rem;
+    color: black;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button:hover::before {
+    animation: spin 1.5s infinite linear;
+  }
+
+  @keyframes slidebg {
+    to {
+      background-position: 20vw;
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

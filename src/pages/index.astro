@@ -5,6 +5,8 @@ import FeaturedPrograms from "../components/FeaturedPrograms.astro";
 import UploadProgram from "../components/UploadProgram.astro";
 import Alert from "../components/Alert.astro";
 import SuccessAlert from "../components/SuccessAlert.astro";
+import CommentsSection from "../components/CommentsSection.astro";
+import FeedBack from "../components/FeedBack.astro";
 ---
 
 <Layout title="Soft-Share - Repositorio de tus programas.">
@@ -22,9 +24,15 @@ import SuccessAlert from "../components/SuccessAlert.astro";
     <NavTables />
     <FeaturedPrograms />
     <UploadProgram />
+    <FeedBack />
+    <CommentsSection />
   </main>
 
   <style>
+    body {
+      padding-bottom: 100px;
+    }
+
 
     main {
       width: 70%;
@@ -40,9 +48,29 @@ import SuccessAlert from "../components/SuccessAlert.astro";
       text-align: center;
     }
 
-    div.hola {
-      height: 200px;
-    }
-
   </style>
 </Layout>
+
+<script>
+const fullDate = new Date();
+
+const options: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: true,
+};
+
+// Usamos el método `toLocaleString` con las opciones correctas
+const formattedDate = fullDate.toLocaleString('en-US', options);
+
+// Separar fecha y hora para personalizar el formato
+const [datePart, timePart] = formattedDate.split(', ');
+const [month, day, year] = datePart.split('/');
+const resultString = `${day}/${month}/${year} ${timePart}`;
+
+console.log(resultString); // Ejemplo: 15/11/2024 06:55 AM
+
+</script>

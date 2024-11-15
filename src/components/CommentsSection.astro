@@ -1,0 +1,101 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Sección de Comentarios">
+  <main>
+    <h2>Comentarios📖</h2>
+    <section id="commentsSection">
+      <article>
+        <p></p>
+      </article>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* body {
+    color: #0000ff40;
+  } */
+</style>
+<script type="module">
+  import { neon } from "https://cdn.skypack.dev/@neondatabase/serverless";
+
+  loadComments();
+  async function loadComments() {
+    const sql = neon(
+      "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
+    );
+    const response =
+      await sql`Select autor, comentario, fecha from comentarios`;
+      console.log(`TODOS LOS COMENTARIOS SON ${response}`);
+    document.getElementById("commentsSection").innerHTML = response
+      .map(
+        (comentario) => `
+          <article>
+        <div><h3>${comentario.autor}</h3>
+          <span>${comentario.fecha}</span>
+        </div>
+        
+        <p>${comentario.comentario}</p>
+      </article>
+        `
+      )
+      .join("");
+    makeStyles();
+
+    function makeStyles() {
+      const commentsSection = document.getElementById("commentsSection");
+
+      const colors = [
+        "rgba(176, 229, 124, 0.5)", // Verde pastel transparente
+        "rgba(108, 155, 207, 0.5)", // Azul pastel transparente
+        "rgba(243, 199, 169, 0.5)", // Naranja pastel transparente
+        "rgba(193, 163, 224, 0.5)", // Morado pastel transparente
+      ];
+
+      const comentarios_container = commentsSection.querySelectorAll("article");
+      comentarios_container.forEach((El) => {
+        El.style.marginBottom = "3rem";
+        El.style.padding = "1rem";
+        El.style.borderRadius = "10px";
+        El.style.boxShadow = `1px 1px 10px 0px rgba(0, 0, 0, 0.2)`;
+        El.style.wordBreak = "break-word"; // Asegura que las palabras largas se rompan si es necesario
+        El.style.overflowWrap = "break-word";
+      });
+
+      const h3 = commentsSection.querySelectorAll("h3");
+      h3.forEach((El) => {
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        El.style.fontSize = "1rem";
+        El.style.backgroundColor = `${color}`;
+        El.style.display = "inline-block";
+        El.style.borderRadius = "6px";
+        El.style.padding = "0.2rem";
+      });
+
+      const p = commentsSection.querySelectorAll("p");
+      p.forEach((El) => {
+        El.style.fontStyle = "italic";
+        El.style.marginLeft = "1rem";
+        El.style.padding = "1rem";
+      });
+      const span = commentsSection.querySelectorAll("span");
+      span.forEach((El) => {
+        El.style.fontWeight = "bold";
+        El.style.fontSize = "0.9rem";
+      });
+      const div = commentsSection.querySelectorAll("div");
+      div.forEach((El) => {
+        El.style.display = "flex";
+        El.style.justifyContent = "space-between";
+      });
+    }
+  }
+</script>
+
+<style>
+  h2 {
+    margin-bottom: 2rem;
+  }
+</style>
