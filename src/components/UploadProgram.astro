@@ -42,8 +42,8 @@ import Layout from "../layouts/Layout.astro";
 
       <div class="input-group">
         <input
+          type="text"
           id="detalles"
-          minlength="10"
           maxlength="80"
           title="Ingresa los detalles de tu soft 🚀 (máximo 80 caracteres)"
           required
@@ -71,92 +71,94 @@ import Layout from "../layouts/Layout.astro";
 
   // ---------- PASO 1 ---------- //
   document
-    .getElementById("programForm")
-    .addEventListener("submit", async (event) => {
-      event.preventDefault(); // Evitar que el formulario recargue la página
+  .getElementById("programForm")
+  .addEventListener("submit", async (event) => {
+    event.preventDefault(); // Evitar que el formulario recargue la página
 
-      const submitButton = document.getElementById("black-button");
-      submitButton.disabled = true; // Deshabilita el botón para evitar múltiples envíos
+    const submitButton = document.getElementById("black-button");
+    submitButton.disabled = true; // Deshabilita el botón para evitar múltiples envíos
 
-      // Obtener los valores del formulario
-      const nombre = document.getElementById("nombre").value;
-      const link_de_imagen = document.getElementById("link_de_imagen").value;
-      const link_de_descarga =
-        document.getElementById("link_de_descarga").value;
-      const detalles = document.getElementById("detalles").value;
+    const errorFather = document.getElementById("error-father");
+    const successFather = document.getElementById("success-father");
+    const errorMessage = document.getElementById("error-message");
+    const successMessage = document.getElementById("success-message");
 
-      const userValuesArray = [
-        nombre,
-        link_de_imagen,
-        link_de_descarga,
-        detalles,
-      ];
+    // Ocultar mensajes previos de error y éxito
+    errorFather.style.display = "none";
+    successFather.style.display = "none";
 
-      // ---------- PASO 2 ---------- //
-      if (!URL.canParse(link_de_descarga) || !URL.canParse(link_de_imagen)) {
-        document.getElementById("error-message").innerText = `No se han ingresado URL validas.`;
-        document.getElementById("error-father").style.display = "flex";
+    // Obtener los valores del formulario
+    const nombre = document.getElementById("nombre").value;
+    const link_de_imagen = document.getElementById("link_de_imagen").value;
+    const link_de_descarga =
+      document.getElementById("link_de_descarga").value;
+    const detalles = document.getElementById("detalles").value;
+
+    // ---------- PASO 2: Validar URLs ---------- //
+    if (!URL.canParse(link_de_descarga) || !URL.canParse(link_de_imagen)) {
+      errorMessage.innerText = "No se han ingresado URL válidas.";
+      errorFather.style.display = "flex";
+      submitButton.disabled = false; // Reactivar el botón
+      return;
+    }
+
+    // ---------- PASO 3: Comprobar duplicados ---------- //
+    const db_content = await sql`SELECT * FROM programas`;
+    const arrayFinal = [];
+    db_content.forEach((object) => {
+      for (const key in object) {
+        arrayFinal.push(object[key]);
+      }
+    });
+
+    const userValuesArray = [
+      nombre,
+      link_de_imagen,
+      link_de_descarga,
+      detalles,
+    ];
+
+    const respuestas = [
+      "Soft-Share ya tiene un soft con ese nombre 😵",
+      "Soft-Share ya tiene un soft con esa imagen 😵",
+      "Soft-Share ya tiene un soft con ese link de descarga 😵",
+      "Soft-Share ya tiene un soft con esos detalles 😵",
+    ];
+
+    for (let i = 0; i < userValuesArray.length; i++) {
+      if (arrayFinal.includes(userValuesArray[i])) {
+        errorMessage.innerText = respuestas[i];
+        errorFather.style.display = "flex";
+        submitButton.disabled = false; // Reactivar el botón
         return;
       }
+    }
 
-      // ---------- PASO 3 ---------- //
-
-      const db_content = await sql`Select * from programas`;
-      const arrayFinal = [];
-      db_content.forEach((object) => {
-        for (const key in object) {
-          arrayFinal.push(object[key]);
-        }
-      });
-      console.log(arrayFinal);
-
-      const respuestas = [
-        "Soft-Share ya tiene un soft con ese nombre😵",
-        "Soft-Share ya tiene un soft con esa imagen😵",
-        "Soft-Share ya tiene un soft con ese link de descarga😵",
-        "Soft-Share ya tiene un soft con esos detalles😵",
-      ];
-      for (let i = 0; i < userValuesArray.length; i++) {
-        // Para cada input del usuario hacer ->
-
-        // Si algún dato de la base de datos coincide con algún dato suministrado por el usuario, retornara un error y se cancelara la subida del recurso.
-        if (arrayFinal.includes(userValuesArray[i])) {
-          // Considerar si lo repetido es una imagen permitida para repetir varias veces, somo lo sería el logo de los archivos .iso .exe .bat .cmd
-
-          const repetitiveImagesAllowed =
-            "https://2.bp.blogspot.com/-IWs9wvWmHQg/Xu4aReIqOzI/AAAAAAAAYCI/DQrCgJ05TZcRBxgsMYTkY0Vm7lRITsG0wCLcBGAsYHQ/s1600/UltraISO%2BPremium%2BEdition.png";
-
-          // Si no encuentra la imagen del usuario dentro de las imagenes permitidas, prosigue con el error de dato repetido.
-          if (!userValuesArray[i].includes(repetitiveImagesAllowed)) {
-            const errorEl = document.getElementById("error-message");
-            const errorFather = document.getElementById("error-father");
-            errorFather.style.display = "flex";
-            errorEl.innerText = `${respuestas[i]}`;
-            console.log(`Ha falldo ${respuestas[i]}`);
-            return;
-          } else {
-            console.log("Imagen repetida permitida");
-          }
-        } else {
-          const errorFather = document.getElementById("error-father");
-          errorFather.style.display = "none";
-          const successEl = document.getElementById("success-message");
-          const successFather = document.getElementById("success-father");
-          successEl.innerText = "El programa se a guardado con éxito ✅";
-          successFather.style.display = "flex";
-          setTimeout(() => {
-            successFather.style.display = "none";
-          }, 3000);
-        }
-        submitButton.disabled = false; // Reactiva el botón una vez ya se ha subido o dado error el recursos a subir
-      }
-
-      // ---------- PASO 4 ---------- //
+    // ---------- PASO 4: Insertar datos en la base de datos ---------- //
+    try {
       const response = await sql`
-                INSERT INTO programas (nombre, link_de_imagen, link_de_descarga, detalles)
-                VALUES (${nombre}, ${link_de_imagen}, ${link_de_descarga}, ${detalles})
-                RETURNING *`;
-    });
+        INSERT INTO programas (nombre, link_de_imagen, link_de_descarga, detalles)
+        VALUES (${nombre}, ${link_de_imagen}, ${link_de_descarga}, ${detalles})
+        RETURNING *`;
+
+      successMessage.innerText = "El programa se ha guardado con éxito ✅";
+      successFather.style.display = "flex";
+
+      // Limpia el formulario después del éxito
+      document.getElementById("programForm").reset();
+
+      setTimeout(() => {
+        successFather.style.display = "none";
+      }, 3000);
+    } catch (error) {
+      errorMessage.innerText = "Error al guardar el programa. Inténtalo nuevamente.";
+      errorFather.style.display = "flex";
+      console.error(error);
+    } finally {
+      submitButton.disabled = false; // Reactivar el botón
+    }
+  });
+
 </script>
 
 <style>
@@ -271,6 +273,7 @@ import Layout from "../layouts/Layout.astro";
     justify-content: center;
     overflow: hidden;
     cursor: pointer;
+    border: 2px solid black;
     transition:
       transform,
       box-shadow 0.3s ease;
