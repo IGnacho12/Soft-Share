@@ -28,7 +28,6 @@ import Layout from "../layouts/Layout.astro";
     );
     const response =
       await sql`Select autor, comentario, fecha from comentarios order by id desc`;
-      console.log(`TODOS LOS COMENTARIOS SON ${response}`);
     document.getElementById("commentsSection").innerHTML = response
       .map(
         (comentario) => `
