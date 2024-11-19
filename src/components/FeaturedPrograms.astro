@@ -39,10 +39,10 @@ import SearchBtn from "./Search-btn.astro";
       return;
     }
 
-    console.log("Realizando búsqueda...");
-
     const response =
       await sql`SELECT * FROM programas WHERE LOWER(nombre) LIKE LOWER(${`%${InputValue}%`})`;
+
+      console.log(`La respuesta de la base de datos es: ${response.link_de_imagen}`)
 
     // Comprueba si la búsqueda retorna algún valor
     if (response.length < 1) {
@@ -85,7 +85,7 @@ import SearchBtn from "./Search-btn.astro";
                 onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
               />
               <h3>
-                <a rel="noreferrer" target="_blank" href="${programa.link_de_descarga}>
+                <a rel="noreferrer" target="_blank" href="${programa.link_de_descarga}">
                   ${programa.nombre}
                 </a>
               </h3>
