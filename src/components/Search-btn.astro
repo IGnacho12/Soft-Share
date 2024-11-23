@@ -1,51 +1,18 @@
 <div class="container">
-  <input type="text" placeholder="" id="input" />
+  <input type="text" placeholder="" id="input" class="widthInput"/>
   <div class="btn" id="btn">
-    <img src="binoculars.svg" alt="Imagen de binoculares" />
+    <img src="search.svg"  id="imgS" alt="Imagen de binoculares" />
   </div>
 </div>
 
 <script>
-  // Todo el JavaScript de este componente tiene el objetivo único de aplicarse la éstitica necesaria
-  function configurarListeners() {
-    const btnElement = document.getElementById("btn");
-    const inputElement = document.getElementById("input") as HTMLInputElement ;
+  const imgSearch = document.getElementById("imgS")
 
-    if (!btnElement || !inputElement) return;
-
-    // Remover cualquier listener previo para evitar duplicados
-    btnElement.removeEventListener("mouseover", mouseOverHandler);
-    btnElement.removeEventListener("mouseout", mouseOutHandler);
-
-    // Definir los manejadores de eventos
-    function mouseOverHandler() {
-      inputElement.classList.add("widthInput");
-      inputElement.focus();
-      console.log("Input en focus");
-    }
-
-    function mouseOutHandler() {
-      inputElement.classList.remove("widthInput");
-      inputElement.blur();
-      inputElement.value = "";
-    }
-
-    // Agregar los event listeners
-    btnElement.addEventListener("click", mouseOverHandler);
-    btnElement.addEventListener("mouseout", mouseOutHandler);
-  }
-
-  // Configurar verificación periódica cada 500 ms
-  setInterval(() => {
-    const btnElement = document.getElementById("btn");
-    if (btnElement) {
-      configurarListeners();
-    }
-  }, 500);
-
-  // Ejecutar al cargar el DOM
-  document.addEventListener("DOMContentLoaded", configurarListeners);
+  imgSearch.addEventListener(("click"), () => {
+    document.getElementById("input").focus()
+  })
 </script>
+
 
 <style>
   .container {
@@ -68,14 +35,15 @@
   .btn {
     padding: 2px;
     transition: transform 0.2s ease;
+    transition: all .3s ease;
   }
 
   .btn:hover {
-    transform: scale(1.2);
+    rotate: 20deg;
   }
 
   img {
-    height: 2.5rem;
+    height: 2rem;
   }
   input {
     height: 2.2rem;
