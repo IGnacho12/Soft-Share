@@ -1,18 +1,17 @@
 <div class="container">
-  <input type="text" placeholder="" id="input" class="widthInput"/>
+  <input type="text" placeholder="" id="input" class="widthInput" />
   <div class="btn" id="btn">
-    <img src="search.svg"  id="imgS" alt="Imagen de binoculares" />
+    <img src="search.svg" id="imgS" alt="Imagen de binoculares" />
   </div>
 </div>
 
 <script>
-  const imgSearch = document.getElementById("imgS")
+  const imgSearch = document.getElementById("imgS");
 
-  imgSearch.addEventListener(("click"), () => {
-    document.getElementById("input").focus()
-  })
+  imgSearch.addEventListener("click", () => {
+    document.getElementById("input").focus();
+  });
 </script>
-
 
 <style>
   .container {
@@ -27,7 +26,7 @@
     border: 0;
     transition: width 0.5s ease;
     outline: none;
-    font-family: 'Geist';
+    font-family: "Geist";
     font-weight: bold;
     background-color: var(--background-color);
   }
@@ -35,7 +34,7 @@
   .btn {
     padding: 2px;
     transition: transform 0.2s ease;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
   }
 
   .btn:hover {
@@ -45,9 +44,21 @@
   img {
     height: 2rem;
   }
+
   input {
     height: 2.2rem;
+    transition: box-shadow 0.5s ease;
+
+    &:focus {
+      box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
+    }
+
   }
+
+  .container:focus-within .btn {
+  rotate: 20deg;
+}
+
 
   .widthInput {
     width: 15em;
