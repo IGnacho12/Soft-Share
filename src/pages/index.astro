@@ -10,18 +10,20 @@ import FeedBack from "../components/FeedBack.astro";
 ---
 
 <Layout title="Soft-Share">
-  <div class="background"></div>
-
   <Alert />
   <SuccessAlert />
   <main>
     <h1>Soft-Share</h1>
     <p class="presentation">
       Encuentra una variedad de herramientas informáticas, desde aplicaciones
-      completas hasta scripts útiles. <font color="008f39" >Comparte</font> tus propios programas con la
-      comunidad y vota por los mejores. Aprovecha una plataforma colaborativa
-      para <font color="094293" >explorar</font> , <font color="a65e2e">obtener</font> y  
-      <font color="4b0082" >contribuir</font>  tus <span>recursos informáticos.</span>
+      completas hasta scripts útiles. <font color="008f39">Comparte</font> tus propios
+      programas con la comunidad y vota por los mejores. Aprovecha una plataforma
+      colaborativa para <font color="094293">explorar</font> , <font
+        color="a65e2e">obtener</font
+      > y
+      <font color="4b0082">contribuir</font> tus <span
+        >recursos informáticos.</span
+      >
     </p>
     <NavTables />
     <FeaturedPrograms />
@@ -47,21 +49,7 @@ import FeedBack from "../components/FeedBack.astro";
 
     p.presentation {
       text-align: center;
+      backdrop-filter: blur(1px);
     }
-
-    .background {
-  position: absolute;
-  inset: 0;
-  z-index: -10;
-  height: 100%;
-  width: 100%;
-  background-color: var(--background-color);
-  background-image: 
-    linear-gradient(to right, #f0f0f0 1px, transparent 1px),
-    linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
-  background-size: 6rem 4rem;
-}
-
-
   </style>
 </Layout>
