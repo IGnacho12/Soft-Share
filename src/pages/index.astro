@@ -10,6 +10,8 @@ import FeedBack from "../components/FeedBack.astro";
 ---
 
 <Layout title="Soft-Share">
+  <div class="background"></div>
+
   <Alert />
   <SuccessAlert />
   <main>
@@ -46,6 +48,20 @@ import FeedBack from "../components/FeedBack.astro";
     p.presentation {
       text-align: center;
     }
+
+    .background {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  height: 100%;
+  width: 100%;
+  background-color: var(--background-color);
+  background-image: 
+    linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+    linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
+  background-size: 6rem 4rem;
+}
+
 
   </style>
 </Layout>
