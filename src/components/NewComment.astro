@@ -37,11 +37,6 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <script type="module">
-  import { neon } from "https://cdn.skypack.dev/@neondatabase/serverless";
-
-  const sql = neon(
-    "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
-  );
   let lastCommentTime = null; // Almacena la hora del último comentario
 
   document
@@ -52,6 +47,7 @@ import Layout from "../layouts/Layout.astro";
       const autor = document.getElementById("autor").value;
       const comentario = document.getElementById("comentario").value;
       const fecha = GetDateARG();
+      console.log(fecha)
 
       // Verificar si han pasado al menos 2 minutos desde el último comentario
       if (!canCommentAgain()) {
@@ -59,16 +55,20 @@ import Layout from "../layouts/Layout.astro";
         return;
       }
 
-      try {
-        const response = await sql`
-                INSERT INTO comentarios (autor, comentario, fecha)
-                VALUES (${autor}, ${comentario}, ${fecha})
-                `;
-        lastCommentTime = new Date(); // Actualizar la hora del último comentario
-        loadComments();
-      } catch (error) {
-        console.error("Error al insertar el comentario:", error);
-      }
+      const response = await fetch("http://localhost:1234/comments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          autor,
+          comentario,
+          fecha,
+        }),
+      });
+
+      loadComments()
+      console.log(response);
     });
 
   function canCommentAgain() {
@@ -102,13 +102,21 @@ import Layout from "../layouts/Layout.astro";
     const resultString = `${day}/${month}/${year} ${timePart}`;
     return resultString;
   }
+
+  loadComments();
   async function loadComments() {
-    const sql = neon(
-      "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
-    );
-    const response =
-      await sql`Select autor, comentario, fecha from comentarios order by id desc`;
-    document.getElementById("commentsSection").innerHTML = response
+
+
+    const response = await fetch('http://localhost:1234/comments')
+    
+    if (!response.ok) {
+      throw new Error("Error al obtener los programas");
+    }
+
+    // Parsear la respuesta JSON
+    const programs = await response.json();
+
+    document.getElementById("commentsSection").innerHTML = programs
       .map(
         (comentario) => `
           <article>
@@ -141,6 +149,7 @@ import Layout from "../layouts/Layout.astro";
         El.style.boxShadow = `1px 1px 10px 0px rgba(0, 0, 0, 0.2)`;
         El.style.wordBreak = "break-word"; // Asegura que las palabras largas se rompan si es necesario
         El.style.overflowWrap = "break-word";
+        El.style.backdropFilter = "blur(10px)"
       });
 
       const h3 = commentsSection.querySelectorAll("h3");
@@ -187,7 +196,7 @@ import Layout from "../layouts/Layout.astro";
   }
   input {
     font-family: "geist", "sans serif";
-    font-variant-emoji:emoji;
+    font-variant-emoji: emoji;
   }
 
   .input-group {

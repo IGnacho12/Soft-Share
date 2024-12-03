@@ -1,21 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import NavTables from "../components/NavTables.astro";
 import FeaturedPrograms from "../components/FeaturedPrograms.astro";
 import UploadProgram from "../components/UploadProgram.astro";
 import Alert from "../components/Alert.astro";
 import SuccessAlert from "../components/SuccessAlert.astro";
 import CommentsSection from "../components/CommentsSection.astro";
-import FeedBack from "../components/FeedBack.astro";
+import FeedBack from "../components/NewComment.astro";
+import NavButtons from "../components/NavButtons.astro";
 ---
 
 <Layout title="Soft-Share">
-  <div>
-    <h1>Lo siento!!</h1>
-    <p>Por el momento la página está en mantenimiento, agradezco tu paciencia.</p>
-    <span>👷⚒️</span>
-  </div>
-    <!-- <h1>Soft-Share</h1>
+  <main>
+    <h1>Soft-Share</h1>
     <p class="presentation">
       Encuentra una variedad de herramientas informáticas, desde aplicaciones
       completas hasta scripts útiles. <font color="008f39">Comparte</font> tus propios
@@ -27,32 +23,14 @@ import FeedBack from "../components/FeedBack.astro";
         >recursos informáticos.</span
       >
     </p>
-    <NavTables />
+    <NavButtons />
     <FeaturedPrograms />
     <UploadProgram />
     <FeedBack />
-    <CommentsSection /> -->
+    <CommentsSection />
   </main>
 
   <style>
-    /* mantemiento */
-
-
-    div {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin-top: 200px;
-    }
-
-    span {
-      font-size: 9rem;
-    }
-
-
-
-
     body {
       padding-bottom: 100px;
     }

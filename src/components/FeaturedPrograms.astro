@@ -15,7 +15,7 @@ import SearchBtn from "./Search-btn.astro";
   </article>
 </article>
 
-<!-- <script type="module">
+<script type="module">
   import { neon } from "https://cdn.skypack.dev/@neondatabase/serverless";
 
   const sql = neon(
@@ -39,13 +39,20 @@ import SearchBtn from "./Search-btn.astro";
       return;
     }
 
-    const response =
-      await sql`SELECT * FROM programas WHERE LOWER(nombre) LIKE LOWER(${`%${InputValue}%`})`;
+    const response = await fetch("http://localhost:1234/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          InputValue
+        }),
+      });
 
-      console.log(`La respuesta de la base de datos es: ${response.link_de_imagen}`)
+      const programs = await response.json()
 
     // Comprueba si la búsqueda retorna algún valor
-    if (response.length < 1) {
+    if (await programs.length < 1) {
       document.getElementById("programList").innerHTML = `
       <article>
          <h4>No se han encontrado resultados para tú búsqueda.</h4> 
@@ -71,7 +78,7 @@ import SearchBtn from "./Search-btn.astro";
     }
 
     // Actualiza el contenido del contenedor con los nuevos programas
-    document.getElementById("programList").innerHTML = response
+    document.getElementById("programList").innerHTML = programs
       .map(
         (programa) => `
           <div class="div-container">
@@ -98,14 +105,24 @@ import SearchBtn from "./Search-btn.astro";
     makeStyles();
   });
 
-
   // Función cargar programas
-  async function LoadPrograms() {
-    const response = await sql`SELECT * FROM programas
-    ORDER BY nombre ASC`;
+  const allPrograms = document.querySelector("#AllPrograms");
+  allPrograms.addEventListener("click", () => LoadPrograms());
 
-    // Actualiza el contenido del contenedor con los nuevos programas
-    document.getElementById("programList").innerHTML = response
+  async function LoadPrograms() {
+  try {
+    // Realizar una solicitud al backend
+    const response = await fetch("http://localhost:1234/get");
+
+    if (!response.ok) {
+      throw new Error("Error al obtener los programas");
+    }
+
+    // Parsear la respuesta JSON
+    const programs = await response.json();
+
+    // Actualizar el contenido del contenedor con los nuevos programas
+    document.getElementById("programList").innerHTML = programs
       .map(
         (programa) => `
           <div class="div-container">
@@ -116,7 +133,7 @@ import SearchBtn from "./Search-btn.astro";
                 onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
               />
               <h3>
-                <a rel="noreferrer" target="_blank" href="${programa.link_de_descarga}">
+                <a rel="noreferrer" href="${programa.link_de_descarga}">
                   ${programa.nombre}
                 </a>
               </h3>
@@ -128,18 +145,22 @@ import SearchBtn from "./Search-btn.astro";
       .join("");
 
     makeStyles();
+  } catch (error) {
+    console.error("Error al cargar los programas:", error);
   }
+}
 
   // Observar el ancho de la pantalla para hacer un diseño responsive
   function makeStyles() {
     window.addEventListener("resize", responsive);
 
-    // Llamada inicial
+    // Llamada incial
     responsive();
 
     function responsive() {
       // Conseguir el ancho de la pantalla
       const size = window.innerWidth;
+
       const contenedor = document.querySelector("article.contenedor");
 
       if (size <= 730) {
@@ -154,7 +175,7 @@ import SearchBtn from "./Search-btn.astro";
       }
     }
 
-    const div_container = programList.querySelectorAll("div");
+    const div_container = programList.querySelectorAll("div"); // Cambié 'ancores' a 'anchors'
     div_container.forEach((div) => {
       div.style.padding = "10px";
     });
@@ -180,10 +201,10 @@ import SearchBtn from "./Search-btn.astro";
       img.style.width = "auto";
     });
 
-    const anchors = programList.querySelectorAll("a");
+    const anchors = programList.querySelectorAll("a"); // Cambié 'ancores' a 'anchors'
     anchors.forEach((a) => {
-      a.style.textDecoration = "none";
-      a.style.color = "unset";
+      a.style.textDecoration = "none"; // Aplica el estilo a los enlaces
+      a.style.color = "unset"; // Define un color específico
     });
 
     const spans = programList.querySelectorAll("span");
@@ -195,7 +216,7 @@ import SearchBtn from "./Search-btn.astro";
       span.style.overflowWrap = "break-word";
     });
   }
-</script> -->
+</script>
 
 <style>
   header {

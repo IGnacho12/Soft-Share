@@ -5,7 +5,9 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Subir Programa">
   <main id="UploadProgram">
     <h1>Agrega Tus Programas</h1>
-    <a target="_blank" href="https://n4chos-organization.gitbook.io/soft-share">Ayuda &  Documentación 📑</a>
+    <a target="_blank" href="https://n4chos-organization.gitbook.io/soft-share"
+      >Ayuda & Documentación 📑</a
+    >
     <form id="programForm">
       <div class="input-group">
         <input
@@ -55,110 +57,133 @@ import Layout from "../layouts/Layout.astro";
   </main>
 </Layout>
 
-<script type="module">
-  // Definir variables para el acceso a la base de datos
-  import { neon } from "https://cdn.skypack.dev/@neondatabase/serverless";
-
-  const sql = neon(
-    "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
-  );
-
-  // ---------- IMPORTANTE PASOS A SEGUIR ---------- //
-  // 1. Conseguir los datos del usuario
-  // 2. Comprobar que los inputs que contienen url contengan una url con "URL.canParse" de JavaScript
-  // 3. Comprobar que el usuario no esta ingresando ningún campo que ya exista en la base de datos
-  // 4. Ingresar los datos a la Base De Datos
-
+<script>
   // ---------- PASO 1 ---------- //
+  document.addEventListener("DOMContentLoaded", function() {
+  // Aquí va tu código JavaScript actual
   document
-  .getElementById("programForm")
-  .addEventListener("submit", async (event) => {
-    event.preventDefault(); // Evitar que el formulario recargue la página
+    .getElementById("programForm")
+    .addEventListener("submit", async (event) => {
+      event.preventDefault(); // Evitar que el formulario recargue la página
+      console.log("me toquetearon")
 
-    const submitButton = document.getElementById("black-button");
-    submitButton.disabled = true; // Deshabilita el botón para evitar múltiples envíos
+      const submitButton = document.getElementById(
+        "black-button"
+      ) as HTMLButtonElement;
+      submitButton.disabled = true; // Deshabilita el botón para evitar múltiples envíos
 
-    const errorFather = document.getElementById("error-father");
-    const successFather = document.getElementById("success-father");
-    const errorMessage = document.getElementById("error-message");
-    const successMessage = document.getElementById("success-message");
+      // Obtener los valores del formulario
+      // Obtener los valores del formulario
+      const nombre = (document.getElementById("nombre") as HTMLInputElement)
+        .value;
+      const link_de_imagen = (
+        document.getElementById("link_de_imagen") as HTMLInputElement
+      ).value;
+      const link_de_descarga = (
+        document.getElementById("link_de_descarga") as HTMLInputElement
+      ).value;
+      const detalles = (document.getElementById("detalles") as HTMLInputElement)
+        .value;
 
-    // Ocultar mensajes previos de error y éxito
-    errorFather.style.display = "none";
-    successFather.style.display = "none";
-
-    // Obtener los valores del formulario
-    const nombre = document.getElementById("nombre").value;
-    const link_de_imagen = document.getElementById("link_de_imagen").value;
-    const link_de_descarga =
-      document.getElementById("link_de_descarga").value;
-    const detalles = document.getElementById("detalles").value;
-
-    // ---------- PASO 2: Validar URLs ---------- //
-    if (!URL.canParse(link_de_descarga) || !URL.canParse(link_de_imagen)) {
-      errorMessage.innerText = "No se han ingresado URL válidas.";
-      errorFather.style.display = "flex";
-      submitButton.disabled = false; // Reactivar el botón
-      return;
-    }
-
-    // ---------- PASO 3: Comprobar duplicados ---------- //
-    const db_content = await sql`SELECT * FROM programas`;
-    const arrayFinal = [];
-    db_content.forEach((object) => {
-      for (const key in object) {
-        arrayFinal.push(object[key]);
+      // ---------- PASO 2: Validar URLs ---------- //
+      function isValidURL(url) {
+        try {
+          new URL(url);
+          return true; // La URL es válida
+        } catch (e) {
+          return false; // La URL no es válida
+        }
       }
-    });
 
-    const userValuesArray = [
-      nombre,
-      link_de_imagen,
-      link_de_descarga,
-      detalles,
-    ];
-
-    const respuestas = [
-      "Soft-Share ya tiene un soft con ese nombre 😵",
-      "Soft-Share ya tiene un soft con esa imagen 😵",
-      "Soft-Share ya tiene un soft con ese link de descarga 😵",
-      "Soft-Share ya tiene un soft con esos detalles 😵",
-    ];
-
-    for (let i = 0; i < userValuesArray.length; i++) {
-      if (arrayFinal.includes(userValuesArray[i])) {
-        errorMessage.innerText = respuestas[i];
-        errorFather.style.display = "flex";
+      if (!isValidURL(link_de_descarga) || !isValidURL(link_de_imagen)) {
+        alert("No se han ingresado URLs válidas.");
         submitButton.disabled = false; // Reactivar el botón
         return;
       }
-    }
 
-    // ---------- PASO 4: Insertar datos en la base de datos ---------- //
-    try {
-      const response = await sql`
-        INSERT INTO programas (nombre, link_de_imagen, link_de_descarga, detalles)
-        VALUES (${nombre}, ${link_de_imagen}, ${link_de_descarga}, ${detalles})
-        RETURNING *`;
+      const response = await fetch(
+        "http://localhost:1234/get"
+      );
+      const dbContent = await response.json(); // Obtener los datos de la base de datos
+      console.log(dbContent)
+      const arrayFinal = [];
+      dbContent.forEach((object) => {
+        for (const key in object) {
+          arrayFinal.push(object[key]);
+        }
+      });
 
-      successMessage.innerText = "El programa se ha guardado con éxito ✅";
-      successFather.style.display = "flex";
+      // Array con los valores ingresados por el usuario
+      const userValuesArray = [
+        nombre,
+        link_de_imagen,
+        link_de_descarga,
+        detalles,
+      ];
 
-      // Limpia el formulario después del éxito
-      document.getElementById("programForm").reset();
+      console.log(userValuesArray)
 
-      setTimeout(() => {
-        successFather.style.display = "none";
-      }, 3000);
-    } catch (error) {
-      errorMessage.innerText = "Error al guardar el programa. Inténtalo nuevamente.";
-      errorFather.style.display = "flex";
-      console.error(error);
-    } finally {
-      submitButton.disabled = false; // Reactivar el botón
-    }
-  });
+      // Respuestas correspondientes a cada valor ingresado
+      const respuestas = [
+        "Soft-Share ya tiene un soft con ese nombre 😵",
+        "Soft-Share ya tiene un soft con esa imagen 😵",
+        "Soft-Share ya tiene un soft con ese link de descarga 😵",
+        "Soft-Share ya tiene un soft con esos detalles 😵",
+      ];
 
+      // Elemento donde se mostrará el error
+      const errorFather = document.getElementById("error-container");
+      const errorMessage = document.getElementById("error-message");
+
+      // Limpiar cualquier error previo
+      // errorMessage.innerText = "";
+      // errorFather.style.display = "none";
+
+      // Verificar si alguno de los valores ingresados ya existe en los registros
+      for (let i = 0; i < userValuesArray.length; i++) {
+        if (arrayFinal.includes(userValuesArray[i])) {
+          // errorMessage.innerText = respuestas[i];
+          alert("se encotro algo duplicado")
+          // errorFather.style.display = "flex";
+          submitButton.disabled = false; // Reactivar el botón
+          return;
+        }
+      }
+
+      // ---------- PASO 4: Insertar datos en la base de datos ---------- //
+      try {
+        const response = await fetch(
+          "http://localhost:1234/post",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              nombre,
+              link_de_imagen,
+              link_de_descarga,
+              detalles,
+            }),
+          }
+        );
+
+        if (response.ok) {
+          alert("El programa se ha guardado con éxito ✅");
+          (document.getElementById("programForm") as HTMLFormElement).reset(); // Limpia el formulario después del éxito
+        } else {
+          alert("Error al guardar el programa. Inténtalo nuevamente.");
+        }
+      } catch (error) {
+        alert("Error al guardar el programa. Inténtalo nuevamente.");
+        console.error(error);
+      } finally {
+        submitButton.disabled = false; // Reactivar el botón
+      }
+    });
+});
+
+  
 </script>
 
 <style>
@@ -303,23 +328,9 @@ import Layout from "../layouts/Layout.astro";
     color: black;
     font-weight: 500;
     display: flex;
-    align-items: center;
     justify-content: center;
-  }
-
-  #black-button:hover::before {
-    animation: spin 1.5s infinite linear;
-  }
-
-  @keyframes slidebg {
-    to {
-      background-position: 20vw;
-    }
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
+    align-items: center;
+    transition: 0.3s ease;
+    z-index: 1;
   }
 </style>

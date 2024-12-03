@@ -4,23 +4,17 @@
   <a href="#UploadProgram">Subir Programa</a>
 </nav>
 
-<script type="module">
-  import { neon } from "https://cdn.skypack.dev/@neondatabase/serverless";
-
-  const sql = neon(
-    "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
-  );
-
+<script>
+  // Cargar todos los recursos al cargar la página
   LoadPrograms();
 
   const allPrograms = document.querySelector("#AllPrograms");
   allPrograms.addEventListener("click", () => LoadPrograms());
 
-  // Agregar evento para cuando se presione enter en el input para buscar
   async function LoadPrograms() {
   try {
     // Realizar una solicitud al backend
-    const response = await fetch("https://backend-soft-share-g36lx1d8l-nachos-projects-077bc528.vercel.app/get");
+    const response = await fetch("http://localhost:1234/get");
 
     if (!response.ok) {
       throw new Error("Error al obtener los programas");
@@ -69,7 +63,7 @@
       // Conseguir el ancho de la pantalla
       const size = window.innerWidth;
 
-      const contenedor = document.querySelector("article.contenedor");
+      const contenedor = document.querySelector("article.contenedor") as HTMLElement;
 
       if (size <= 730) {
         // Pantalla menor a 730px
