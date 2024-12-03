@@ -102,7 +102,7 @@ import Layout from "../layouts/Layout.astro";
       }
 
       const response = await fetch(
-        "http://localhost:1234/get"
+        "https://backend-soft-share-1tr9ac9dt-nachos-projects-077bc528.vercel.app/get"
       );
       const dbContent = await response.json(); // Obtener los datos de la base de datos
       console.log(dbContent)
@@ -153,7 +153,7 @@ import Layout from "../layouts/Layout.astro";
       // ---------- PASO 4: Insertar datos en la base de datos ---------- //
       try {
         const response = await fetch(
-          "http://localhost:1234/post",
+          "https://backend-soft-share-1tr9ac9dt-nachos-projects-077bc528.vercel.app/post",
           {
             method: "POST",
             headers: {
