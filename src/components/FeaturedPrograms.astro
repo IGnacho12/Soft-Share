@@ -16,11 +16,6 @@ import SearchBtn from "./Search-btn.astro";
 </article>
 
 <script type="module">
-  import { neon } from "https://cdn.skypack.dev/@neondatabase/serverless";
-
-  const sql = neon(
-    "postgresql://Programs-db_owner:gt7QxJLNI4rP@ep-shrill-brook-a5j8odhx.us-east-2.aws.neon.tech/Programs-db?sslmode=require"
-  );
 
   // Función cargar programas llamada cada vez que la página se recargue
   LoadPrograms();
