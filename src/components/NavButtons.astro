@@ -1,5 +1,5 @@
-<nav>
-  <a class="shadow-xl shadow-black" href="#Programs">Programas destacados 👑</a>
+<nav class="flex flex-col gap-3 items-center lg:flex-row ">
+  <a href="#Programs">Programas destacados 👑</a>
   <a href="#AllPrograms" id="AllPrograms">Todos los programas🚀</a>
   <a href="#UploadProgram">Subir Programa</a>
 </nav>
@@ -27,7 +27,7 @@
     document.getElementById("programList").innerHTML = programs
       .map(
         (programa) => `
-          <div class="div-container">
+          <div class="div-container pb-4">
             <header>
               <img
                 src="${programa.link_de_imagen}"

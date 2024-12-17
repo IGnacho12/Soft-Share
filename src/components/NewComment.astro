@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Comentarios">
   <main>
     <article>
-      <h2 class="font-bold">¡Déjame un comentario!🪅</h2>
+      <h2 class="font-bold text-center">¡Déjame un comentario!🪅</h2>
     </article>
 
     <form id="programForm">
@@ -23,6 +23,7 @@ import Layout from "../layouts/Layout.astro";
 
       <div class="input-group">
         <input
+        class="lg:min-w-[30rem] lg:min-h-[5rem]"
           type="text"
           id="comentario"
           title="Dejame tu sugerencia, problema, crítica o simplemente un saludo🥰"
@@ -263,10 +264,10 @@ import Layout from "../layouts/Layout.astro";
     width: 12rem;
   }
 
-  #comentario {
+  /* #comentario {
     width: 30rem;
     height: 5rem;
-  }
+  } */
 
   button {
     height: 2.5em;

@@ -37,8 +37,9 @@ import Layout from "../layouts/Layout.astro";
     document.getElementById("commentsSection").innerHTML = programs
       .map(
         (comentario) => `
-          <article>
-        <div><h3>${comentario.autor}</h3>
+          <article class="flex">
+        <div class="flex flex-col">
+          <h3>${comentario.autor}</h3>
           <span>${comentario.fecha}</span>
         </div>
         
@@ -73,9 +74,7 @@ import Layout from "../layouts/Layout.astro";
       const h3 = commentsSection.querySelectorAll("h3");
       h3.forEach((El) => {
         const color = colors[Math.floor(Math.random() * colors.length)];
-        El.style.fontSize = "1rem";
         El.style.backgroundColor = `${color}`;
-        El.style.display = "inline-block";
         El.style.borderRadius = "6px";
         El.style.padding = "0.2rem";
       });

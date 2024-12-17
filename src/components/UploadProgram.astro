@@ -4,8 +4,8 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Subir Programa">
   <main id="UploadProgram">
-    <h1 class="font-bold">Agrega Tus Programas</h1>
-    <a target="_blank" href="https://n4chos-organization.gitbook.io/soft-share"
+    <h1 class="font-bold text-3xl lg:text-6xl text-center">Agrega Tus Programas</h1>
+    <a class="pt-3 hidden lg:block file: absolute lg:fixed text-sm lg:text-2xl" target="_blank" href="https://n4chos-organization.gitbook.io/soft-share"
       >Ayuda & Documentación 📑</a
     >
     <form id="programForm">
@@ -206,11 +206,9 @@ import Layout from "../layouts/Layout.astro";
   }
 
   a {
-    position: fixed;
     top: 0.5rem;
     left: 0.5rem;
     align-items: center;
-    font-size: 1.2rem;
     font-weight: bold;
     padding: 6px 14px;
     border-radius: 6px;
@@ -333,7 +331,7 @@ import Layout from "../layouts/Layout.astro";
     transition: 0.3s ease;
     z-index: 1;
   }
-  
+
   #black-button:hover::before {
     animation: spin 1.5s infinite linear;
   }

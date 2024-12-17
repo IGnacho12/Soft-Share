@@ -3,9 +3,9 @@ import SearchBtn from "./Search-btn.astro";
 ---
 
 <article>
-  <header class="flex">
-    <h2 class="font-bold underline underline-offset-[10px] und">Programas destacados👑</h2>
-    <div>
+  <header class="flex flex-col gap-y-4 lg:flex-row">
+    <h2 class="font-bold underline underline-offset-[10px] text-1xl lg:text-3xl text-center">Programas destacados👑</h2>
+    <div class="mb-4 lg:mb-0">
       <SearchBtn />
     </div>
   </header>
@@ -51,7 +51,7 @@ import SearchBtn from "./Search-btn.astro";
     if (await programs.length < 1) {
       document.getElementById("programList").innerHTML = `
       <article>
-         <h4>No se han encontrado resultados para tú búsqueda.</h4> 
+         <h4 class="font-bold">No se han encontrado resultados para tú búsqueda.</h4> 
          <p>Puede volver a cargar todos los programas con el botón *Todos los programas🚀*</p>
       </article>
       `;
@@ -77,7 +77,7 @@ import SearchBtn from "./Search-btn.astro";
     document.getElementById("programList").innerHTML = programs
       .map(
         (programa) => `
-          <div class="div-container">
+          <div class="div-container pb-4">
             <header>
               <img
                 src="${programa.link_de_imagen}"
@@ -121,7 +121,7 @@ import SearchBtn from "./Search-btn.astro";
     document.getElementById("programList").innerHTML = programs
       .map(
         (programa) => `
-          <div class="div-container">
+          <div class="div-container pb-4">
             <header>
               <img
                 src="${programa.link_de_imagen}"
