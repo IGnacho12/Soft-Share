@@ -17,18 +17,10 @@ import SearchBtn from "./Search-btn.astro";
 </article>
 
 <script type="module">
-
-   // Actualizar coordenadas del cursor con variables CSS
-   const updateCursor = ({ x, y }) => {
-    document.documentElement.style.setProperty('--x', x);
-    document.documentElement.style.setProperty('--y', y);
-  };
-
-  document.body.addEventListener('pointermove', updateCursor);
-
-  // Función cargar programas llamada cada vez que la página se recargue
-  LoadPrograms();
-
+  import LoadPrograms from "../js/rendererAllPrograms.js";
+  import searchPrograms from "../js/searchPrograms.js"
+  
+// When click "Reload Button" the programs are reaload too
   document
     .getElementById("reloadButton")
     .addEventListener("click", () => LoadPrograms());
@@ -36,189 +28,10 @@ import SearchBtn from "./Search-btn.astro";
   // Escuchar el cambio en el input para realizar la búsqueda sin esperar Enter
   document.querySelector("#input").addEventListener("input", async () => {
     const InputValue = document.querySelector("#input").value;
-
-    // Evitar hacer la consulta si el campo está vacío
-    if (!InputValue.trim()) {
-      LoadPrograms()
-      return;
-    }
-
-    const response = await fetch("https://backend-soft-share-1tr9ac9dt-nachos-projects-077bc528.vercel.app/search", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          InputValue
-        }),
-      });
-
-      const programs = await response.json()
-
-    // Comprueba si la búsqueda retorna algún valor
-    if (await programs.length < 1) {
-      document.getElementById("programList").innerHTML = `
-      <article>
-         <h4 class="font-bold">No se han encontrado resultados para tú búsqueda.</h4> 
-         <p>Puede volver a cargar todos los programas con el botón *Todos los programas🚀*</p>
-      </article>
-      `;
-
-
-  const article = programList.querySelector("article");
-      programList.style.display = "flex";
-      programList.style.width = "100%";
-      programList.style.flexDirection = "column";
-      programList.style.alignSelf = "center";
-      programList.style.placeSelf = "center";
-      programList.style.marginBottom = "20px";
-      article.style.margin = "40px";
-
-    const h4 = programList.querySelector("h4")
-    h4.style.fontSize = "1.4rem"
-
-    programList.querySelector("p").style.color = "gray"
-      return;
-    }
-
-    // Actualiza el contenido del contenedor con los nuevos programas
-    document.getElementById("programList").innerHTML = programs
-      .map(
-        (programa) => `
-          <div class="div-container pb-4">
-            <header>
-              <img
-                src="${programa.link_de_imagen}"
-                alt="${programa.nombre}"
-                width="32"
-                height="32"
-                loading="lazy"
-                onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
-              />
-              <h3 class="font-bold" style="font-size: 19px">
-                <a rel="noreferrer" target="_blank" href="${programa.link_de_descarga}">
-                  ${programa.nombre}
-                </a>
-              </h3>
-            </header>
-            <span>${programa.detalles}</span>
-          </div>
-        `
-      )
-      .join("");
-    makeStyles();
+    console.log("El valor ah cambiado")
+    searchPrograms(InputValue)
   });
 
-  // Función cargar programas
-  const allPrograms = document.querySelector("#AllPrograms");
-  allPrograms.addEventListener("click", () => LoadPrograms());
-
-  async function LoadPrograms() {
-  try {
-    // Realizar una solicitud al backend
-    const response = await fetch("https://backend-soft-share-1tr9ac9dt-nachos-projects-077bc528.vercel.app/get");
-
-    if (!response.ok) {
-      throw new Error("Error al obtener los programas");
-    }
-
-    // Parsear la respuesta JSON
-    const programs = await response.json();
-
-    // Actualizar el contenido del contenedor con los nuevos programas
-    document.getElementById("programList").innerHTML = programs
-      .map(
-        (programa) => `
-          <div class="div-container pb-4">
-            <header>
-              <img
-                src="${programa.link_de_imagen}"
-                alt="${programa.nombre}"
-                onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
-              />
-              <h3 class="font-bold" style="font-size: 19px">
-                <a rel="noreferrer" href="${programa.link_de_descarga}">
-                  ${programa.nombre}
-                </a>
-              </h3>
-            </header>
-            <span>${programa.detalles}</span>
-          </div>
-        `
-      )
-      .join("");
-
-    makeStyles();
-  } catch (error) {
-    console.error("Error al cargar los programas:", error);
-  }
-}
-
-  // Observar el ancho de la pantalla para hacer un diseño responsive
-  function makeStyles() {
-    window.addEventListener("resize", responsive);
-
-    // Llamada incial
-    responsive();
-
-    function responsive() {
-      // Conseguir el ancho de la pantalla
-      const size = window.innerWidth;
-
-      const contenedor = document.querySelector("article.contenedor");
-
-      if (size <= 730) {
-        // Pantalla menor a 730px
-        contenedor.style.gridTemplateColumns = "100%";
-      } else if (size <= 1200) {
-        // Pantalla menor a 1200px
-        contenedor.style.gridTemplateColumns = "50% 50%";
-      } else {
-        // Pantalla mayor a 1200px
-        contenedor.style.gridTemplateColumns = "33.33% 33.33% 33.33%";
-      }
-    }
-
-    const div_container = programList.querySelectorAll("div"); // Cambié 'ancores' a 'anchors'
-    div_container.forEach((div) => {
-      div.style.padding = "10px";
-    });
-
-    const h2 = document.querySelector("h2");
-    h2.style.marginBottom = "10px";
-
-    const contenedor = document.querySelector("article.contenedor");
-    contenedor.style.display = "grid";
-    contenedor.style.gap = "9px 3px";
-
-    const headers = programList.querySelectorAll("header");
-    headers.forEach((header) => {
-      header.style.display = "flex";
-      header.style.gap = "4px";
-      header.style.alignItems = "center";
-    });
-
-    const images = programList.querySelectorAll("img");
-    images.forEach((img) => {
-      img.style.height = "32px";
-      img.style.width = "auto";
-    });
-
-    const anchors = programList.querySelectorAll("a"); // Cambié 'ancores' a 'anchors'
-    anchors.forEach((a) => {
-      a.style.textDecoration = "none"; // Aplica el estilo a los enlaces
-      a.style.color = "unset"; // Define un color específico
-    });
-
-    const spans = programList.querySelectorAll("span");
-    spans.forEach((span) => {
-      span.style.marginTop = "5px";
-      span.style.color = "var(--text-gray-color)";
-      span.style.width = "98%";
-      span.style.display = "block";
-      span.style.overflowWrap = "break-word";
-    });
-  }
 </script>
 
 <style>
