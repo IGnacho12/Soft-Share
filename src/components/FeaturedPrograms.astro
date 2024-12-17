@@ -18,6 +18,14 @@ import SearchBtn from "./Search-btn.astro";
 
 <script type="module">
 
+   // Actualizar coordenadas del cursor con variables CSS
+   const updateCursor = ({ x, y }) => {
+    document.documentElement.style.setProperty('--x', x);
+    document.documentElement.style.setProperty('--y', y);
+  };
+
+  document.body.addEventListener('pointermove', updateCursor);
+
   // Función cargar programas llamada cada vez que la página se recargue
   LoadPrograms();
 
