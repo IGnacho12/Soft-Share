@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Subir Programa">
   <main id="UploadProgram">
-    <h1>Agrega Tus Programas</h1>
+    <h1 class="font-bold">Agrega Tus Programas</h1>
     <a target="_blank" href="https://n4chos-organization.gitbook.io/soft-share"
       >Ayuda & Documentación 📑</a
     >
@@ -290,8 +290,8 @@ import Layout from "../layouts/Layout.astro";
   }
 
   #black-button {
-    height: 3em;
-    width: 8em;
+    height: 2.5em;
+    width: 6.5em;
     border-radius: 10px;
     position: relative;
     display: flex;
@@ -326,11 +326,27 @@ import Layout from "../layouts/Layout.astro";
     border-radius: 0.4em;
     font-size: 1rem;
     color: black;
-    font-weight: 500;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.3s ease;
     z-index: 1;
+  }
+  
+  #black-button:hover::before {
+    animation: spin 1.5s infinite linear;
+  }
+
+  @keyframes slidebg {
+    to {
+      background-position: 20vw;
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 </style>

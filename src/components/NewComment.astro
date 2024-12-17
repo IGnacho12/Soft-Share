@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Comentarios">
   <main>
     <article>
-      <h2>¡Déjame un comentario!🪅</h2>
+      <h2 class="font-bold">¡Déjame un comentario!🪅</h2>
     </article>
 
     <form id="programForm">
@@ -31,7 +31,7 @@ import Layout from "../layouts/Layout.astro";
         <label for="comentario">Tú comentario 🧐</label>
       </div>
 
-      <button type="submit" id="enviar-comentario">Enviar</button>
+      <button class="font-bold p-0 after:font-bold" type="submit" id="enviar-comentario"></button>
     </form>
   </main>
 </Layout>
@@ -120,7 +120,7 @@ import Layout from "../layouts/Layout.astro";
       .map(
         (comentario) => `
           <article>
-        <div><h3>${comentario.autor}</h3>
+        <div><h3 class="font-bold">${comentario.autor}</h3>
           <span>${comentario.fecha}</span>
         </div>
         
@@ -182,6 +182,25 @@ import Layout from "../layouts/Layout.astro";
   }
 </script>
 <style>
+
+:root {
+    /* FONT */
+    --font: "Poppins", sans-serif;
+
+    /* COLORS */
+    --bg-color: white;
+    --conic-gradient: conic-gradient(
+      #ff2e2e,
+      #ff831e,
+      #fcff51,
+      #58ff57,
+      #575fff,
+      #d257ff,
+      #ff57e5,
+      #ff1556
+    );
+  }
+
   main {
     display: flex;
     flex-direction: column;
@@ -250,9 +269,10 @@ import Layout from "../layouts/Layout.astro";
   }
 
   button {
-    height: 3em;
-    width: 9em;
+    height: 2.5em;
+    width: 7.5em;
     border-radius: 10px;
+    font-weight: bold;
     position: relative;
     display: flex;
     align-items: center;
@@ -286,7 +306,7 @@ import Layout from "../layouts/Layout.astro";
     border-radius: 0.4em;
     font-size: 1rem;
     color: black;
-    font-weight: 600;
+    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;

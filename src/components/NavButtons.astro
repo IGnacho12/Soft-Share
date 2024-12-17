@@ -1,5 +1,5 @@
 <nav>
-  <a href="#Programs">Programas destacados 👑</a>
+  <a class="shadow-xl shadow-black" href="#Programs">Programas destacados 👑</a>
   <a href="#AllPrograms" id="AllPrograms">Todos los programas🚀</a>
   <a href="#UploadProgram">Subir Programa</a>
 </nav>
@@ -34,7 +34,7 @@
                 alt="${programa.nombre}"
                 onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
               />
-              <h3>
+              <h3 class="font-bold" style="font-size: 19px"">
                 <a rel="noreferrer" href="${programa.link_de_descarga}">
                   ${programa.nombre}
                 </a>
@@ -83,7 +83,6 @@
     });
 
     const h2 = document.querySelector("h2");
-    h2.style.borderBottom = "2px solid var(--text-gray-color)";
     h2.style.marginBottom = "10px";
 
     const contenedor = document.querySelector("article.contenedor");
@@ -148,5 +147,12 @@
     margin-bottom: 4rem;
     display: flex;
     justify-content: space-around;
+    & a {
+      box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+      &:hover {
+      box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+    }
   }
 </style>

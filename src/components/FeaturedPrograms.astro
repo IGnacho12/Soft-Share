@@ -3,11 +3,12 @@ import SearchBtn from "./Search-btn.astro";
 ---
 
 <article>
-  <header>
-    <h2>Programas destacados👑</h2>
-    <SearchBtn />
+  <header class="flex">
+    <h2 class="font-bold underline underline-offset-[10px] und">Programas destacados👑</h2>
+    <div>
+      <SearchBtn />
+    </div>
   </header>
-
   <button id="reloadButton"><img src="reload.svg" alt="" /></button>
 
   <article id="programList" class="contenedor">
@@ -86,7 +87,7 @@ import SearchBtn from "./Search-btn.astro";
                 loading="lazy"
                 onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
               />
-              <h3>
+              <h3 class="font-bold" style="font-size: 19px">
                 <a rel="noreferrer" target="_blank" href="${programa.link_de_descarga}">
                   ${programa.nombre}
                 </a>
@@ -127,7 +128,7 @@ import SearchBtn from "./Search-btn.astro";
                 alt="${programa.nombre}"
                 onerror="this.onerror=null; this.src='https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png';"
               />
-              <h3>
+              <h3 class="font-bold" style="font-size: 19px">
                 <a rel="noreferrer" href="${programa.link_de_descarga}">
                   ${programa.nombre}
                 </a>
@@ -176,7 +177,6 @@ import SearchBtn from "./Search-btn.astro";
     });
 
     const h2 = document.querySelector("h2");
-    h2.style.borderBottom = "2px solid var(--text-gray-color)";
     h2.style.marginBottom = "10px";
 
     const contenedor = document.querySelector("article.contenedor");
