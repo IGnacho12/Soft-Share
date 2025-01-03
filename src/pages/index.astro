@@ -1,12 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import FeaturedPrograms from "../components/FeaturedPrograms.astro";
-import UploadProgram from "../components/UploadProgram.astro";
-// import Alert from "../components/Alert.astro";
-// import SuccessAlert from "../components/SuccessAlert.astro";
-import CommentsSection from "../components/CommentsSection.astro";
-import FeedBack from "../components/NewComment.astro";
-import NavButtons from "../components/NavButtons.astro";
+import Layout from "../layouts/Layout.astro"
+import BotonesPrincipales from "../components/BotonesPrincipales.astro"
+import ProgramasDestacados from "../components/ProgramasDestacados.astro"
+import SubirPrograma from "../components/SubirPrograma.astro"
+import AgregarComentario from "../components/AgregarComentario.astro"
+import SeccionDeComentarios from "../components/SeccionDeComentarios.astro"
 
 // JS
 ---
@@ -29,13 +27,11 @@ import NavButtons from "../components/NavButtons.astro";
         >recursos informáticos.</span
       >
     </p>
-    <NavButtons />
-    <FeaturedPrograms />
-    <UploadProgram />
-    <FeedBack />
-    <CommentsSection />
-    <!-- <Alert />
-    <SuccessAlert /> -->
+    <BotonesPrincipales />
+    <ProgramasDestacados />
+    <SubirPrograma />
+    <AgregarComentario />
+    <SeccionDeComentarios />
   </main>
 
   <style>
