@@ -59,8 +59,8 @@ import SeccionDeComentarios from "../components/SeccionDeComentarios.astro"
 </Layout>
 
 <script type="module">
-  import LoadPrograms from "../js/rendererAllPrograms.js";
+  import cargarTodosLosProgramas from "../../src/js/CargarTodosLosProgramas.js";
 
-  // Everty time the page is reload, load all programs
-  LoadPrograms();
+  // Cargar todos los programas
+  cargarTodosLosProgramas();
 </script>

@@ -1,15 +1,15 @@
 <nav class="flex flex-col gap-3 items-center lg:flex-row">
   <a href="#Programs">Programas destacados 👑</a>
-  <a href="#AllPrograms" id="AllPrograms">Todos los programas🚀</a>
+  <a href="#todosLosProgramas" id="todosLosProgramas">Todos los programas🚀</a>
   <a href="#UploadProgram">Subir Programa</a>
 </nav>
 
 <script type="module">
-  import LoadPrograms from "../../public/js/rendererAllPrograms.js";
+  import cargarTodosLosProgramas from "../../src/js/CargarTodosLosProgramas.js";
 
-  // Load All Programs from the DB
-  const allPrograms = document.querySelector("#AllPrograms");
-  allPrograms.addEventListener("click", () => LoadPrograms());
+  // Cargar todos los programas
+  const todosLosProgramas = document.querySelector("#todosLosProgramas");
+  todosLosProgramas.addEventListener("click", () => cargarTodosLosProgramas());
 </script>
 
 <style>

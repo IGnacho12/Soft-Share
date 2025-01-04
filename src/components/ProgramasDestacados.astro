@@ -11,25 +11,25 @@ import BotonBuscar from "./BotonBuscar.astro";
   </header>
   <button id="reloadButton"><img src="reload.svg" alt="" /></button>
 
-  <article id="programList" class="contenedor">
+  <article id="formularioDeProgramas" class="contenedor">
     <!-- Los programas se cargarán aquí -->
   </article>
 </article>
 
 <script type="module">
-  import LoadPrograms from "../js/rendererAllPrograms.js";
-  import searchPrograms from "../js/searchPrograms.js"
+  import cargarTodosLosProgramas from "../../src/js/CargarTodosLosProgramas.js";
+  import BuscarProgramas from "../../src/js/BuscarProgramas.js"
   
 // When click "Reload Button" the programs are reaload too
   document
     .getElementById("reloadButton")
-    .addEventListener("click", () => LoadPrograms());
+    .addEventListener("click", () => cargarTodosLosProgramas());
 
   // Escuchar el cambio en el input para realizar la búsqueda sin esperar Enter
   document.querySelector("#input").addEventListener("input", async () => {
-    const InputValue = document.querySelector("#input").value;
+    const ValorDeUsuario = document.querySelector("#input").value;
     console.log("El valor ah cambiado")
-    searchPrograms(InputValue)
+    BuscarProgramas(ValorDeUsuario)
   });
 
 </script>
