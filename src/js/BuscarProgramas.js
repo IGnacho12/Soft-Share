@@ -2,7 +2,7 @@ import { DATABASE_URL } from "./Constantes.js";
 
 import CargarTodosLosProgramas from "./CargarTodosLosProgramas.js";
 
-export default async function BuscarProgramas(inputValue) {
+export default async function BuscarProgramas(inputValue, preferenciaDeCategorias) {
   // Evitar hacer la consulta si el campo está vacío
   if (!inputValue.trim()) {
     CargarTodosLosProgramas();
@@ -16,6 +16,7 @@ export default async function BuscarProgramas(inputValue) {
     }, 
     body: JSON.stringify({
       inputValue,
+      preferenciaDeCategorias,
     }),
   });
 

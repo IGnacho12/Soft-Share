@@ -1,0 +1,206 @@
+<input
+  class="p-1 absolute invisible"
+  type="checkbox"
+  name="mostrarCategoriasInput"
+  id="mostrarCategorias"
+/>
+<label for="mostrarCategorias" class="p-2 bg-slate-200 rounded-xl px-2">
+  Mostrar Categorías
+</label>
+
+<section class="allCategories mt-4">
+  <!-- Todas las categorías -->
+
+  <!-- ARCHIVO -->
+  <input
+    class="invisible absolute"
+    type="checkbox"
+    name="archivo"
+    id="archivo"
+  />
+  <label for="archivo" class="p-1 bg-gray-600/20 rounded-xl px-2">Archivo</label
+  >
+
+  <!-- UTILIDAD -->
+  <input
+    class="invisible absolute"
+    type="checkbox"
+    name="utilidad"
+    id="utilidad"
+  />
+  <label for="utilidad" class="p-1 bg-gray-600/20 rounded-xl px-2"
+    >Utilidad</label
+  >
+  <!-- ACTIVADOR -->
+  <input
+    class="invisible absolute"
+    type="checkbox"
+    name="activador"
+    id="activador"
+  />
+  <label for="activador" class="p-1 bg-gray-600/20 rounded-xl px-2"
+    >Activador</label
+  >
+  <!-- JUEGO -->
+  <input class="invisible absolute" type="checkbox" name="juego" id="juego" />
+  <label for="juego" class="p-1 bg-gray-600/20 rounded-xl px-2">Juego</label>
+  <!-- MEDIA -->
+  <input class="invisible absolute" type="checkbox" name="media" id="media" />
+  <label for="media" class="p-1 bg-gray-600/20 rounded-xl px-2">Media</label>
+  <!-- HARDWARE -->
+  <input
+    class="invisible absolute"
+    type="checkbox"
+    name="hardware"
+    id="hardware"
+  />
+  <label for="hardware" class="p-1 bg-gray-600/20 rounded-xl px-2"
+    >Hardware</label
+  >
+  <!-- OPTIMIZACIÓN -->
+  <input
+    class="invisible absolute"
+    type="checkbox"
+    name="optimizacion"
+    id="optimizacion"
+  />
+  <label for="optimizacion" class="p-1 bg-gray-600/20 rounded-xl px-2"
+    >Optimización</label
+  >
+  <!-- MÚLTIPLE -->
+  <input
+    class="invisible absolute"
+    type="checkbox"
+    name="multiple"
+    id="multiple"
+  />
+  <label for="multiple" class="p-1 bg-gray-600/20 rounded-xl px-2"
+    >Múltiple</label
+  >
+  <!-- SEGURIDAD -->
+  <input
+    class="invisible absolute"
+    type="checkbox"
+    name="seguridad"
+    id="seguridad"
+  />
+  <label for="seguridad" class="p-1 bg-gray-600/20 rounded-xl px-2"
+    >Seguridad</label
+  >
+  <!-- GESTIÓN DE ARCHIVOS -->
+  <input
+    class="invisible absolute"
+    type="checkbox"
+    name="gestionDeArchivos"
+    id="gestionDeArchivos"
+  />
+  <label
+    for="gestionDeArchivos"
+    class="p-1 bg-gray-600/20 rounded-xl px-2 col-span-2"
+    >Gestión de Archivos</label
+  >
+</section>
+
+<style>
+  /* Bóton Mostrar Categorías */
+
+  /* Bótones para seleccionar categorías */
+
+  label {
+    transition: all 0.3s ease;
+    user-select: none;
+    cursor: pointer;
+    font-size: large;
+    margin: 3px 5px;
+    width: fit-content;
+  }
+
+  section {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  input:checked + label {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+
+  .allCategories label {
+    transition: all 0.4s ease;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .allCategories input:checked + label {
+    background-color: rgba(0, 255, 0, 0.178);
+    color: black;
+    font-weight: normal;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+</style>
+
+<script>
+  const checkbox = document.querySelector("input[name=mostrarCategoriasInput]");
+  let categoriasElegidas = [];
+  // Obtener todos los checkboxes
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+  checkbox.addEventListener("change", function () {
+    const categoriasText =
+      document.querySelectorAll<HTMLElement>(".textCategorias");
+    if (this.checked) {
+      console.log("Checkbox is checked..");
+
+      console.log(categoriasText.length);
+
+      // Mostrar las categorías
+      categoriasText.forEach((element) => {
+        element.style.display = "block";
+      });
+    } else {
+      console.log("Checkbox is unchecked..");
+
+      // Ocultar las categorías
+      categoriasText.forEach((element) => {
+        element.style.display = "none";
+      });
+    }
+  });
+
+  // Recorrer todos los checkboxes y agregarles un event listener
+// Recorrer todos los checkboxes y agregarles un event listener
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", (event) => {
+    // Verificar que el evento target es un input y usar un type assertion
+    const target = event.target as HTMLInputElement; // Type assertion
+
+    if (target) {
+      if (target.checked) {
+        // Si el checkbox está activado, agregarlo al array
+        console.log(`${target.id} está activado.`);
+        categoriasElegidas.push(target.id);
+      } else {
+        // Si el checkbox está desactivado, quitarlo del array
+        console.log(`${target.id} está desactivado.`);
+        categoriasElegidas = categoriasElegidas.filter(
+          (item) => item !== target.id
+        );
+      }
+
+      // Mostrar el array actualizado
+      console.log(categoriasElegidas);
+
+      // Aquí puedes poner el código que desees ejecutar
+    }
+  });
+});
+
+
+</script>

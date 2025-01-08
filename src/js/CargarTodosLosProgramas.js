@@ -19,17 +19,4 @@ export default async function CarcarProgramas() {
   } catch (error) {
     console.error("Error al cargar los programas:", error);
   }
-  loadCSS("/src/css/estilarProgramas.css");
-}
-
-// Cargar CSS después de que los programas hayan sido renderizados
-function loadCSS(ruta) {
-  const head = document.head;
-  const link = document.createElement("link");
-
-  link.rel = "stylesheet";
-  link.href = ruta;
-
-  head.appendChild(link);
-  console.log(`Hoja de estilos ${ruta} cargada.`);
 }

@@ -136,9 +136,9 @@ import Layout from "../layouts/Layout.astro";
         `
       )
       .join("");
-    makeStyles();
+    ColorParaLosNombres();
 
-    function makeStyles() {
+    function ColorParaLosNombres() {
       const commentsSection = document.getElementById("commentsSection");
 
       const colors = [
@@ -148,42 +148,10 @@ import Layout from "../layouts/Layout.astro";
         "rgba(193, 163, 224, 0.5)", // Morado pastel transparente
       ];
 
-      const comentarios_container = commentsSection.querySelectorAll("article");
-      comentarios_container.forEach((El) => {
-        El.style.marginBottom = "3rem";
-        El.style.padding = "1rem";
-        El.style.borderRadius = "10px";
-        El.style.boxShadow = `1px 1px 10px 0px rgba(0, 0, 0, 0.2)`;
-        El.style.wordBreak = "break-word"; // Asegura que las palabras largas se rompan si es necesario
-        El.style.overflowWrap = "break-word";
-        El.style.backdropFilter = "blur(10px)";
-      });
-
       const h3 = commentsSection.querySelectorAll("h3");
       h3.forEach((El) => {
         const color = colors[Math.floor(Math.random() * colors.length)];
-        El.style.fontSize = "1rem";
         El.style.backgroundColor = `${color}`;
-        El.style.display = "inline-block";
-        El.style.borderRadius = "6px";
-        El.style.padding = "0.2rem";
-      });
-
-      const p = commentsSection.querySelectorAll("p");
-      p.forEach((El) => {
-        El.style.fontStyle = "italic";
-        El.style.marginLeft = "1rem";
-        El.style.padding = "1rem";
-      });
-      const span = commentsSection.querySelectorAll("span");
-      span.forEach((El) => {
-        El.style.fontWeight = "bold";
-        El.style.fontSize = "0.9rem";
-      });
-      const div = commentsSection.querySelectorAll("div");
-      div.forEach((El) => {
-        El.style.display = "flex";
-        El.style.justifyContent = "space-between";
       });
     }
   }

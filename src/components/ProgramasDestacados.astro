@@ -1,15 +1,23 @@
 ---
 import BotonBuscar from "./BotonBuscar.astro";
+import ControlCategorias from "./ControlCategorias.astro";
 ---
 
+<button id="reloadButton"><img src="reload.svg" alt="" /></button>
 <article>
-  <header class="flex flex-col gap-y-4 lg:flex-row">
-    <h2 class="font-bold underline underline-offset-[10px] text-1xl lg:text-3xl text-center">Programas destacados👑</h2>
+  <header class="flex flex-col gap-y-4 lg:flex-row mb-6">
+    <h2
+      class="font-bold underline underline-offset-[10px] text-1xl lg:text-3xl text-center"
+    >
+      Programas destacados👑
+    </h2>
     <div class="mb-4 lg:mb-0">
       <BotonBuscar />
     </div>
   </header>
-  <button id="reloadButton"><img src="reload.svg" alt="" /></button>
+  <!-- Mostrar Categorías CheckBox -->
+    <ControlCategorias />
+
 
   <article id="formularioDeProgramas" class="contenedor">
     <!-- Los programas se cargarán aquí -->
@@ -18,9 +26,9 @@ import BotonBuscar from "./BotonBuscar.astro";
 
 <script type="module">
   import cargarTodosLosProgramas from "../../src/js/CargarTodosLosProgramas.js";
-  import BuscarProgramas from "../../src/js/BuscarProgramas.js"
-  
-// When click "Reload Button" the programs are reaload too
+  import BuscarProgramas from "../../src/js/BuscarProgramas.js";
+
+  // When click "Reload Button" the programs are reaload too
   document
     .getElementById("reloadButton")
     .addEventListener("click", () => cargarTodosLosProgramas());
@@ -28,10 +36,9 @@ import BotonBuscar from "./BotonBuscar.astro";
   // Escuchar el cambio en el input para realizar la búsqueda sin esperar Enter
   document.querySelector("#input").addEventListener("input", async () => {
     const ValorDeUsuario = document.querySelector("#input").value;
-    console.log("El valor ah cambiado")
-    BuscarProgramas(ValorDeUsuario)
+    console.log("El valor ah cambiado");
+    BuscarProgramas(ValorDeUsuario);
   });
-
 </script>
 
 <style>
@@ -58,4 +65,5 @@ import BotonBuscar from "./BotonBuscar.astro";
   #reloadButton img {
     height: 32px;
   }
+
 </style>

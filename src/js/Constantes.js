@@ -1,5 +1,4 @@
-export const DATABASE_URL =
-  "http://localhost:1234";
+export const DATABASE_URL = "http://localhost:1234";
 
 export default function HTML_RENDERIZADO(programas) {
   // Renderizar los programas
@@ -22,6 +21,7 @@ export default function HTML_RENDERIZADO(programas) {
               </h3>
             </header>
             <span>${programa.detalles}</span>
+            <span class="textCategorias hidden font-bold text-slate-700">${categorias}</span>
           </div>
         `;
     })
