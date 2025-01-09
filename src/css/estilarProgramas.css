@@ -26,6 +26,7 @@ div.div-container {
 h3 {
   font-size: 19px;
   font-weight: bold;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 article.contenedor {
@@ -60,6 +61,7 @@ article span {
   width: 98%;
   display: block;
   overflow-wrap: break-word;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.178);
 }
 
 #formularioDeProgramas article {
@@ -75,5 +77,5 @@ article span {
 }
 
 #notFound404 {
-  grid-column: span 3 / span 3
+  grid-column: span 3 / span 3;
 }

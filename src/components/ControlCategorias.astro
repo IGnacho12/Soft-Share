@@ -1,106 +1,159 @@
-<button
-  id="mostrarCategorias"
-  class="p-2 bg-slate-200 rounded-xl px-2 cursor-pointer"
-  id="mostrarCategorias"
->
-  Mostrar Categorías
-</button>
+<main class="flex flex-col h-12 overflow-hidden transition-all">
+  <img
+    class="size-12 self-center"
+    src="src/css/arrow-down.svg"
+    alt="arrow-down"
+  />
 
-<section class="allCategories mt-4">
-  <!-- Todas las categorías -->
+  <button
+    id="mostrarCategorias"
+    class="p-2 rounded-xl px-2 cursor-pointer w-fit show"
+    id="mostrarCategorias"
+  >
+    Mostrar Categorías
+  </button>
 
-  <!-- ARCHIVO -->
-  <input
-    class="invisible absolute"
-    type="checkbox"
-    name="archivo"
-    id="Archivo"
-  />
-  <label for="Archivo" class="p-1 bg-gray-600/20 rounded-xl px-2">Archivo</label
-  >
+  <section class="allCategories mt-4">
+    <!-- Todas las categorías -->
 
-  <!-- UTILIDAD -->
-  <input
-    class="invisible absolute"
-    type="checkbox"
-    name="utilidad"
-    id="Utilidad"
-  />
-  <label for="Utilidad" class="p-1 bg-gray-600/20 rounded-xl px-2"
-    >Utilidad</label
-  >
-  <!-- ACTIVADOR -->
-  <input
-    class="invisible absolute"
-    type="checkbox"
-    name="activador"
-    id="Activador"
-  />
-  <label for="Activador" class="p-1 bg-gray-600/20 rounded-xl px-2"
-    >Activador</label
-  >
-  <!-- JUEGO -->
-  <input class="invisible absolute" type="checkbox" name="juego" id="Juego" />
-  <label for="Juego" class="p-1 bg-gray-600/20 rounded-xl px-2">Juego</label>
-  <!-- MEDIA -->
-  <input class="invisible absolute" type="checkbox" name="media" id="Media" />
-  <label for="Media" class="p-1 bg-gray-600/20 rounded-xl px-2">Media</label>
-  <!-- HARDWARE -->
-  <input
-    class="invisible absolute"
-    type="checkbox"
-    name="hardware"
-    id="Hardware"
-  />
-  <label for="Hardware" class="p-1 bg-gray-600/20 rounded-xl px-2"
-    >Hardware</label
-  >
-  <!-- OPTIMIZACIÓN -->
-  <input
-    class="invisible absolute"
-    type="checkbox"
-    name="optimizacion"
-    id="Optimización"
-  />
-  <label for="Optimización" class="p-1 bg-gray-600/20 rounded-xl px-2"
-    >Optimización</label
-  >
-  <!-- MÚLTIPLE -->
-  <input
-    class="invisible absolute"
-    type="checkbox"
-    name="multiple"
-    id="Multiple"
-  />
-  <label for="Multiple" class="p-1 bg-gray-600/20 rounded-xl px-2"
-    >Múltiple</label
-  >
-  <!-- SEGURIDAD -->
-  <input
-    class="invisible absolute"
-    type="checkbox"
-    name="seguridad"
-    id="Seguridad"
-  />
-  <label for="Seguridad" class="p-1 bg-gray-600/20 rounded-xl px-2"
-    >Seguridad</label
-  >
-  <!-- GESTIÓN DE ARCHIVOS -->
-  <input
-    class="invisible absolute"
-    type="checkbox"
-    name="gestionDeArchivos"
-    id="Gestión de archivos"
-  />
-  <label
-    for="Gestión de archivos"
-    class="p-1 bg-gray-600/20 rounded-xl px-2 col-span-2"
-    >Gestión de Archivos</label
-  >
-</section>
+    <!-- ARCHIVO -->
+    <input
+      class="invisible absolute"
+      type="checkbox"
+      name="archivo"
+      id="Archivo"
+    />
+    <label for="Archivo" class="p-1 bg-gray-600/20 rounded-xl px-2"
+      >Archivo</label
+    >
+
+    <!-- UTILIDAD -->
+    <input
+      class="invisible absolute"
+      type="checkbox"
+      name="utilidad"
+      id="Utilidad"
+    />
+    <label for="Utilidad" class="p-1 bg-gray-600/20 rounded-xl px-2"
+      >Utilidad</label
+    >
+    <!-- ACTIVADOR -->
+    <input
+      class="invisible absolute"
+      type="checkbox"
+      name="activador"
+      id="Activador"
+    />
+    <label for="Activador" class="p-1 bg-gray-600/20 rounded-xl px-2"
+      >Activador</label
+    >
+    <!-- JUEGO -->
+    <input class="invisible absolute" type="checkbox" name="juego" id="Juego" />
+    <label for="Juego" class="p-1 bg-gray-600/20 rounded-xl px-2">Juego</label>
+    <!-- MEDIA -->
+    <input class="invisible absolute" type="checkbox" name="media" id="Media" />
+    <label for="Media" class="p-1 bg-gray-600/20 rounded-xl px-2">Media</label>
+    <!-- HARDWARE -->
+    <input
+      class="invisible absolute"
+      type="checkbox"
+      name="hardware"
+      id="Hardware"
+    />
+    <label for="Hardware" class="p-1 bg-gray-600/20 rounded-xl px-2"
+      >Hardware</label
+    >
+    <!-- OPTIMIZACIÓN -->
+    <input
+      class="invisible absolute"
+      type="checkbox"
+      name="optimizacion"
+      id="Optimización"
+    />
+    <label for="Optimización" class="p-1 bg-gray-600/20 rounded-xl px-2"
+      >Optimización</label
+    >
+    <!-- MÚLTIPLE -->
+    <input
+      class="invisible absolute"
+      type="checkbox"
+      name="multiple"
+      id="Multiple"
+    />
+    <label for="Multiple" class="p-1 bg-gray-600/20 rounded-xl px-2"
+      >Múltiple</label
+    >
+    <!-- SEGURIDAD -->
+    <input
+      class="invisible absolute"
+      type="checkbox"
+      name="seguridad"
+      id="Seguridad"
+    />
+    <label for="Seguridad" class="p-1 bg-gray-600/20 rounded-xl px-2"
+      >Seguridad</label
+    >
+    <!-- GESTIÓN DE ARCHIVOS -->
+    <input
+      class="invisible absolute"
+      type="checkbox"
+      name="gestionDeArchivos"
+      id="Gestión de archivos"
+    />
+    <label
+      for="Gestión de archivos"
+      class="p-1 bg-gray-600/20 rounded-xl px-2 col-span-2"
+      >Gestión de Archivos</label
+    >
+  </section>
+</main>
 
 <style>
-  /* Bóton Mostrar Categorías */
+  button:active {
+    transform: scale(0.9);
+    transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  .show {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+
+  .not-show {
+    background-color: rgba(128, 128, 128, 0.253);
+    color: black;
+    font-weight: normal;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+
+  main {
+    height: 48px;
+    transition: all 0.5s cubic-bezier(0.83, 0.05, 0.16, 0.96);
+    interpolate-size: allow-keywords;
+  }
+
+  main:hover {
+    height: auto;
+  }
+
+  main img {
+    transition: all 0.5s cubic-bezier(0.83, 0.05, 0.16, 0.96);
+    cursor: s-resize;
+    filter: drop-shadow(0px 3px 2px rgba(0, 0, 0));
+  }
+
+  main:hover img {
+    transition: all 0.5s cubic-bezier(0.83, 0.05, 0.16, 0.96);
+    transform: scale(1.2);
+    filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.7));
+  }
 
   /* Bótones para seleccionar categorías */
 
@@ -141,6 +194,7 @@
     transition: all 0.4s ease;
     text-decoration: none;
     border-radius: 2px;
+    font-weight: bold;
   }
 </style>
 
@@ -150,33 +204,37 @@
   // Obtener todos los checkboxes
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-  let mostrarCategoriasBoolean = false;
+  let mostrarCategoriasBoolean = true;
 
-const BOTON_MOSTRAR_CATEGORIAS = document.getElementById(
-  "mostrarCategorias"
-) as HTMLButtonElement;
+  const BOTON_MOSTRAR_CATEGORIAS = document.getElementById(
+    "mostrarCategorias"
+  ) as HTMLButtonElement;
 
-BOTON_MOSTRAR_CATEGORIAS.addEventListener("click", function () {
-  const categoriasText = document.querySelectorAll<HTMLElement>(".textCategorias");
+  BOTON_MOSTRAR_CATEGORIAS.addEventListener("click", function () {
+    const categoriasText =
+      document.querySelectorAll<HTMLElement>(".textCategorias");
 
-  if (mostrarCategoriasBoolean) {
-    console.log("Ocultando categorías...");
-    // Ocultar las categorías
-    categoriasText.forEach((element) => {
-      element.style.display = "none";
-    });
-  } else {
-    console.log("Mostrando categorías...");
-    // Mostrar las categorías
-    categoriasText.forEach((element) => {
-      element.style.display = "block";
-    });
-  }
+    if (mostrarCategoriasBoolean) {
+      console.log("Ocultando categorías...");
+      BOTON_MOSTRAR_CATEGORIAS.classList.remove("show");
+      BOTON_MOSTRAR_CATEGORIAS.classList.add("not-show");
+      // Ocultar las categorías
+      categoriasText.forEach((element) => {
+        element.style.display = "none";
+      });
+    } else {
+      BOTON_MOSTRAR_CATEGORIAS.classList.remove("not-show");
+      BOTON_MOSTRAR_CATEGORIAS.classList.add("show");
+      console.log("Mostrando categorías...");
+      // Mostrar las categorías
+      categoriasText.forEach((element) => {
+        element.style.display = "block";
+      });
+    }
 
-  // Alternar el estado
-  mostrarCategoriasBoolean = !mostrarCategoriasBoolean;
-});
-
+    // Alternar el estado
+    mostrarCategoriasBoolean = !mostrarCategoriasBoolean;
+  });
 
   declare global {
     interface Window {
