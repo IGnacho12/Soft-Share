@@ -1,4 +1,4 @@
-export const DATABASE_URL = "http://localhost:1234";
+export const DATABASE_URL = "https://backend-soft-share-4on71e94e-nachos-projects-077bc528.vercel.app";
 
 export default function HTML_RENDERIZADO(programas) {
   // Renderizar los programas
