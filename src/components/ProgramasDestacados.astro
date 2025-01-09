@@ -23,15 +23,10 @@ import ControlCategorias from "./ControlCategorias.astro";
   </article>
 </article>
 
-<script>
+<script type="module">
   import cargarProgramas from "/src/js/CargarTodosLosProgramas.js";
   import BuscarProgramas from "/src/js/BuscarProgramas.js";
 
-  declare global {
-    interface Window {
-      ValorDeUsuario: string;
-    }
-  }
 
   // When click "Reload Button" the programs are reaload too
   document

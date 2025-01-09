@@ -198,7 +198,7 @@
   }
 </style>
 
-<script>
+<script type="module">
 import BuscarProgramas from "/src/js/BuscarProgramas.js";
   // Obtener todos los checkboxes
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -207,7 +207,7 @@ import BuscarProgramas from "/src/js/BuscarProgramas.js";
 
   const BOTON_MOSTRAR_CATEGORIAS = document.getElementById(
     "mostrarCategorias"
-  ) as HTMLButtonElement;
+  );
 
   BOTON_MOSTRAR_CATEGORIAS.addEventListener("click", function () {
     const categoriasText =
@@ -235,11 +235,6 @@ import BuscarProgramas from "/src/js/BuscarProgramas.js";
     mostrarCategoriasBoolean = !mostrarCategoriasBoolean;
   });
 
-  declare global {
-    interface Window {
-      categoriasElegidas: string[];
-    }
-  }
 
   // Declarar la variable globalmente
   window.categoriasElegidas = [];
@@ -248,7 +243,7 @@ import BuscarProgramas from "/src/js/BuscarProgramas.js";
   checkboxes.forEach((checkbox) => {
     checkbox.addEventListener("change", (event) => {
       // Verificar que el evento target es un input y usar un type assertion
-      const target = event.target as HTMLInputElement; // Type assertion
+      const target = event.target; // Type assertion
 
       if (target) {
         if (target.checked) {
