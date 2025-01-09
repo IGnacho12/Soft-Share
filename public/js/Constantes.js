@@ -21,7 +21,7 @@ export default function HTML_RENDERIZADO(programas) {
               </h3>
               </header>
               <span>${programa.detalles}</span>
-              <span class="textCategorias  text-sm text-end w-fit font-bold text-black">${categorias}</span>
+              <span class="textCategorias  text-sm text-end w-fit font-bold">${categorias}</span>
           </div>
         `;
     })
