@@ -37,5 +37,5 @@ export default function HTML_RENDERIZADO(programas) {
     head.appendChild(link);
     console.log(`Hoja de estilos ${ruta} cargada.`);
   }
-  cargarCSS("/src/css/estilarProgramas.css");
+  cargarCSS("/css/estilarProgramas.css");
 }
