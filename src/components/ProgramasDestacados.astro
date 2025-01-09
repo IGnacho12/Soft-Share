@@ -24,8 +24,8 @@ import ControlCategorias from "./ControlCategorias.astro";
 </article>
 
 <script>
-  import cargarTodosLosProgramas from "/src/js/CargarTodosLosProgramas.js";
-  import BuscarProgramas from "/src/js/BuscarProgramas.js";
+  import cargarProgramas from "../../src/js/CargarTodosLosProgramas.js";
+  import BuscarProgramas from "../../src/js/BuscarProgramas.js";
 
   declare global {
     interface Window {
@@ -36,7 +36,7 @@ import ControlCategorias from "./ControlCategorias.astro";
   // When click "Reload Button" the programs are reaload too
   document
     .getElementById("reloadButton")
-    .addEventListener("click", () => cargarTodosLosProgramas());
+    .addEventListener("click", () => cargarProgramas());
 
   // Escuchar el cambio en el input para realizar la búsqueda sin esperar Enter
   document.querySelector("#input").addEventListener("input", async () => {
