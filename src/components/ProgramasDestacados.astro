@@ -24,9 +24,15 @@ import ControlCategorias from "./ControlCategorias.astro";
   </article>
 </article>
 
-<script type="module">
+<script>
   import cargarTodosLosProgramas from "../../src/js/CargarTodosLosProgramas.js";
   import BuscarProgramas from "../../src/js/BuscarProgramas.js";
+
+  declare global {
+    interface Window {
+      ValorDeUsuario: string;
+    }
+  }
 
   // When click "Reload Button" the programs are reaload too
   document
@@ -35,9 +41,9 @@ import ControlCategorias from "./ControlCategorias.astro";
 
   // Escuchar el cambio en el input para realizar la búsqueda sin esperar Enter
   document.querySelector("#input").addEventListener("input", async () => {
-    const ValorDeUsuario = document.querySelector("#input").value;
+    window.ValorDeUsuario = document.querySelector("#input").value;
     console.log("El valor ah cambiado");
-    BuscarProgramas(ValorDeUsuario);
+    BuscarProgramas(window.ValorDeUsuario, window.categoriasElegidas);
   });
 </script>
 

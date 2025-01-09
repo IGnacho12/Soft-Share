@@ -15,13 +15,13 @@ export default function HTML_RENDERIZADO(programas) {
                 onerror="this.onerror=null; this.src='/src/css/error.png';" 
               />
               <h3>
-                <a rel="noreferrer" href="${programa.link_de_descarga}">
-                  ${programa.nombre}
-                </a>
+              <a rel="noreferrer" href="${programa.link_de_descarga}">
+              ${programa.nombre}
+              </a>
               </h3>
-            </header>
-            <span>${programa.detalles}</span>
-            <span class="textCategorias hidden font-bold text-slate-700">${categorias}</span>
+              </header>
+              <span>${programa.detalles}</span>
+              <span class="textCategorias text-sm text-end w-fit font-bold text-black">${categorias}</span>
           </div>
         `;
     })

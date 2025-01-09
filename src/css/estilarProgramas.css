@@ -73,3 +73,7 @@ article span {
 #formularioDeProgramas p {
   color: gray;
 }
+
+#notFound404 {
+  grid-column: span 3 / span 3
+}
