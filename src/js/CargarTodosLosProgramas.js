@@ -1,7 +1,7 @@
 import { DATABASE_URL } from "./Constantes.js";
 import HTML_RENDERIZADO from "./Constantes.js";
 
-export default async function CarcarProgramas() {
+export default async function CargarProgramas() {
   console.log("Función cargar todos los programas, ejecutándose.");
   console.log(DATABASE_URL);
   try {
