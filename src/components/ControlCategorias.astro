@@ -1,5 +1,13 @@
 <main class="flex flex-col h-12 overflow-hidden transition-all">
-  <span class="flex justify-center place-items-center items-center mb-2 bg-slate-400/20 py-1 rounded-md gap-1 group" id="span-drop-shadow-none" >Selecciona las categorías <img src="/css/click.png" class="size-8 group-hover:scale-110 group-hover:rotate-12 transition-all" alt="click" /></span>
+  <span
+    class="flex justify-center place-items-center items-center mb-2 bg-slate-400/20 py-1 rounded-md gap-1 group"
+    id="span-drop-shadow-none"
+    >Selecciona las categorías <img
+      src="/css/click.png"
+      class="size-8 group-hover:scale-110 group-hover:rotate-12 transition-all"
+      alt="click"
+    /></span
+  >
 
   <button
     id="mostrarCategorias"
@@ -9,7 +17,9 @@
     Mostrar Categorías
   </button>
 
-  <section class="allCategories mt-4">
+  <section
+    class="allCategories mt-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7"
+  >
     <!-- Todas las categorías -->
 
     <!-- ARCHIVO -->
@@ -98,7 +108,7 @@
     />
     <label
       for="Gestión de archivos"
-      class="p-1 bg-gray-600/20 rounded-xl px-2 col-span-4 lg:col-span-3 xl:col-span-2"
+      class="p-1 bg-gray-600/20 rounded-xl px-2 lg:col-span-1 md:col-span-2 xl:col-span-3"
       >Gestión de Archivos</label
     >
   </section>
@@ -162,7 +172,6 @@
 
   section {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
   }
 
   input:checked + label {
@@ -190,23 +199,19 @@
     border-radius: 2px;
     font-weight: bold;
   }
-
 </style>
 
 <script type="module">
-import BuscarProgramas from "/js/BuscarProgramas.js";
+  import BuscarProgramas from "/js/BuscarProgramas.js";
   // Obtener todos los checkboxes
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
   let mostrarCategoriasBoolean = true;
 
-  const BOTON_MOSTRAR_CATEGORIAS = document.getElementById(
-    "mostrarCategorias"
-  );
+  const BOTON_MOSTRAR_CATEGORIAS = document.getElementById("mostrarCategorias");
 
   BOTON_MOSTRAR_CATEGORIAS.addEventListener("click", function () {
-    const categoriasText =
-      document.querySelectorAll(".textCategorias");
+    const categoriasText = document.querySelectorAll(".textCategorias");
 
     if (mostrarCategoriasBoolean) {
       console.log("Ocultando categorías...");
@@ -229,7 +234,6 @@ import BuscarProgramas from "/js/BuscarProgramas.js";
     // Alternar el estado
     mostrarCategoriasBoolean = !mostrarCategoriasBoolean;
   });
-
 
   // Declarar la variable globalmente
   window.categoriasElegidas = [];
