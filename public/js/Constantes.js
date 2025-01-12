@@ -12,7 +12,7 @@ export default function HTML_RENDERIZADO(programas) {
               <img
                 src="${programa.link_de_imagen}"
                 alt="${programa.nombre}"
-                onerror="this.onerror=null; this.src='/css/error.png' this.title='La ruta especificada no es valida';" 
+                onerror="this.onerror=null; this.src='/css/error.png'; this.title='La ruta especificada no es valida';" 
               />
               <h3>
               <a rel="noreferrer" href="${programa.link_de_descarga}">
