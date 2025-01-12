@@ -59,7 +59,8 @@ import Layout from "../layouts/Layout.astro";
       </div>
 
       <section class="display flex flex-col items-center gap-3">
-        <h3>Categoría</h3>
+        <a class="self-end absolute" href="https://n4chos-organization.gitbook.io/soft-share/guias-de-soft-share/quickstart" target="_blank" no-referrer title="Si quieres saber que representa cada categoría, dame click 😺"><img src="/info.svg" alt="info" class="size-5"></a>
+        <h3 class="flex items-center">Categoría</h3>
         <!-- The second value will be selected initially -->
         <select name="select" id="select-categoria">
           <option value="Archivo" selected>Archivo</option>
@@ -232,7 +233,7 @@ import Layout from "../layouts/Layout.astro";
       #ff1556
     );
   }
-
+/* 
   a {
     top: 0.5rem;
     left: 0.5rem;
@@ -257,7 +258,7 @@ import Layout from "../layouts/Layout.astro";
       text-decoration-thickness: 0.1em;
       cursor: pointer;
     }
-  }
+  } */
 
   main {
     display: flex;
