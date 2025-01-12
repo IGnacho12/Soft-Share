@@ -1,4 +1,4 @@
-export const DATABASE_URL = "https://backend-soft-share-4on71e94e-nachos-projects-077bc528.vercel.app";
+export const DATABASE_URL = "https://backend-soft-share-hdsepfiqz-nachos-projects-077bc528.vercel.app";
 
 export default function HTML_RENDERIZADO(programas) {
   // Renderizar los programas
@@ -12,7 +12,7 @@ export default function HTML_RENDERIZADO(programas) {
               <img
                 src="${programa.link_de_imagen}"
                 alt="${programa.nombre}"
-                onerror="this.onerror=null; this.src='/src/css/error.png';" 
+                onerror="this.onerror=null; this.src='/css/error.png';" 
               />
               <h3>
               <a rel="noreferrer" href="${programa.link_de_descarga}">

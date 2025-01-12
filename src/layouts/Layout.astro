@@ -4,7 +4,6 @@ interface Props {
 }
 
 const { title } = Astro.props;
-import { ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
@@ -22,7 +21,7 @@ import { ViewTransitions } from "astro:transitions";
     />
     <!-- Icono -->
     <link rel="icon" href="/a5.ico" />
-    <link rel="icon" href="/a5.svg" type="image/svg+xml" sizes="512x512" />
+    <link rel="icon" href="/readme images/a5.svg" type="image/svg+xml" sizes="512x512" />
     <meta name="apple-mobile-web-app-title" content="Soft-Share page" />
     <meta name="generator" content={Astro.generator} />
     <meta
@@ -30,7 +29,6 @@ import { ViewTransitions } from "astro:transitions";
       content="hzbJZ4KQX_hvr8hMcKMdm5PNV71vwFUSSmTcx7zjmh4"
     />
     <title>{title}</title>
-    <ViewTransitions />
   </head>
   <body class="background">
     <div class="background"></div>
