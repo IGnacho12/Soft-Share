@@ -8,11 +8,17 @@ import Layout from "../layouts/Layout.astro";
       Agrega Tus Programas
     </h1>
     <a
-      class="pt-3 hidden lg:block file: absolute lg:fixed text-sm lg:text-2xl"
+      class="help pt-3 lg:block absolute lg:fixed text-sm lg:text-2xl"
       target="_blank"
       href="https://n4chos-organization.gitbook.io/soft-share"
       >Ayuda & Documentación 📑</a
     >
+    <a
+    class="pt-3 lg:block absolute lg:fixed text-sm lg:text-2xl"
+    target="_blank"
+    href="https://n4chos-organization.gitbook.io/soft-share"
+    >Ayuda & Documentación 📑</a
+  >
     <form id="programForm">
       <div class="input-group">
         <input
@@ -233,8 +239,8 @@ import Layout from "../layouts/Layout.astro";
       #ff1556
     );
   }
-/* 
-  a {
+
+  a.help {
     top: 0.5rem;
     left: 0.5rem;
     align-items: center;
@@ -258,7 +264,7 @@ import Layout from "../layouts/Layout.astro";
       text-decoration-thickness: 0.1em;
       cursor: pointer;
     }
-  } */
+  }
 
   main {
     display: flex;
