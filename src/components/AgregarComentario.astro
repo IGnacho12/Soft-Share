@@ -59,6 +59,11 @@ import Layout from "../layouts/Layout.astro";
         return;
       }
 
+      if (!autor || !comentario) {
+        alert("Debes completar todos los campos.");
+        return;
+      }
+
       const respuesta = await fetch(
         "https://backend-soft-share-1tr9ac9dt-nachos-projects-077bc528.vercel.app/comments",
         {
