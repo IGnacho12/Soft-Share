@@ -1,10 +1,13 @@
 ---
-import Layout from "../layouts/Layout.astro"
-import BotonesPrincipales from "../components/BotonesPrincipales.astro"
-import ProgramasDestacados from "../components/ProgramasDestacados.astro"
-import SubirPrograma from "../components/SubirPrograma.astro"
-import AgregarComentario from "../components/AgregarComentario.astro"
-import SeccionDeComentarios from "../components/SeccionDeComentarios.astro"
+import Layout from "../layouts/Layout.astro";
+import BotonesPrincipales from "../components/BotonesPrincipales.astro";
+import ProgramasDestacados from "../components/ProgramasDestacados.astro";
+import SubirPrograma from "../components/SubirPrograma.astro";
+import AgregarComentario from "../components/AgregarComentario.astro";
+import SeccionDeComentarios from "../components/SeccionDeComentarios.astro";
+import AlertaError from "../components/AlertaError.astro";
+import AlertaExito from "../components/AlertaExito.astro";
+import Alerta from "../paper/Alerta.astro";
 
 // JS
 ---
@@ -16,13 +19,13 @@ import SeccionDeComentarios from "../components/SeccionDeComentarios.astro"
       class="presentation leading-6 mt-2 pt-0 text-base lg:text-[19px]"
       style="line-height: 1.5rem"
     >
-      Encuentra una variedad de recuros variados, desde script útiles
-      hasta aplicaciones completas con cracks. <span style="color: #008f39"
+      Encuentra una variedad de recuros variados, desde script útiles hasta
+      aplicaciones completas con cracks. <span style="color: #008f39"
         >Comparte</span
-      > tus propios recursos con los demás, aprovechando esta
-      plataforma de todos para <span style="color: #094293"
-        >explorar</span
-      > , <span style="color: #a65e2e">obtener</span> y
+      > tus propios recursos con los demás, aprovechando esta plataforma de todos
+      para <span style="color: #094293">explorar</span> , <span
+        style="color: #a65e2e">obtener</span
+      > y
       <span style="color: #4b0082">contribuir</span> tus <span
         >recursos informáticos.</span
       >
@@ -32,11 +35,13 @@ import SeccionDeComentarios from "../components/SeccionDeComentarios.astro"
     <SubirPrograma />
     <AgregarComentario />
     <SeccionDeComentarios />
+    <AlertaError />
+    <AlertaExito />
   </main>
 
   <style>
     span {
-      text-shadow: 1px 1px rgba(0, 0, 0, 0.178)
+      text-shadow: 1px 1px rgba(0, 0, 0, 0.178);
     }
     body {
       padding-bottom: 100px;
@@ -59,7 +64,7 @@ import SeccionDeComentarios from "../components/SeccionDeComentarios.astro"
 </Layout>
 
 <script type="module">
-import cargarProgramas from "/js/CargarTodosLosProgramas.js";
+  import cargarProgramas from "/js/CargarTodosLosProgramas.js";
   // Cargar todos los programas
   cargarProgramas();
 </script>

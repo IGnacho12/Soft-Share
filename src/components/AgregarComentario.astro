@@ -5,7 +5,9 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Comentarios">
   <main>
     <article>
-      <h2 class="flex items-center font-bold text-center">¡Déjame un comentario! <img src="/piñata.png" class="size-10" alt=""></h2>
+      <h2 class="flex items-center font-bold text-center">
+        ¡Déjame un comentario! <img src="/piñata.png" class="size-10" alt="" />
+      </h2>
     </article>
 
     <form id="formularioDeComentario">
@@ -42,7 +44,8 @@ import Layout from "../layouts/Layout.astro";
 
 <script type="module">
   let horaUltimoComentario = null; // Almacena la hora del último comentario
-
+  import mostrarError from "/js/mostrarError.js";
+  import mostrarExito from "/js/mostrarExito.js";
   document
     .getElementById("enviar-comentario")
     .addEventListener("click", async (event) => {
@@ -55,12 +58,14 @@ import Layout from "../layouts/Layout.astro";
 
       // Verificar si han pasado al menos 2 minutos desde el último comentario
       if (!poderComentar()) {
-        alert("Debes esperar al menos 2 minutos antes de comentar nuevamente.");
+        mostrarError(
+          "Debes esperar al menos 2 minutos antes de comentar nuevamente."
+        );
         return;
       }
 
       if (!autor || !comentario) {
-        alert("Debes completar todos los campos.");
+        mostrarError("Debes completar todos los campos.");
         return;
       }
 
@@ -80,6 +85,7 @@ import Layout from "../layouts/Layout.astro";
       );
 
       cargarComentarios();
+      mostrarExito("Comentario agregado con éxito ✅");
       console.log(respuesta);
     });
 

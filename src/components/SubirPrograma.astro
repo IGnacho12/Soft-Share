@@ -14,11 +14,11 @@ import Layout from "../layouts/Layout.astro";
       >Ayuda & Documentación 📑</a
     >
     <a
-    class="pt-3 lg:block absolute lg:fixed text-sm lg:text-2xl"
-    target="_blank"
-    href="https://n4chos-organization.gitbook.io/soft-share"
-    >Ayuda & Documentación 📑</a
-  >
+      class="pt-3 lg:block absolute lg:fixed text-sm lg:text-2xl"
+      target="_blank"
+      href="https://n4chos-organization.gitbook.io/soft-share"
+      >Ayuda & Documentación 📑</a
+    >
     <form id="programForm">
       <div class="input-group">
         <input
@@ -65,7 +65,14 @@ import Layout from "../layouts/Layout.astro";
       </div>
 
       <section class="display flex flex-col items-center gap-3">
-        <a class="self-end absolute" href="https://n4chos-organization.gitbook.io/soft-share/guias-de-soft-share/quickstart" target="_blank" no-referrer title="Si quieres saber que representa cada categoría, dame click 😺"><img src="/info.svg" alt="info" class="size-5"></a>
+        <a
+          class="self-end absolute"
+          href="https://n4chos-organization.gitbook.io/soft-share/guias-de-soft-share/quickstart"
+          target="_blank"
+          no-referrer
+          title="Si quieres saber que representa cada categoría, dame click 😺"
+          ><img src="/info.svg" alt="info" class="size-5" /></a
+        >
         <h3 class="flex items-center">Categoría</h3>
         <!-- The second value will be selected initially -->
         <select name="select" id="select-categoria">
@@ -89,15 +96,16 @@ import Layout from "../layouts/Layout.astro";
 
 <script type="module">
   import { DATABASE_URL } from "/js/Constantes.js";
-  
+  import mostrarExito from "/js/mostrarExito.js";
+  import mostrarError from "/js/mostrarError.js";
+
   // ---------- PASO 1 ---------- //
   document.addEventListener("DOMContentLoaded", function () {
-    let categoriaSeleccionada = ['Archivo'];
-  
+    let categoriaSeleccionada = ["Archivo"];
+
     const select = document.getElementById("select-categoria");
     select.addEventListener("change", function () {
       const selectedOption = this.options[select.selectedIndex];
-      console.log(selectedOption.value + ": " + selectedOption.text);
       categoriaSeleccionada = [selectedOption.value];
     });
     // Aquí va tu código JavaScript actual
@@ -105,7 +113,7 @@ import Layout from "../layouts/Layout.astro";
       .getElementById("programForm")
       .addEventListener("submit", async (event) => {
         event.preventDefault(); // Evitar que el formulario recargue la página
-        console.log("me toquetearon");
+        console.log("me toquetearon 😊 (soy el formulario de programas)");
 
         const submitButton = document.getElementById("black-button");
         submitButton.disabled = true; // Deshabilita el botón para evitar múltiples envíos
@@ -130,14 +138,13 @@ import Layout from "../layouts/Layout.astro";
         }
 
         if (!isValidURL(link_de_descarga) || !isValidURL(link_de_imagen)) {
-          alert("No se han ingresado URLs válidas.");
+          mostrarError("No se han ingresado URL válidas.");
           submitButton.disabled = false; // Reactivar el botón
           return;
         }
 
         const response = await fetch(`${DATABASE_URL}/get`);
         const dbContent = await response.json(); // Obtener los datos de la base de datos
-        console.log(dbContent);
         const arrayFinal = [];
         dbContent.forEach((object) => {
           for (const key in object) {
@@ -146,37 +153,21 @@ import Layout from "../layouts/Layout.astro";
         });
 
         // Array con los valores ingresados por el usuario
-        const userValuesArray = [
-          nombre,
-          link_de_descarga,
-          detalles,
-        ];
+        const userValuesArray = [nombre, link_de_descarga, detalles];
 
         // ☝️ No se debe poner el valor de categoría selecionada ya que eso si se debe poder repetir.
-
-
+        // Omiti el valor de imagen ya que algunas imagenes si quiero que se repitan pero como soy un vago, simplemente lo quito de la comprobación. 😺
         // Respuestas correspondientes a cada valor ingresado
-        // const respuestas = [
-        //   "Soft-Share ya tiene un soft con ese nombre 😵",
-        //   "Soft-Share ya tiene un soft con esa imagen 😵",
-        //   "Soft-Share ya tiene un soft con ese link de descarga 😵",
-        //   "Soft-Share ya tiene un soft con esos detalles 😵",
-        // ];
-
-        // Elemento donde se mostrará el error
-        // const errorFather = document.getElementById("error-container");
-        // const errorMessage = document.getElementById("error-message");
-
-        // Limpiar cualquier error previo
-        // errorMessage.innerText = "";
-        // errorFather.style.display = "none";
+        const respuestasDuplicado = [
+          "Soft-Share ya tiene un recurso con ese nombre 😵",
+          "Soft-Share ya tiene un recurso con ese link de descarga 😵",
+          "Soft-Share ya tiene un recurso con esos detalles 😵",
+        ];
 
         // Verificar si alguno de los valores ingresados ya existe en los registros
         for (let i = 0; i < userValuesArray.length; i++) {
           if (arrayFinal.includes(userValuesArray[i])) {
-            // errorMessage.innerText = respuestas[i];
-            alert("se encotro algo duplicado");
-            // errorFather.style.display = "flex";
+            mostrarError(respuestasDuplicado[i]);
             submitButton.disabled = false; // Reactivar el botón
             return;
           }
@@ -184,11 +175,7 @@ import Layout from "../layouts/Layout.astro";
 
         // ---------- PASO 4: Insertar datos en la base de datos ---------- //
         try {
-          // const categoriaSeleccionada = [`Hardware`];
-
-          console.log(
-            `Intento poner datos en la base de adtos, con el valor de categoria selescionadad ${categoriaSeleccionada}`
-          );
+          console.log(`La categoría seleccionada es ${categoriaSeleccionada}`);
           const response = await fetch(`${DATABASE_URL}/post`, {
             method: "POST",
             headers: {
@@ -203,16 +190,14 @@ import Layout from "../layouts/Layout.astro";
             }),
           });
 
-          console.log(response);
-
           if (response.ok) {
-            alert("El programa se ha guardado con éxito ✅");
+            mostrarExito("El programa se ha guardado con éxito ✅");
             document.getElementById("programForm").reset(); // Limpia el formulario después del éxito
           } else {
-            alert("Error al guardar el programa.");
+            mostrarError("Error al guardar el programa.");
           }
         } catch (error) {
-          alert("Error al guardar el programa.");
+          mostrarError("Error al guardar el programa.");
           console.error(error);
         } finally {
           submitButton.disabled = false; // Reactivar el botón

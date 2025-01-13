@@ -1,0 +1,64 @@
+<div
+  id="id-error"
+  class="alert-container fixed bottom-1 left-1 items-center p-4 text-sm text-red-700 border-2 border-red-600 rounded-lg bg-gray-900 transition-all opacity-1 duration-300"
+  role="alert"
+  id="error-father"
+>
+  <svg
+    class="h-4 mr-3"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+  >
+    <path
+      d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+    ></path>
+  </svg>
+  <div class="font-bold">
+    <span class="underline underline-offset-1 decoration-2">Error</span><span
+      >:</span
+    >
+    <span id="error-message" class="text-red-500"></span>
+  </div>
+</div>
+<article>
+  <button id="evento-error">presioname error</button>
+</article>
+
+<style>
+  .animation {
+    animation: show-wait-no-show 7s ease-in-out infinite;
+  }
+
+  #id-error {
+    opacity: 0;
+    transform: translateX(-600px);
+  }
+
+  @keyframes show-wait-no-show {
+    0% {
+      display: inline-flex;
+      opacity: 1;
+      transform: translateX(-600px);
+    }
+    10% {
+      transform: translateX(0px);
+    }
+    95% {
+      transform: translateX(0px);
+    }
+    100% {
+      transform: translateX(-600px);
+      display: none;
+      opacity: 1;
+    }
+  }
+</style>
+
+<script type="module">
+  import mostrarError from "/js/mostrarError.js";
+
+  const evento = document.getElementById("evento-error");
+  evento.addEventListener("click", () => {mostrarError("Error en la carga de los programas");});
+</script>
