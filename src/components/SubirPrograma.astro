@@ -192,6 +192,7 @@ import Layout from "../layouts/Layout.astro";
 
           if (response.ok) {
             mostrarExito("El programa se ha guardado con éxito ✅");
+            console.log(response)
             document.getElementById("programForm").reset(); // Limpia el formulario después del éxito
           } else {
             mostrarError("Error al guardar el programa.");
