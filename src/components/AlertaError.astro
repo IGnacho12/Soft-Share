@@ -22,9 +22,6 @@
     <span id="error-message" class="text-red-500"></span>
   </div>
 </div>
-<article>
-  <button id="evento-error">presioname error</button>
-</article>
 
 <style>
   .animation {
@@ -56,9 +53,3 @@
   }
 </style>
 
-<script type="module">
-  import mostrarError from "/js/mostrarError.js";
-
-  const evento = document.getElementById("evento-error");
-  evento.addEventListener("click", () => {mostrarError("Error en la carga de los programas");});
-</script>
