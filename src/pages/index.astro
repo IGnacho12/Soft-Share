@@ -81,7 +81,8 @@ import Alerta from "../paper/Alerta.astro";
 
   document.addEventListener("keydown", (event) => {
     // Recargar los programas si se presiono la tecla r
-    if (event.code === "KeyR") {
+    if (event.code === "KeyR" && buscarInput.focus()) {
+
       cargarProgramas()
       buscarInput.value = ""
     }
