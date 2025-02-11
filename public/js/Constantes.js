@@ -1,4 +1,4 @@
-export const DATABASE_URL = "https://backend-soft-share-cyan.vercel.app";
+export const DATABASE_URL = "https://backend-soft-share.vercel.app";
 
 export default function HTML_RENDERIZADO(programas) {
   // Renderizar los programas
