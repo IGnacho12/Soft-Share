@@ -80,33 +80,56 @@ import Alerta from "../paper/Alerta.astro";
   const buscarInput = document.getElementById("input");
 
   document.addEventListener("keydown", (event) => {
-    // Recargar los programas si se presiono la tecla r
-    if (event.code === "KeyR" && buscarInput.focus()) {
+    // Obtener el elemento activo (que tiene el foco)
+    const activeElement = document.activeElement;
 
-      cargarProgramas()
-      buscarInput.value = ""
+    // Verificar si el elemento activo es un input, textarea o cualquier elemento editable
+    const isEditable =
+      activeElement.tagName === "INPUT" ||
+      activeElement.tagName === "TEXTAREA" ||
+      activeElement.isContentEditable;
+
+    // Si no hay un elemento editable con el foco, ejecutar los atajos
+    if (!isEditable) {
+      // Recargar los programas si se presionó la tecla "r"
+      if (event.code === "KeyR") {
+        cargarProgramas();
+        buscarInput.value = "";
+      }
+
+      // Ir al apartado "Subir programa" si se presionó la tecla "s"
+      if (event.code === "KeyS") {
+        document
+          .getElementById("UploadProgram")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      // Verificar si se presionó Control
+      if (event.code === "ControlLeft" || event.code === "ControlRight") {
+        controlPresionado = true;
+      }
+
+      // Verificar si se presionó Espacio
+      if (event.code === "Space") {
+        espacioPresionado = true;
+      }
+
+      // Verificar si ambas teclas están presionadas (Control + Espacio)
+      if (controlPresionado && espacioPresionado) {
+        buscarInput.focus(); // Enfocar el input de búsqueda
+        controlPresionado = false;
+        espacioPresionado = false;
+      }
     }
+  });
 
-    // Ir a la apartador subir programa si se presiono la tecla s 
-    if (event.code === "KeyS") {
-      document.getElementById("UploadProgram").scrollIntoView({ behavior: "smooth" });
-    }
-
-    // Verificar si se presionó Control
+  // Reiniciar el estado de las teclas cuando se sueltan
+  document.addEventListener("keyup", (event) => {
     if (event.code === "ControlLeft" || event.code === "ControlRight") {
-      controlPresionado = true;
+      controlPresionado = false;
     }
-
-    // Verificar si se presionó F
     if (event.code === "Space") {
-      espacioPresionado = true;
-    }
-
-    // Verificar si ambas teclas están presionadas
-    if (controlPresionado && espacioPresionado) {
-      // Aquí puedes ejecutar la acción que desees
-      buscarInput.focus();
-      controlPresionado, (espacioPresionado = false);
+      espacioPresionado = false;
     }
   });
 </script>
