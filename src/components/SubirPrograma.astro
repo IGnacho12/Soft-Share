@@ -83,6 +83,23 @@ import Layout from "../layouts/Layout.astro";
           <option value="Estilo">Estilo</option>
           <option value="Gestión de archivos">Gestión de archivos</option>
         </select>
+        <span class="text-gray-600 text-sm font-bold"
+          >Segunda categoría opcional</span
+        >
+        <select name="select2" id="select-categoria2">
+          <option value="Ninguna" selected>Ninguna</option>
+          <option value="Archivo">Archivo</option>
+          <option value="Utilidad">Utilidad</option>
+          <option value="Activador">Activador</option>
+          <option value="Juego">Juego</option>
+          <option value="Media">Media</option>
+          <option value="Hardware">Hardware</option>
+          <option value="Optimización">Optimización</option>
+          <option value="Múltiple">Múltiple</option>
+          <option value="Seguridad">Seguridad</option>
+          <option value="Estilo">Estilo</option>
+          <option value="Gestión de archivos">Gestión de archivos</option>
+        </select>
       </section>
 
       <button type="submit" id="black-button">Enviar</button>
@@ -98,21 +115,50 @@ import Layout from "../layouts/Layout.astro";
   // ---------- PASO 1 ---------- //
   document.addEventListener("DOMContentLoaded", function () {
     let categoriaSeleccionada = ["Archivo"];
+    let categoriaSeleccionada2 = ["Ninguna"];
 
+    // Obtener valor de la primera categoría
     const select = document.getElementById("select-categoria");
     select.addEventListener("change", function () {
       const selectedOption = this.options[select.selectedIndex];
       categoriaSeleccionada = [selectedOption.value];
     });
+
+    // Obtener valor de la segunda categoría
+    const select2 = document.getElementById("select-categoria2");
+    select2.addEventListener("change", function () {
+      const selectedOption2 = this.options[select2.selectedIndex];
+      categoriaSeleccionada2 = [selectedOption2.value];
+    });
+
     // Aquí va tu código JavaScript actual
     document
       .getElementById("programForm")
       .addEventListener("submit", async (event) => {
         event.preventDefault(); // Evitar que el formulario recargue la página
-        console.log("me toquetearon 😊 (soy el formulario de programas)");
+        // console.log("me toquetearon 😊 (soy el formulario de programas)");
 
         const submitButton = document.getElementById("black-button");
         submitButton.disabled = true; // Deshabilita el botón para evitar múltiples envíos
+
+        // Juntar el valor de las categorías si se establecieron 2
+        let categoriaSeleccionadaFinal = ["Archivo"];
+
+        // Ejecutar esto si el usuario eligió una segunda categoría
+        if (categoriaSeleccionada2[0] !== "Ninguna") {
+          // Comparar los valores de las categorías
+          if (categoriaSeleccionada[0] === categoriaSeleccionada2[0]) {
+            mostrarError("No puedes seleccionar dos categorías iguales.");
+            submitButton.disabled = false; // Reactivar el botón
+            return; // Detener la ejecución si las categorías son iguales
+          }
+
+          // Combinar las categorías si son diferentes
+          categoriaSeleccionadaFinal = [
+            `${categoriaSeleccionada[0]}, ${categoriaSeleccionada2[0]}`,
+          ];
+        }
+        console.log(categoriaSeleccionadaFinal);
 
         // Obtener los valores del formulario (Inputs de nombre, imagen, descarga y detalles)
         const nombre = document.getElementById("nombre").value;
@@ -171,7 +217,7 @@ import Layout from "../layouts/Layout.astro";
 
         // ---------- PASO 4: Insertar datos en la base de datos ---------- //
         try {
-          console.log(`La categoría seleccionada es ${categoriaSeleccionada}`);
+          // console.log(`La categoría seleccionada es ${categoriaSeleccionada}`);
           const response = await fetch(`${DATABASE_URL}/post`, {
             method: "POST",
             headers: {
@@ -182,20 +228,20 @@ import Layout from "../layouts/Layout.astro";
               link_de_imagen,
               link_de_descarga,
               detalles,
-              categoriaSeleccionada,
+              categoriaSeleccionadaFinal,
             }),
           });
 
           if (response.ok) {
             mostrarExito("El programa se ha guardado con éxito ✅");
-            console.log(response)
+            // console.log(response)
             document.getElementById("programForm").reset(); // Limpia el formulario después del éxito
           } else {
             mostrarError("Error al guardar el programa.");
           }
         } catch (error) {
           mostrarError("Error al guardar el programa.");
-          console.error(error);
+          // console.error(error);
         } finally {
           submitButton.disabled = false; // Reactivar el botón
         }
