@@ -67,4 +67,45 @@ import Alerta from "../paper/Alerta.astro";
   import cargarProgramas from "/js/CargarTodosLosProgramas.js";
   // Cargar todos los programas
   cargarProgramas();
+
+  // Función para los controles de Soft Share
+  // Control + Space = Buscar
+  //
+  //
+
+  // Variables para rastrear el estado de las teclas
+  let controlPresionado = false;
+  let espacioPresionado = false;
+
+  const buscarInput = document.getElementById("input");
+
+  document.addEventListener("keydown", (event) => {
+    // Recargar los programas si se presiono la tecla r
+    if (event.code === "KeyR") {
+      cargarProgramas()
+      buscarInput.value = ""
+    }
+
+    // Ir a la apartador subir programa si se presiono la tecla s 
+    if (event.code === "KeyS") {
+      document.getElementById("UploadProgram").scrollIntoView({ behavior: "smooth" });
+    }
+
+    // Verificar si se presionó Control
+    if (event.code === "ControlLeft" || event.code === "ControlRight") {
+      controlPresionado = true;
+    }
+
+    // Verificar si se presionó F
+    if (event.code === "Space") {
+      espacioPresionado = true;
+    }
+
+    // Verificar si ambas teclas están presionadas
+    if (controlPresionado && espacioPresionado) {
+      // Aquí puedes ejecutar la acción que desees
+      buscarInput.focus();
+      controlPresionado, (espacioPresionado = false);
+    }
+  });
 </script>
