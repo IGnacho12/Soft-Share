@@ -13,7 +13,7 @@
     
     <section
     id="ver-controles"
-    class="z-[1000] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#fbfbfe] gap-3 w-2/5 place-content-between justify-between font-bold border-2 border-black rounded-lg"
+    class="z-[-1000] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#fbfbfe] gap-3 w-2/5 place-content-between justify-between font-bold border-2 border-black rounded-lg"
     >
     <button id="ocultar-controles" class="fixed bottom-full right-0  bg rounded-full p-1"> <svg  xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="red"  stroke="black"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-xbox-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 21a9 9 0 0 0 9 -9a9 9 0 0 0 -9 -9a9 9 0 0 0 -9 9a9 9 0 0 0 9 9z" /><path d="M9 8l6 8" /><path d="M15 8l-6 8" /></svg></button>
     <div class="contenedor-padre">
@@ -96,10 +96,12 @@
 
     @keyframes mostrar-controles {
       0% {
+        z-index: 1000;a
         opacity: 0;
       }
       100% {
         opacity: 1; /* Cambia 100 a 1 */
+        z-index: 1000;
       }
     }
     @keyframes ocultar-controles {
@@ -109,6 +111,7 @@
       100% {
         opacity: 0; /* Cambia 100 a 1 */
         display: none;
+        z-index: -1000;
       }
     }
 
