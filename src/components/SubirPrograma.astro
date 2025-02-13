@@ -7,12 +7,7 @@ import Layout from "../layouts/Layout.astro";
     <h1 class="font-bold text-3xl lg:text-6xl text-center">
       Agrega Tus Programas
     </h1>
-    <a
-      class="help pt-3 lg:fixed text-sm lg:text-2xl"
-      target="_blank"
-      href="https://n4chos-organization.gitbook.io/soft-share"
-      >Ayuda & Documentación 📑</a
-    >
+
 
     <form id="programForm">
       <div class="input-group">
@@ -268,31 +263,6 @@ import Layout from "../layouts/Layout.astro";
     );
   }
 
-  a.help {
-    top: 0.5rem;
-    left: 0.5rem;
-    align-items: center;
-    font-weight: bold;
-    padding: 6px 14px;
-    border-radius: 6px;
-    color: var(--text-color);
-    border: none;
-    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    transition: box-shadow 0.3s ease;
-    text-decoration: none;
-    backdrop-filter: blur(10px);
-    z-index: 1;
-
-    &:hover {
-      box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.1);
-      text-decoration: underline;
-      text-decoration-thickness: 0.1em;
-      cursor: pointer;
-    }
-  }
 
   main {
     display: flex;
