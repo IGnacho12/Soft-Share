@@ -4,48 +4,66 @@
     target="_blank"
     href="https://n4chos-organization.gitbook.io/soft-share"
     >Ayuda & Documentación 📑</a
-    >
-    <button
+  >
+  <button
     id="boton-mostrar-controles"
     class="lg:fixed px-2 py-1 bg-slate-400/20 font-bold rounded-lg"
     >Ver Atajos</button
-    >
-    
-    <section
+  >
+
+  <section
     id="ver-controles"
-    class="z-[-1000] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#fbfbfe] gap-3 w-2/5 place-content-between justify-between font-bold border-2 border-black rounded-lg"
+    class="z-[-1000] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 origin-center bg-[#fbfbfe] gap-3 w-2/5 place-content-between justify-between font-bold border-2 border-black rounded-lg"
+  >
+    <button
+      id="ocultar-controles"
+      class="fixed bottom-full right-0 bg rounded-full p-1"
     >
-    <button id="ocultar-controles" class="fixed bottom-full right-0  bg rounded-full p-1"> <svg  xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="red"  stroke="black"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-xbox-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 21a9 9 0 0 0 9 -9a9 9 0 0 0 -9 -9a9 9 0 0 0 -9 9a9 9 0 0 0 9 9z" /><path d="M9 8l6 8" /><path d="M15 8l-6 8" /></svg></button>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="red"
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-xbox-x"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M12 21a9 9 0 0 0 9 -9a9 9 0 0 0 -9 -9a9 9 0 0 0 -9 9a9 9 0 0 0 9 9z"
+        ></path><path d="M9 8l6 8"></path><path d="M15 8l-6 8"></path></svg
+      ></button
+    >
     <div class="contenedor-padre">
-    <div>Buscar</div>
-    <div class="contenedor-key">
-      <kbd> Control </kbd>
-      <kbd> Espacio </kbd>
+      <div>Buscar</div>
+      <div class="contenedor-key">
+        <kbd> Control </kbd>
+        <kbd> Espacio </kbd>
+      </div>
     </div>
-  </div>
-  
-  <!-- ------------------------------- -->
-  
-  <div class="contenedor-padre">
-    <div>Recargar todos los programas</div>
-    <div class="contenedor-key">
-      <kbd>r</kbd>
+
+    <!-- ------------------------------- -->
+
+    <div class="contenedor-padre">
+      <div>Recargar todos los programas</div>
+      <div class="contenedor-key">
+        <kbd>r</kbd>
+      </div>
     </div>
-  </div>
-  
-  <!-- ------------------------------- -->
-  
-  <div class="contenedor-padre">
+
+    <!-- ------------------------------- -->
+
+    <div class="contenedor-padre">
       <div>Subir programa</div>
       <div class="contenedor-key">
         <kbd>s</kbd>
       </div>
     </div>
   </section>
-  
+
   <style>
     #boton-mostrar-controles {
-      z-index: 100;
       top: 4rem;
       left: 0.5rem;
       transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
@@ -59,7 +77,6 @@
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       text-decoration: none;
       backdrop-filter: blur(10px);
-      z-index: 1;
       &:hover {
         color: black;
         box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.1);
@@ -84,7 +101,6 @@
       transition: box-shadow 0.3s ease;
       text-decoration: none;
       backdrop-filter: blur(10px);
-      z-index: 1;
 
       &:hover {
         box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.1);
@@ -96,39 +112,59 @@
 
     @keyframes mostrar-controles {
       0% {
-        z-index: 1000;
         opacity: 0;
+        
+        scale: .5;
       }
       100% {
         opacity: 1; /* Cambia 100 a 1 */
-        z-index: 1000;
+        scale: 1;
+        
       }
     }
     @keyframes ocultar-controles {
       0% {
         opacity: 1;
+        pointer-events: auto; /* Mantiene la interacción */
+        
       }
       100% {
-        opacity: 0; /* Cambia 100 a 1 */
-        display: none;
-        z-index: -1000;
+        opacity: 0;
+        pointer-events: none; /* Evita interacción en estado oculto */
+        scale: 0;
+        
       }
     }
 
     #ver-controles {
       opacity: 0; /* Oculto inicialmente */
-      box-shadow: 0px 0px 350px 20px rgba(0, 0, 0, 0.3);
-      transition: opacity 0.5s ease-in-out; /* Transición suave */
+    }
+
+    /* Creamos un elemento after para el elemento ver controles para que la animación de la sombra sera mejor */
+    #ver-controles::after {
+      content: "";
+      border-radius: 8px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0px 0px 350px 20px rgba(0, 0, 0, 0.5);
+      opacity: 1;
+      -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
     .ver-controles-animation {
       opacity: 1; /* Hacer visible */
-      animation: mostrar-controles 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+      animation: mostrar-controles 0.5s cubic-bezier(0,1,.58,1)
         both;
+      z-index: 10;
     }
     .ocultar-controles-animation {
-      animation: ocultar-controles 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+      animation: ocultar-controles 0.5s cubic-bezier(0,1,.58,1)
         both;
+        z-index: 10;
     }
 
     div.contenedor-padre {
@@ -165,8 +201,7 @@
     "boton-mostrar-controles"
   );
   const CONTROLES = document.getElementById("ver-controles");
-  const BOTON_OCULTAR_CONTROLES = document.getElementById("ocultar-controles")
-
+  const BOTON_OCULTAR_CONTROLES = document.getElementById("ocultar-controles");
 
   BOTON_MOSTRAR_CONTROLES.addEventListener("click", () => {
     CONTROLES.classList.remove("ocultar-controles-animation");
@@ -177,6 +212,4 @@
     CONTROLES.classList.add("ocultar-controles-animation");
     CONTROLES.classList.remove("ver-controles-animation");
   });
-
-
 </script>
