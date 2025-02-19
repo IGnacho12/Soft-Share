@@ -1,12 +1,12 @@
-<main class="flex flex-col h-12 overflow-hidden transition-all">
-  <span
-    class="flex justify-center place-items-center items-center mb-2 bg-slate-400/20 py-1 rounded-md gap-1 group"
-    id="span-drop-shadow-none"
-    >Selecciona las categorías <img
+<main class="flex flex-col h-12 overflow-hidden transition-all" id="main-controles-de-categorias">
+  <button
+  
+    class="flex justify-center place-items-center items-center mb-2 bg-slate-400/20 py-1 rounded-md gap-1 group ver-mas"
+    >Selecciona las Categorías <img
       src="/css/click.png"
-      class="size-8 group-hover:scale-110 group-hover:rotate-12 transition-all"
+      class="size-8  group-hover:rotate-12 transition-all transition-duration-150"
       alt="click"
-    /></span
+    /></button
   >
 
   <button
@@ -18,7 +18,7 @@
   </button>
 
   <section
-    class="allCategories mt-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7"
+    class="allCategories mt-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7 pb-2"
   >
     <!-- Todas las categorías -->
 
@@ -106,10 +106,7 @@
       name="estilo"
       id="Estilo"
     />
-    <label
-      for="Estilo"
-      class="p-1 bg-gray-600/20 rounded-xl px-2"
-      >Estilo</label
+    <label for="Estilo" class="p-1 bg-gray-600/20 rounded-xl px-2">Estilo</label
     >
     <!-- GESTIÓN DE ARCHIVOS -->
     <input
@@ -141,7 +138,6 @@
     text-decoration-thickness: 2px;
     text-underline-offset: 2px;
   }
-
   .not-show {
     background-color: rgba(128, 128, 128, 0.253);
     color: black;
@@ -156,18 +152,29 @@
     transition: all 0.5s cubic-bezier(0.83, 0.05, 0.16, 0.96);
     interpolate-size: allow-keywords;
   }
+  /* Vamos a comprobar con javascript cuando se presione el botón ver-mas */
+  /* main:hover {
+    height: auto;
+  } */
 
-  main:hover {
+  .ver-mas {
+    transition: all 0.3s ease;
+    color: gray;
+    font-weight: bold;
+  }
+
+  main:hover .ver-mas {
+    transition: all 0.3s ease;
+    color: black;
+
+  }
+
+  .mostrar-controles-de-catetorias {
     height: auto;
   }
 
-  main span {
-    transition: all 0.5s cubic-bezier(0.83, 0.05, 0.16, 0.96);
-  }
-
-  main:hover span {
-    transition: all 0.5s cubic-bezier(0.83, 0.05, 0.16, 0.96);
-    color: black;
+  .no-mostrar-controles-de-categorias {
+    height: 45px;
   }
 
   /* Bótones para seleccionar categorías */
@@ -275,4 +282,25 @@
       BuscarProgramas(window.ValorDeUsuario, window.categoriasElegidas);
     });
   });
+
+
+  // Mostrar los controles de las categorías
+  const BOTON_VER_MAS = document.querySelector(".ver-mas")
+  const MAIN_CONTROLES_DE_CATEGORIA = document.querySelector("#main-controles-de-categorias")
+
+  
+
+  let MAIN_CONTROLES_BOOLEANO = false
+
+  BOTON_VER_MAS.addEventListener(("click"), () => {
+    if (MAIN_CONTROLES_BOOLEANO) {
+      MAIN_CONTROLES_DE_CATEGORIA.classList.remove("mostrar-controles-de-catetorias")
+      console.log(MAIN_CONTROLES_BOOLEANO)
+      MAIN_CONTROLES_BOOLEANO = false
+    } else {
+      MAIN_CONTROLES_DE_CATEGORIA.classList.add("mostrar-controles-de-catetorias")
+      console.log(MAIN_CONTROLES_BOOLEANO)
+      MAIN_CONTROLES_BOOLEANO = true
+    }
+  })
 </script>
