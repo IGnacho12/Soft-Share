@@ -5,7 +5,6 @@ import { HTML_CARGANDO } from "./Constantes.js";
 export default async function CargarProgramas() {
   HTML_CARGANDO();
 
-  console.log(DATABASE_URL);
   try {
     // GET -> Backend
     const respuesta = await fetch(`${DATABASE_URL}/get`);
