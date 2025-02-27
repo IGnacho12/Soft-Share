@@ -13,7 +13,7 @@ import Ayuda_y_Controles from "../components/Ayuda_y_Controles.astro";
 ---
 
 <Layout title="Soft-Share - Repositorio de tus Programas">
-  <Ayuda_y_Controles></Ayuda_y_Controles>
+  <Ayuda_y_Controles />
   <main class="w-11/12 lg:w-9/12">
     <h1 class="font-bold mt-2 pb-0 text-5xl lg:text-7xl">Soft-Share</h1>
     <p
@@ -66,8 +66,10 @@ import Ayuda_y_Controles from "../components/Ayuda_y_Controles.astro";
 
 <script type="module">
   import cargarProgramas from "/js/CargarTodosLosProgramas.js";
+
   // Cargar todos los programas
-  cargarProgramas();
+    cargarProgramas();
+
 
   // Función para los controles de Soft Share
   // Control + Space = Buscar

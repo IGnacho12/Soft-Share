@@ -9,7 +9,11 @@ import ControlCategorias from "./ControlCategorias.astro";
     <h2
       class="flex items-center font-bold underline underline-offset-[10px] text-1xl lg:text-3xl text-center gap-1"
     >
-      Programas destacados <img src="/corona.png" class="size-10 relative bottom-1" alt="" />
+      Programas destacados <img
+        src="/corona.png"
+        class="size-10 relative bottom-1"
+        alt=""
+      />
     </h2>
     <div class="mb-4 lg:mb-0">
       <BotonBuscar />
@@ -18,7 +22,11 @@ import ControlCategorias from "./ControlCategorias.astro";
   <ControlCategorias />
   <!-- Mostrar Categorías CheckBox -->
 
-  <article id="formularioDeProgramas" class="contenedor">
+  <article
+    id="formularioDeProgramas"
+    class="contenedor not-loaded flex justify-center items-center"
+  >
+    <div class="loader"></div>
     <!-- Los programas se cargarán aquí -->
   </article>
 </article>
@@ -26,7 +34,6 @@ import ControlCategorias from "./ControlCategorias.astro";
 <script type="module">
   import cargarProgramas from "/js/CargarTodosLosProgramas.js";
   import BuscarProgramas from "/js/BuscarProgramas.js";
-
 
   // When click "Reload Button" the programs are reaload too
   document
@@ -63,5 +70,9 @@ import ControlCategorias from "./ControlCategorias.astro";
 
   #reloadButton img {
     height: 32px;
+  }
+  
+  .not-loaded {
+    min-height: 500px;
   }
 </style>

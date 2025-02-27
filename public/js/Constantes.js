@@ -1,6 +1,6 @@
 export const DATABASE_URL = "https://backend-soft-share.vercel.app";
 
-export default function HTML_RENDERIZADO(programas) {
+export function HTML_RENDERIZADO(programas) {
   // Renderizar los programas
   document.getElementById("formularioDeProgramas").innerHTML = programas
     .map((programa) => {
@@ -35,8 +35,29 @@ export default function HTML_RENDERIZADO(programas) {
     link.href = ruta;
 
     head.appendChild(link);
-    console.log(`Hoja de estilos ${ruta} cargada.`);
+    // console.log(`Hoja de estilos ${ruta} cargada.`);
   }
   cargarCSS("/css/estilarProgramas.css");
+  const CONTENEDOR_DE_PROGRAMAS = document.querySelector(".contenedor");
+  CONTENEDOR_DE_PROGRAMAS.classList.remove("not-loaded");
 }
 
+export function HTML_CARGANDO() {
+  // Renderizar los programas
+  console.log("HTML_CARGANDO")
+  const CONTENEDOR_DE_PROGRAMAS = document.querySelector(".contenedor");
+  CONTENEDOR_DE_PROGRAMAS.classList.add("not-loaded");
+  document.getElementById("formularioDeProgramas").innerHTML = `
+    <div class="loader "></div>
+  `;
+  function cargarCSS(ruta) {
+    const head = document.head;
+    const link = document.createElement("link");
+
+    link.rel = "stylesheet";
+    link.href = ruta;
+
+    head.appendChild(link);
+  }
+  cargarCSS("/css/loader.css");
+}

@@ -1,6 +1,6 @@
 import { DATABASE_URL } from "./Constantes.js";
-
-import HTML_RENDERIZADO from "./Constantes.js";
+import { HTML_RENDERIZADO } from "./Constantes.js";
+import { HTML_CARGANDO } from "./Constantes.js";
 
 import CargarTodosLosProgramas from "./CargarTodosLosProgramas.js";
 
@@ -9,6 +9,8 @@ export default async function BuscarProgramas(
   preferenciaDeCategorias
 ) {
   // Evitar hacer la consulta si el campo está vacío
+  HTML_CARGANDO()
+  console.log("asdf")
 
   if (!inputValue) {
     inputValue = "";
@@ -19,8 +21,8 @@ export default async function BuscarProgramas(
     return;
   }
 
-  console.log(inputValue);
-  console.log(preferenciaDeCategorias);
+  // console.log(inputValue);
+  // console.log(preferenciaDeCategorias);
 
   const respuesta = await fetch(`${DATABASE_URL}/search`, {
     method: "POST",
@@ -33,11 +35,10 @@ export default async function BuscarProgramas(
     }),
   });
 
-  console.log(respuesta);
+  // console.log(respuesta);
 
   const programas = await respuesta.json();
 
-  console.log(programas);
 
   // Comprueba si la búsqueda retorna algún valor
   if ((await programas.length) < 1) {
