@@ -83,3 +83,27 @@ article .textCategorias {
 #notFound404 {
   grid-column: span 3 / span 3;
 }
+
+/* Mostrar u ocultar los spans que muestran las categorías */
+.show {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-decoration: underline;
+}
+.not-show {
+  background-color: rgba(128, 128, 128, 0.253);
+  color: black;
+  font-weight: normal;
+  transition: all 0.4s ease;
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.mostrarSpanCategorias {
+  display: block;
+}
+.ocultarSpanCategorias {
+  display: none;
+}

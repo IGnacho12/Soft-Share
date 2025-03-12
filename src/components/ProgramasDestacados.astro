@@ -43,7 +43,6 @@ import ControlCategorias from "./ControlCategorias.astro";
   // Escuchar el cambio en el input para realizar la búsqueda sin esperar Enter
   document.querySelector("#input").addEventListener("input", async () => {
     window.ValorDeUsuario = document.querySelector("#input").value;
-    console.log("El valor ah cambiado");
     BuscarProgramas(window.ValorDeUsuario, window.categoriasElegidas);
   });
 </script>

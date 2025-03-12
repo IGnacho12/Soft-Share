@@ -1,10 +1,12 @@
-<main class="flex flex-col h-12 overflow-hidden transition-all" id="main-controles-de-categorias">
+<main
+  class="flex flex-col h-12 overflow-hidden transition-all"
+  id="main-controles-de-categorias"
+>
   <button
-  
     class="flex justify-center place-items-center items-center mb-2 bg-slate-400/20 py-1 rounded-md gap-1 group ver-mas"
     >Selecciona las Categorías <img
       src="/css/click.png"
-      class="size-8  group-hover:rotate-12 transition-all transition-duration-150"
+      class="size-8 group-hover:rotate-12 transition-all transition-duration-150"
       alt="click"
     /></button
   >
@@ -129,24 +131,6 @@
     transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 
-  .show {
-    background-color: black;
-    color: white;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 2px;
-  }
-  .not-show {
-    background-color: rgba(128, 128, 128, 0.253);
-    color: black;
-    font-weight: normal;
-    transition: all 0.4s ease;
-    text-decoration: none;
-    border-radius: 2px;
-  }
-
   main {
     height: 45px;
     transition: all 0.5s cubic-bezier(0.83, 0.05, 0.16, 0.96);
@@ -166,7 +150,6 @@
   main:hover .ver-mas {
     transition: all 0.3s ease;
     color: black;
-
   }
 
   .mostrar-controles-de-catetorias {
@@ -224,7 +207,7 @@
   // Obtener todos los checkboxes
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-  let mostrarCategoriasBoolean = true;
+  window.mostrarCategoriasBoolean = true;
 
   const BOTON_MOSTRAR_CATEGORIAS = document.getElementById("mostrarCategorias");
 
@@ -232,7 +215,6 @@
     const categoriasText = document.querySelectorAll(".textCategorias");
 
     if (mostrarCategoriasBoolean) {
-      console.log("Ocultando categorías...");
       BOTON_MOSTRAR_CATEGORIAS.classList.remove("show");
       BOTON_MOSTRAR_CATEGORIAS.classList.add("not-show");
       // Ocultar las categorías
@@ -242,7 +224,6 @@
     } else {
       BOTON_MOSTRAR_CATEGORIAS.classList.remove("not-show");
       BOTON_MOSTRAR_CATEGORIAS.classList.add("show");
-      console.log("Mostrando categorías...");
       // Mostrar las categorías
       categoriasText.forEach((element) => {
         element.style.display = "block";
@@ -251,6 +232,7 @@
 
     // Alternar el estado
     mostrarCategoriasBoolean = !mostrarCategoriasBoolean;
+    console.log("Mostrar categorias estado", mostrarCategoriasBoolean);
   });
 
   // Declarar la variable globalmente
@@ -265,42 +247,39 @@
       if (target) {
         if (target.checked) {
           // Si está activado, agregar al array
-          console.log(`${target.id} está activado.`);
 
           window.categoriasElegidas.push(target.id);
         } else {
           // Si está desactivado, eliminar del array
-          console.log(`${target.id} está desactivado.`);
           window.categoriasElegidas = window.categoriasElegidas.filter(
             (item) => item !== target.id
           );
         }
       }
       // Mostrar el array actualizado
-      console.log("Categorías elegidas:", window.categoriasElegidas);
-      console.log("voy a ejecutar la funcion buscar programas");
       BuscarProgramas(window.ValorDeUsuario, window.categoriasElegidas);
     });
   });
 
-
   // Mostrar los controles de las categorías
-  const BOTON_VER_MAS = document.querySelector(".ver-mas")
-  const MAIN_CONTROLES_DE_CATEGORIA = document.querySelector("#main-controles-de-categorias")
+  const BOTON_VER_MAS = document.querySelector(".ver-mas");
+  const MAIN_CONTROLES_DE_CATEGORIA = document.querySelector(
+    "#main-controles-de-categorias"
+  );
 
-  
+  let MAIN_CONTROLES_BOOLEANO = false;
 
-  let MAIN_CONTROLES_BOOLEANO = false
-
-  BOTON_VER_MAS.addEventListener(("click"), () => {
+  BOTON_VER_MAS.addEventListener("click", () => {
     if (MAIN_CONTROLES_BOOLEANO) {
-      MAIN_CONTROLES_DE_CATEGORIA.classList.remove("mostrar-controles-de-catetorias")
-      console.log(MAIN_CONTROLES_BOOLEANO)
-      MAIN_CONTROLES_BOOLEANO = false
+      MAIN_CONTROLES_DE_CATEGORIA.classList.remove(
+        "mostrar-controles-de-catetorias"
+      );
+      MAIN_CONTROLES_BOOLEANO = false;
     } else {
-      MAIN_CONTROLES_DE_CATEGORIA.classList.add("mostrar-controles-de-catetorias")
-      console.log(MAIN_CONTROLES_BOOLEANO)
-      MAIN_CONTROLES_BOOLEANO = true
+      MAIN_CONTROLES_DE_CATEGORIA.classList.add(
+        "mostrar-controles-de-catetorias"
+      );
+      MAIN_CONTROLES_BOOLEANO = true;
     }
-  })
+  });
 </script>

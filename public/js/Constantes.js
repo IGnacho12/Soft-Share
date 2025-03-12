@@ -6,6 +6,12 @@ export function HTML_RENDERIZADO(programas) {
     .map((programa) => {
       // Acceder a las categorías del programa (si existen)
       const categorias = programa.categorias.join(", ");
+      let SPAN_CATEGORIAS = "ocultarSpanCategorias";
+      if (mostrarCategoriasBoolean) {
+        SPAN_CATEGORIAS = "mostrarSpanCategorias";;
+      } else {
+        SPAN_CATEGORIAS = "ocultarSpanCategorias";;
+      }
       return `
           <div class="div-container">
             <header class="flex">
@@ -21,7 +27,7 @@ export function HTML_RENDERIZADO(programas) {
               </h3>
               </header>
               <span>${programa.detalles}</span>
-              <span class="textCategorias  text-sm text-end w-fit font-bold">${categorias}</span>
+              <span class="textCategorias ${SPAN_CATEGORIAS} text-sm text-end w-fit font-bold">${categorias}</span>
           </div>
         `;
     })
@@ -35,7 +41,6 @@ export function HTML_RENDERIZADO(programas) {
     link.href = ruta;
 
     head.appendChild(link);
-    // console.log(`Hoja de estilos ${ruta} cargada.`);
   }
   cargarCSS("/css/estilarProgramas.css");
   const CONTENEDOR_DE_PROGRAMAS = document.querySelector(".contenedor");
@@ -44,7 +49,6 @@ export function HTML_RENDERIZADO(programas) {
 
 export function HTML_CARGANDO() {
   // Renderizar los programas
-  console.log("HTML_CARGANDO");
   const CONTENEDOR_DE_PROGRAMAS = document.querySelector(".contenedor");
   CONTENEDOR_DE_PROGRAMAS.classList.add("not-loaded");
   document.getElementById("formularioDeProgramas").innerHTML = `

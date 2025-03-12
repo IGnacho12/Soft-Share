@@ -47,7 +47,7 @@ import Layout from "../layouts/Layout.astro";
         `
       )
       .join("");
-    function cargarCSS(ruta) {
+    function cargarCSS(ruta: string) {
       const head = document.head;
       const link = document.createElement("link");
 
@@ -55,7 +55,7 @@ import Layout from "../layouts/Layout.astro";
       link.href = ruta;
 
       head.appendChild(link);
-      console.log(`Hoja de estilos ${ruta} cargada.`);
+      console.log("CSS cargado:", ruta, "\n");
     }
     cargarCSS("/css/estilarComentarios.css");
   }

@@ -10,7 +10,6 @@ export default async function BuscarProgramas(
 ) {
   // Evitar hacer la consulta si el campo está vacío
   HTML_CARGANDO()
-  console.log("asdf")
 
   if (!inputValue) {
     inputValue = "";
