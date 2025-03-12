@@ -2,16 +2,16 @@ export const DATABASE_URL = "https://backend-soft-share.vercel.app";
 
 export function HTML_RENDERIZADO(programas) {
   // Renderizar los programas
+  let SPAN_CATEGORIAS = "ocultarSpanCategorias";
+  if (mostrarCategoriasBoolean) {
+    SPAN_CATEGORIAS = "mostrarSpanCategorias";;
+  } else {
+    SPAN_CATEGORIAS = "ocultarSpanCategorias";;
+  }
   document.getElementById("formularioDeProgramas").innerHTML = programas
     .map((programa) => {
       // Acceder a las categorías del programa (si existen)
       const categorias = programa.categorias.join(", ");
-      let SPAN_CATEGORIAS = "ocultarSpanCategorias";
-      if (mostrarCategoriasBoolean) {
-        SPAN_CATEGORIAS = "mostrarSpanCategorias";;
-      } else {
-        SPAN_CATEGORIAS = "ocultarSpanCategorias";;
-      }
       return `
           <div class="div-container">
             <header class="flex">
