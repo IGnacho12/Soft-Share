@@ -105,6 +105,7 @@ import Layout from "../layouts/Layout.astro";
   import { DATABASE_URL } from "/js/Constantes.js";
   import mostrarExito from "/js/mostrarExito.js";
   import mostrarError from "/js/mostrarError.js";
+  import CargarTodosLosProgramas from "/js/CargarTodosLosProgramas.js";
 
   // ---------- PASO 1 ---------- //
   document.addEventListener("DOMContentLoaded", function () {
@@ -229,6 +230,7 @@ import Layout from "../layouts/Layout.astro";
 
           if (response.ok) {
             mostrarExito("El programa se ha guardado con éxito ✅");
+            CargarTodosLosProgramas()
             // console.log(response)
             document.getElementById("programForm").reset(); // Limpia el formulario después del éxito
           } else {
