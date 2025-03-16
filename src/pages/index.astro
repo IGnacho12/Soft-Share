@@ -8,11 +8,13 @@ import SeccionDeComentarios from "../components/SeccionDeComentarios.astro";
 import AlertaError from "../components/AlertaError.astro";
 import AlertaExito from "../components/AlertaExito.astro";
 import Ayuda_y_Controles from "../components/Ayuda_y_Controles.astro";
+import Fondo from "../components/Fondo.astro";
 
 // JS
 ---
 
 <Layout title="Soft-Share - Repositorio de tus Programas">
+  <Fondo></Fondo>
   <Ayuda_y_Controles />
   <main class="w-11/12 lg:w-9/12">
     <h1 class="font-bold mt-2 pb-0 text-5xl lg:text-7xl">Soft-Share</h1>
@@ -28,7 +30,7 @@ import Ayuda_y_Controles from "../components/Ayuda_y_Controles.astro";
       <span style="color: #bd00aa">Aquí</span>
       puedes
       <span> conseguir y compartir </span>
-      con los 
+      con los
       <span>demás.</span>
     </p>
     <BotonesPrincipales />

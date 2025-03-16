@@ -1,0 +1,27 @@
+<style>
+  body {
+    background-color: var(--background-color);
+    background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+      linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
+    background-size: 6rem 4rem;
+    z-index: -20;
+  }
+  body::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50% 22% 40% 80%;
+    filter: blur(100px);
+    background: radial-gradient(
+      circle at 50% 100%,
+      rgba(0, 102, 255, 0.5),
+      rgba(76, 0, 255, 0)
+    );
+    opacity: .1;
+    z-index: -10;
+  }
+</style>

@@ -21,7 +21,12 @@ const { title } = Astro.props;
     />
     <!-- Icono -->
     <link rel="icon" href="/favicon.png" type="image/png" sizes="24x24" />
-    <link rel="icon" href="/readme images/a5.svg" type="image/svg+xml" sizes="512x512" />
+    <link
+      rel="icon"
+      href="/readme images/a5.svg"
+      type="image/svg+xml"
+      sizes="512x512"
+    />
     <meta name="apple-mobile-web-app-title" content="Soft-Share page" />
     <meta name="generator" content={Astro.generator} />
     <meta
@@ -30,80 +35,76 @@ const { title } = Astro.props;
     />
     <title>{title}</title>
   </head>
-  <body class="background">
-    <div class="background"></div>
+  <!-- https://bg.ibelick.com/ -->
+  <!-- Background de las líneas -->
+  <body>
+    <!-- Background del color difuminado -->
+
     <slot />
   </body>
+  <style is:global>
+    :root {
+      --background-color: #fbfbfe;
+      --text-color: #00000;
+      --text-gray-color: #666;
+      --blue: #2f27ce;
+    }
+
+    @font-face {
+      font-family: "geist";
+      src: url("/fonts/GeistVF.woff2");
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "geist";
+
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+    ::selection {
+      color: white;
+      background-color: black;
+    }
+
+    /* Estilos de elementos principales */
+
+    h1 {
+      font-size: 4.5em;
+      align-self: center;
+    }
+    h2 {
+      font-size: 2rem;
+      align-self: center;
+    }
+    p {
+      font-size: 1.2rem;
+      text-wrap: balance;
+    }
+
+    code {
+      font-family:
+        Menlo,
+        Monaco,
+        Lucida Console,
+        Liberation Mono,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Courier New,
+        monospace;
+    }
+  </style>
 </html>
-<style is:global>
-  :root {
-    --background-color: #fbfbfe;
-    --text-color: #00000;
-    --text-gray-color: #666;
-    --blue: #2f27ce;
-  }
-
-  @font-face {
-    font-family: "geist";
-    src: url("/fonts/GeistVF.woff2");
-  }
-
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "geist";
-
-    background-color: var(--background-color);
-    color: var(--text-color);
-  }
-  ::selection {
-    color: white;
-    background-color: black;
-  }
-
-  /* Estilos de elementos principales */
-
-  h1 {
-    font-size: 4.5em;
-    align-self: center;
-  }
-  h2 {
-    font-size: 2rem;
-    align-self: center;
-  }
-  p {
-    font-size: 1.2rem;
-    text-wrap: balance;
-  }
-
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  }
-
-  .background {
-    background-color: var(--background-color);
-    background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
-      linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
-    background-size: 6rem 4rem;
-  }
-</style>
