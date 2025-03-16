@@ -1,6 +1,13 @@
 <nav class="flex flex-col gap-3 items-center lg:flex-row">
-  <a href="#" title="Para realizar esta funcionalidad primero necestiamos que soft-share llegue a los 100 recursos. Ayúdame a hacer esto posible 😝" class="proximamente">Programas destacados 👑</a>
-  <a href="#todosLosProgramas" id="todosLosProgramas">Todos los programas🚀</a>
+  <a
+    href="#"
+    title="Para realizar esta funcionalidad primero necestiamos que soft-share llegue a los 100 recursos. Ayúdame a hacer esto posible 😝"
+    class="proximamente gap-1">Programas destacados <img src="/emojis/corona.webp" class="size-5" alt="" /></a
+  >
+  <a href="#todosLosProgramas" id="todosLosProgramas" class="gap-1"
+    >Todos los programas
+    <img src="/emojis/rocket.webp" class="size-5" alt="" /></a
+  >
   <a href="#UploadProgram">Subir Programa</a>
 </nav>
 
@@ -23,7 +30,7 @@
     color: var(--text-color);
     background: #fff;
     border: none;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .2);
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
@@ -31,7 +38,7 @@
     text-decoration: none;
 
     &:hover {
-      box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, .2);
       cursor: pointer;
     }
   }
@@ -40,14 +47,13 @@
     margin-bottom: 4rem;
     display: flex;
     justify-content: space-around;
-
   }
 
   /* Proximamente */
   .proximamente {
-    position: relative;
     display: flex;
     align-items: center;
+    position: relative;    
     font-size: 0.9rem;
     font-weight: bold;
     padding: 6px 14px;
@@ -55,15 +61,17 @@
     color: rgba(0, 0, 0, 0.5);
     background: #ffffffe3;
     border: none;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .2);
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    transition: box-shadow, color 0.3s ease;
+    transition:
+      box-shadow,
+      color 0.3s ease;
     text-decoration: none;
 
     &:hover {
-      box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.);
+      box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, .1);
       color: rgba(0, 0, 0, 0.3);
       cursor: wait;
       background: #ffffff77;
