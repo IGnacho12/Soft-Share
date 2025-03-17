@@ -6,7 +6,11 @@ import Layout from "../layouts/Layout.astro";
   <main>
     <article>
       <h2 class="flex items-center font-bold text-center">
-        ¡Déjame un comentario! <img src="emojis/piñata.webp" class="size-10" alt="" />
+        ¡Déjame un comentario! <img
+          src="emojis/piñata.webp"
+          class="size-10"
+          alt=""
+        />
       </h2>
     </article>
 
@@ -46,6 +50,7 @@ import Layout from "../layouts/Layout.astro";
   let horaUltimoComentario = null; // Almacena la hora del último comentario
   import mostrarError from "/js/mostrarError.js";
   import mostrarExito from "/js/mostrarExito.js";
+  import { DATABASE_URL } from "/js/Constantes.js";
   document
     .getElementById("enviar-comentario")
     .addEventListener("click", async (event) => {
@@ -68,25 +73,26 @@ import Layout from "../layouts/Layout.astro";
         mostrarError("Debes completar todos los campos.");
         return;
       }
-
-      const respuesta = await fetch(
-        "https://backend-soft-share-1tr9ac9dt-nachos-projects-077bc528.vercel.app/comments",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            autor,
-            comentario,
-            fecha,
-          }),
-        }
-      );
+      const respuesta = await fetch(`${DATABASE_URL}/comments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          autor,
+          comentario,
+          fecha,
+        }),
+      });
 
       cargarComentarios();
-      mostrarExito("Comentario agregado con éxito ✅");
-      console.log(respuesta);
+      if (respuesta.status == 400) {
+        mostrarError(
+          "Un comentario ya contiene uno o más de los campos ingresados."
+        );
+      } else {
+        mostrarExito("Comentario agregado con éxito ✅");
+      }
     });
 
   function poderComentar() {
