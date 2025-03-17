@@ -111,7 +111,6 @@ import Layout from "../layouts/Layout.astro";
   document.addEventListener("DOMContentLoaded", function () {
     let categoriaSeleccionada = ["Archivo"];
     let categoriaSeleccionada2 = ["Ninguna"];
-
     // Obtener valor de la primera categoría
     const select = document.getElementById("select-categoria");
     select.addEventListener("change", function () {
@@ -150,9 +149,8 @@ import Layout from "../layouts/Layout.astro";
           categoriaSeleccionadaFinal = [
             `${categoriaSeleccionada[0]}, ${categoriaSeleccionada2[0]}`,
           ];
-        }
-        else {
-          categoriaSeleccionadaFinal = categoriaSeleccionada
+        } else {
+          categoriaSeleccionadaFinal = [...categoriaSeleccionada];
         }
 
         // Obtener los valores del formulario (Inputs de nombre, imagen, descarga y detalles)
@@ -210,7 +208,6 @@ import Layout from "../layouts/Layout.astro";
           }
         }
 
-
         // ---------- PASO 4: Insertar datos en la base de datos ---------- //
         try {
           // console.log(`La categoría seleccionada es ${categoriaSeleccionada}`);
@@ -228,9 +225,12 @@ import Layout from "../layouts/Layout.astro";
             }),
           });
 
+          categoriaSeleccionada = ["Archivo"];
+          categoriaSeleccionada2 = ["Ninguna"];
+
           if (response.ok) {
             mostrarExito("El programa se ha guardado con éxito ✅");
-            CargarTodosLosProgramas()
+            CargarTodosLosProgramas();
             // console.log(response)
             document.getElementById("programForm").reset(); // Limpia el formulario después del éxito
           } else {
