@@ -1,9 +1,10 @@
 ---
 import BotonBuscar from "./BotonBuscar.astro";
 import ControlCategorias from "./ControlCategorias.astro";
+import BotonRecargar from "./BotonRecargar.astro";
 ---
 
-<button id="reloadButton"><img src="assets/reload.svg" alt="" /></button>
+<BotonRecargar />
 <article>
   <header class="flex flex-col gap-y-4 lg:flex-row mb-6">
     <h2
@@ -52,23 +53,6 @@ import ControlCategorias from "./ControlCategorias.astro";
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  #reloadButton {
-    position: fixed;
-    top: 60px;
-    right: 30px;
-    border: none;
-    transition: 0.3s ease;
-    cursor: pointer;
-    transform: rotate(0deg);
-  }
-
-  #reloadButton:hover {
-    transform: rotate(90deg);
-  }
-
-  #reloadButton img {
-    height: 32px;
   }
 
   .not-loaded {
