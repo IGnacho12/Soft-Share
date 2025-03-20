@@ -1,4 +1,6 @@
-<button class="flex" id="reloadButton">Recargar <img src="/assets/reload.svg" alt=""></button>
+<button class="flex" id="reloadButton"
+  ><img src="/assets/reload.svg" alt="" /></button
+>
 
 <style>
   #reloadButton {
@@ -9,6 +11,10 @@
     transition: 0.3s ease;
     cursor: pointer;
     transform: rotate(0deg);
+
+    &:hover {
+      transform: rotate(80deg) ;
+    }
   }
 
   #reloadButton img {
