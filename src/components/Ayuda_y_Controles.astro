@@ -7,7 +7,7 @@
   >
   <button
     id="boton-mostrar-controles"
-    class="fixed px-2 py-1 bg-slate-400/20 font-bold rounded-lg"
+    class="fixed px-2 py-1 bg-slate-400/20 dark:text-[var(--reverse)] font-bold rounded-lg"
     >Ver Atajos</button
   >
 
@@ -187,6 +187,37 @@
     align-items: center;
     font-family: inherit;
     line-height: 1;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    #boton-mostrar-controles {
+      color: rgba(255, 255, 255, 0.7);
+      &:hover {
+        color: rgb(255, 255, 255);
+        box-shadow: 0px 1px 10px 1px rgba(255, 255, 255, 0.1);
+      }
+    }
+    div.contenedor-padre {
+      border-bottom: solid 1px rgb(255, 255, 255);
+    }
+
+    #ver-controles::after {
+      box-shadow: 0px 0px 350px 20px black;
+    }
+
+    kbd {
+      color: black;
+
+      background-color: rgba(13, 189, 13, 0.733);
+    }
+    div {
+      color: var(--text-color);
+    }
+
+    #ver-controles {
+      background-color: black;
+      border-color: white;
+    }
   }
 </style>
 

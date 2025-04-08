@@ -4,9 +4,9 @@ export function HTML_RENDERIZADO(programas) {
   // Renderizar los programas
   let SPAN_CATEGORIAS = "ocultarSpanCategorias";
   if (mostrarCategoriasBoolean) {
-    SPAN_CATEGORIAS = "mostrarSpanCategorias";;
+    SPAN_CATEGORIAS = "mostrarSpanCategorias";
   } else {
-    SPAN_CATEGORIAS = "ocultarSpanCategorias";;
+    SPAN_CATEGORIAS = "ocultarSpanCategorias";
   }
   document.getElementById("formularioDeProgramas").innerHTML = programas
     .map((programa) => {
@@ -16,18 +16,19 @@ export function HTML_RENDERIZADO(programas) {
           <div class="div-container">
             <header class="flex">
               <img
+                "
                 src="${programa.link_de_imagen}"
                 alt="${programa.nombre}"
-                onerror="this.onerror=null; this.src='/assets/error.webp'; this.title='La ruta especificada no es valida';" 
+                onerror="this.onerror=null; this.src='/assets/error.webp'; this.title='La ruta de la imagen no es válida'; if (window.matchMedia('(prefers-color-scheme: dark)').matches) { this.style.filter='invert(100%)'; }"
               />
               <h3>
-              <a rel="noreferrer" href="${programa.link_de_descarga}">
+              <a class="dark:hover:text-red-500" rel="noreferrer" href="${programa.link_de_descarga}">
               ${programa.nombre}
               </a>
               </h3>
               </header>
               <span>${programa.detalles}</span>
-              <span class="textCategorias ${SPAN_CATEGORIAS} text-sm text-end w-fit font-bold">${categorias}</span>
+              <span class="textCategorias ${SPAN_CATEGORIAS} text-sm text-end w-fit font-bold text-[var(--text-color)] dark:text-white">${categorias}</span>
           </div>
         `;
     })

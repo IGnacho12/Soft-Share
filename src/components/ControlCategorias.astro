@@ -3,8 +3,8 @@
   id="main-controles-de-categorias"
 >
   <button
-    class="flex justify-center place-items-center items-center mb-2 bg-slate-400/20 py-1 rounded-md gap-1 group ver-mas"
-    >Selecciona las Categorías <img
+    class="flex justify-center place-items-center items-center mb-2 bg-slate-400/20 dark:bg-slate-800 py-1 rounded-md gap-1 group ver-mas transition-all hover:text-[var(--reverse)] font-bold"
+    >Selecciona las Categorías <img class="dark:invert"
       src="/assets/click.webp"
       class="size-8 group-hover:rotate-12 transition-all transition-duration-150"
       alt="click"
@@ -31,7 +31,7 @@
       name="archivo"
       id="Archivo"
     />
-    <label for="Archivo" class="p-1 bg-gray-600/20 rounded-xl px-2"
+    <label for="Archivo" class="p-1 bg-gray-600/20 dark:bg-gray-800 rounded-xl px-2"
       >Archivo</label
     >
 
@@ -42,7 +42,7 @@
       name="utilidad"
       id="Utilidad"
     />
-    <label for="Utilidad" class="p-1 bg-gray-600/20 rounded-xl px-2"
+    <label for="Utilidad" class="p-1 bg-gray-600/20 dark:bg-gray-800 rounded-xl px-2"
       >Utilidad</label
     >
     <!-- ACTIVADOR -->
@@ -52,15 +52,15 @@
       name="activador"
       id="Activador"
     />
-    <label for="Activador" class="p-1 bg-gray-600/20 rounded-xl px-2"
+    <label for="Activador" class="p-1 bg-gray-600/20 dark:bg-gray-800 rounded-xl px-2"
       >Activador</label
     >
     <!-- JUEGO -->
     <input class="invisible absolute" type="checkbox" name="juego" id="Juego" />
-    <label for="Juego" class="p-1 bg-gray-600/20 rounded-xl px-2">Juego</label>
+    <label for="Juego" class="p-1 bg-gray-600/20 dark:bg-gray-800 rounded-xl px-2">Juego</label>
     <!-- MEDIA -->
     <input class="invisible absolute" type="checkbox" name="media" id="Media" />
-    <label for="Media" class="p-1 bg-gray-600/20 rounded-xl px-2">Media</label>
+    <label for="Media" class="p-1 bg-gray-600/20 dark:bg-gray-800 rounded-xl px-2">Media</label>
     <!-- HARDWARE -->
     <input
       class="invisible absolute"
@@ -68,7 +68,7 @@
       name="hardware"
       id="Hardware"
     />
-    <label for="Hardware" class="p-1 bg-gray-600/20 rounded-xl px-2"
+    <label for="Hardware" class="p-1 bg-gray-600/20 dark:bg-gray-800 rounded-xl px-2"
       >Hardware</label
     >
     <!-- OPTIMIZACIÓN -->
@@ -78,7 +78,7 @@
       name="optimizacion"
       id="Optimización"
     />
-    <label for="Optimización" class="p-1 bg-gray-600/20 rounded-xl px-2"
+    <label for="Optimización" class="p-1 bg-gray-600/20 dark:bg-gray-800 rounded-xl px-2"
       >Optimización</label
     >
     <!-- MÚLTIPLE -->
@@ -88,7 +88,7 @@
       name="multiple"
       id="Multiple"
     />
-    <label for="Multiple" class="p-1 bg-gray-600/20 rounded-xl px-2"
+    <label for="Multiple" class="p-1 bg-gray-600/20 dark:bg-gray-800 rounded-xl px-2"
       >Múltiple</label
     >
     <!-- SEGURIDAD -->
@@ -98,7 +98,7 @@
       name="seguridad"
       id="Seguridad"
     />
-    <label for="Seguridad" class="p-1 bg-gray-600/20 rounded-xl px-2"
+    <label for="Seguridad" class="p-1 bg-gray-600/20 dark:bg-gray-800 rounded-xl px-2"
       >Seguridad</label
     >
     <!-- ESTILO -->
@@ -108,7 +108,7 @@
       name="estilo"
       id="Estilo"
     />
-    <label for="Estilo" class="p-1 bg-gray-600/20 rounded-xl px-2">Estilo</label
+    <label for="Estilo" class="p-1 bg-gray-600/20 dark:bg-gray-800 rounded-xl px-2">Estilo</label
     >
     <!-- GESTIÓN DE ARCHIVOS -->
     <input
@@ -119,7 +119,7 @@
     />
     <label
       for="Gestión de archivos"
-      class="p-1 bg-gray-600/20 rounded-xl px-2 lg:col-span-1 md:col-span-2 xl:col-span-3"
+      class="p-1 bg-gray-600/20 dark:bg-gray-800 rounded-xl px-2 lg:col-span-1 md:col-span-2 xl:col-span-3"
       >Gestión de Archivos</label
     >
   </section>
@@ -140,17 +140,6 @@
   /* main:hover {
     height: auto;
   } */
-
-  .ver-mas {
-    transition: all 0.3s ease;
-    color: gray;
-    font-weight: bold;
-  }
-
-  main:hover .ver-mas {
-    transition: all 0.3s ease;
-    color: black;
-  }
 
   .mostrar-controles-de-catetorias {
     height: auto;
@@ -193,12 +182,17 @@
 
   .allCategories input:checked + label {
     background-color: rgba(0, 255, 0, 0.178);
-    color: black;
+    color: var(--reverse);
     font-weight: normal;
     transition: all 0.4s ease;
     text-decoration: none;
     border-radius: 2px;
     font-weight: bold;
+  }
+  @media (prefers-color-scheme: dark) {
+    .allCategories input:checked + label {
+      background-color: rgba(25, 0, 255, 0.5);
+    }
   }
 </style>
 

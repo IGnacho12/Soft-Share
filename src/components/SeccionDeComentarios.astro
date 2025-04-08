@@ -13,11 +13,6 @@ import Layout from "../layouts/Layout.astro";
   </main>
 </Layout>
 
-<style>
-  /* body {
-    color: #0000ff40;
-  } */
-</style>
 <script>
   // Cargar los comentarios cuando la página carga
   loadComments();
@@ -38,7 +33,7 @@ import Layout from "../layouts/Layout.astro";
         (comentario) => `
           <article>
         <div>
-        <h3>${comentario.autor}</h3>
+        <h3 class="bg-slate-400/40  text-[var(--reverse)]">${comentario.autor}</h3>
         <span>${comentario.fecha}</span>
         </div>
         
@@ -47,6 +42,7 @@ import Layout from "../layouts/Layout.astro";
         `
       )
       .join("");
+    // ColorParaLosNombres();
     function cargarCSS(ruta: string) {
       const head = document.head;
       const link = document.createElement("link");
@@ -59,6 +55,27 @@ import Layout from "../layouts/Layout.astro";
     }
     cargarCSS("/css/estilarComentarios.css");
   }
+  // function ColorParaLosNombres() {
+  //   const commentsSection = document.getElementById("commentsSection");
+
+  //   const colors = [
+  //     "rgba(35, 45, 70, 0.8)", // Azul oscuro profundo
+  //     "rgba(60, 41, 83, 0.8)", // Morado oscuro clásico
+  //     "rgba(30, 30, 60, 0.8)", // Azul noche
+  //     "rgba(50, 25, 75, 0.8)", // Púrpura intenso
+  //     "rgba(40, 60, 90, 0.8)", // Azul grisáceo oscuro
+  //     "rgba(70, 40, 90, 0.8)", // Morado vino
+  //     "rgba(45, 35, 90, 0.8)", // Azul violeta denso
+  //     "rgba(20, 30, 60, 0.8)", // Azul petróleo
+  //     "rgba(25, 20, 50, 0.8)", // Púrpura petróleo
+  //   ];
+
+  //   const h3 = commentsSection.querySelectorAll("h3");
+  //   h3.forEach((El) => {
+  //     const color = colors[Math.floor(Math.random() * colors.length)];
+  //     El.style.backgroundColor = `${color}`;
+  //   });
+  // }
 </script>
 
 <style>

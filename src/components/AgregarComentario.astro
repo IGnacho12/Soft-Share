@@ -85,7 +85,6 @@ import Layout from "../layouts/Layout.astro";
         }),
       });
 
-      cargarComentarios();
       if (respuesta.status == 400) {
         mostrarError(
           "Un comentario ya contiene uno o más de los campos ingresados."
@@ -127,7 +126,6 @@ import Layout from "../layouts/Layout.astro";
     return fechaResultante;
   }
 
-  cargarComentarios();
   async function cargarComentarios() {
     const respuesta = await fetch(
       "https://backend-soft-share-1tr9ac9dt-nachos-projects-077bc528.vercel.app/comments"
@@ -153,7 +151,6 @@ import Layout from "../layouts/Layout.astro";
         `
       )
       .join("");
-    ColorParaLosNombres();
 
     function ColorParaLosNombres() {
       const commentsSection = document.getElementById("commentsSection");
@@ -226,7 +223,7 @@ import Layout from "../layouts/Layout.astro";
     width: 100%;
     height: 40px;
     font-size: 16px;
-    color: #000;
+    color: var(--reverse);
     padding: 0 15px;
     background: transparent;
     border: 2px solid #ccc;
@@ -235,7 +232,7 @@ import Layout from "../layouts/Layout.astro";
     transition: all 0.3s ease;
 
     &:focus {
-      border-color: black;
+      border-color: var(--reverse);
     }
   }
 
@@ -309,4 +306,13 @@ import Layout from "../layouts/Layout.astro";
       transform: rotate(360deg);
     }
   }
+
+  @media (prefers-color-scheme: dark) {
+    .input-group input {
+      border: 2px solid #4d4d4d;
+    }
+    .input-group label {
+      color: rgba(255, 255, 255, .85);
+    }
+   }
 </style>

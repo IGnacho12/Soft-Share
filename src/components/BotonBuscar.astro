@@ -1,7 +1,7 @@
 <div class="container">
   <input type="text" placeholder="" id="input" class="widthInput max-w-[80%]" />
   <div class="btn" id="btn">
-    <img src="assets/search.svg" id="imgS" alt="Imagen de binoculares" />
+    <img class="dark:invert" src="assets/search.svg" id="imgS" alt="Imagen de binoculares" />
   </div>
 </div>
 
@@ -11,7 +11,6 @@
   imgSearch.addEventListener("click", () => {
     document.getElementById("input").focus();
   });
-  
 </script>
 
 <style>
@@ -51,21 +50,19 @@
     transition: box-shadow 0.5s ease;
 
     &:focus {
-      box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
+      box-shadow: 1px 1px 20px -5px;
     }
-
   }
 
   .container:focus-within .btn {
-  rotate: 20deg;
-}
-
+    rotate: 20deg;
+  }
 
   .widthInput {
     width: 15em;
-    background-color: #fff;
+    background-color: var(--background-color);
     border-radius: 10px;
-    border: 3px solid black;
+    border: 3px solid var(--reverse);
     padding-left: 15px;
   }
 </style>

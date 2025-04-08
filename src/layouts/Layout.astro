@@ -37,17 +37,29 @@ const { title } = Astro.props;
   </head>
   <!-- https://bg.ibelick.com/ -->
   <!-- Background de las líneas -->
-  <body>
-    <!-- Background del color difuminado -->
-
+  <body
+    class="bg-[var(--background-color)] bg-[linear-gradient(to_right,_#f0f0f0_1px,_transparent_1px),_linear-gradient(to_bottom,_#f0f0f0_1px,_transparent_1px)] dark:bg-none"
+  >
     <slot />
   </body>
   <style is:global>
     :root {
+      color-scheme: light dark;
       --background-color: #fbfbfe;
       --text-color: #00000;
-      --text-gray-color: #666;
+      --text-gray: #666;
       --blue: #2f27ce;
+      --reverse: rgb(0, 0, 0);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background-color: #1a1a1a;
+        --text-color: #d1d5db;
+        --text-gray: #aaa;
+        --blue: #8f94ff;
+        --reverse: rgb(255, 255, 255);
+      }
     }
 
     @font-face {

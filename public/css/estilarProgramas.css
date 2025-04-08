@@ -47,25 +47,20 @@ img {
   border-radius: 2px;
 }
 
-a {
-  text-decoration: none;
-  color: unset;
-  &:hover {
-    color: rgba(0, 0, 0, 0.9);
-  }
-}
-
 article span {
+  color: #666666;
   margin-top: 5px;
-  color: var(--text-gray-color);
   width: 98%;
   display: block;
   overflow-wrap: break-word;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.178);
 }
 
-article .textCategorias {
-  color: black;
+@media (prefers-color-scheme: dark) {
+  article span {
+    color: #94a3b8;
+    text-shadow: 1px 1px rgba(255, 255, 255, 0.25);
+  }
 }
 
 #formularioDeProgramas article {
