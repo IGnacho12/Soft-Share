@@ -10,10 +10,9 @@
 
 #commentsSection h3 {
   border-radius: 6px;
-  padding: 0.2rem;
+  padding: 2px 6px;
   min-width: fit-content;
 }
-
 
 #commentsSection p {
   font-style: italic;
@@ -34,4 +33,10 @@
 
 #commentsSection p {
   text-wrap: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  #commentsSection article {
+    box-shadow: 0px 0px 10px -1px black;
+  }
 }
