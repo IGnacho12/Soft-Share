@@ -54,7 +54,7 @@ export function HTML_CARGANDO() {
   CONTENEDOR_DE_PROGRAMAS.classList.add("not-loaded");
   document.getElementById("formularioDeProgramas").innerHTML = `
 
-<div role="img" class="wheel-and-hamster">
+<div role="img" class="wheel-and-hamster bg-red-300">
 	<div class="wheel"></div>
 	<div class="hamster">
 		<div class="hamster__body">
