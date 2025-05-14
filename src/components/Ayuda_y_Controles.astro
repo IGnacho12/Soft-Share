@@ -1,3 +1,6 @@
+---
+---
+
 <article class="z-10 hidden sm:block">
   <a
     class="help pt-3 fixed text-xl lg:text-2xl"
@@ -189,35 +192,34 @@
     line-height: 1;
   }
 
-  @media (prefers-color-scheme: dark) {
-    #boton-mostrar-controles {
-      color: rgba(255, 255, 255, 0.7);
-      &:hover {
-        color: rgb(255, 255, 255);
-        box-shadow: 0px 1px 10px 1px rgba(255, 255, 255, 0.1);
-      }
-    }
-    div.contenedor-padre {
-      border-bottom: solid 1px rgb(255, 255, 255);
-    }
+  html.dark #boton-mostrar-controles {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  html.dark #boton-mostrar-controles:hover {
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 1px 10px 1px rgba(255, 255, 255, 0.1);
+  }
 
-    #ver-controles::after {
-      box-shadow: 0px 0px 350px 20px black;
-    }
+  html.dark div.contenedor-padre {
+    border-bottom: solid 1px rgb(255, 255, 255);
+  }
 
-    kbd {
-      color: black;
+  html.dark #ver-controles::after {
+    box-shadow: 0px 0px 350px 20px black;
+  }
 
-      background-color: rgba(13, 189, 13, 0.733);
-    }
-    div {
-      color: var(--text-color);
-    }
+  html.dark kbd {
+    color: black;
+    background-color: rgba(13, 189, 13, 0.733);
+  }
 
-    #ver-controles {
-      background-color: black;
-      border-color: white;
-    }
+  html.dark div {
+    color: var(--text-color);
+  }
+
+  html.dark #ver-controles {
+    background-color: black;
+    border-color: white;
   }
 </style>
 

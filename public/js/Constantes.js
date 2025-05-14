@@ -22,7 +22,7 @@ export function HTML_RENDERIZADO(programas) {
                 onerror="this.onerror=null; this.src='/assets/error.webp'; this.title='La ruta de la imagen no es válida'; if (window.matchMedia('(prefers-color-scheme: dark)').matches) { this.style.filter='invert(100%)'; }"
               />
               <h3>
-              <a class="dark:hover:text-red-500" rel="noreferrer" href="${programa.link_de_descarga}">
+              <a rel="noreferrer" href="${programa.link_de_descarga}">
               ${programa.nombre}
               </a>
               </h3>

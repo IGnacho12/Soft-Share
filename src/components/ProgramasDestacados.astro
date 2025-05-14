@@ -25,7 +25,7 @@ import BotonRecargar from "./BotonRecargar.astro";
 
   <article
     id="formularioDeProgramas"
-    class="contenedor not-loaded flex justify-center items-center"
+    class="contenedor not-loaded flex-col justify-center content-center items-center"
   >
     <div class="loader"></div>
     <!-- Los programas se cargarán aquí -->
@@ -59,5 +59,101 @@ import BotonRecargar from "./BotonRecargar.astro";
     min-height: 500px;
     grid-template-columns: 100%;
     justify-items: center;
+  }
+
+  article.contenedor {
+    display: grid;
+    gap: 9px 3px;
+  }
+
+  @media (max-width: 730px) {
+    article.contenedor {
+      grid-template-columns: 100%;
+    }
+  }
+  @media (min-width: 730px) and (max-width: 1200px) {
+    article.contenedor {
+      grid-template-columns: 50% 50%;
+    }
+  }
+  @media (min-width: 1200px) {
+    article.contenedor {
+      grid-template-columns: 33.33% 33.33% 33.33%;
+    }
+  }
+
+  a {
+    font-weight: bold;
+  }
+
+  div.div-container {
+    padding: 10px;
+  }
+
+  article.contenedor {
+    display: grid;
+    gap: 9px 3px;
+  }
+
+  header {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  img {
+    height: 32px;
+    width: auto;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+
+  article span {
+    color: #666666;
+    margin-top: 5px;
+    width: 98%;
+    display: block;
+    overflow-wrap: break-word;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.178);
+  }
+
+  #formularioDeProgramas article {
+    margin: 40px;
+  }
+
+  #formularioDeProgramas h4 {
+    font-size: 1.4rem;
+  }
+
+  #formularioDeProgramas p {
+    color: gray;
+  }
+
+  #notFound404 {
+    grid-column: span 3 / span 3;
+  }
+
+  /* Mostrar u ocultar los spans que muestran las categorías */
+  .show {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: underline;
+  }
+  .not-show {
+    background-color: rgba(128, 128, 128, 0.253);
+    color: black;
+    font-weight: normal;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+
+  .mostrarSpanCategorias {
+    display: block;
+  }
+  .ocultarSpanCategorias {
+    display: none;
   }
 </style>
