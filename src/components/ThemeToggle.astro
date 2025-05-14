@@ -3,7 +3,11 @@ import SunIcon from "./icons/Sun.astro"
 import MoonIcon from "./icons/Moon.astro"
 import SystemIcon from "./icons/System.astro"
 
-const THEMES = ["Light", "Dark", "System"]
+const THEMES = [
+  { label: "Claro", value: "light" },
+  { label: "Oscuro", value: "dark" },
+  { label: "Sistema", value: "system" },
+]
 ---
 
 <div class="fixed ml-1 mr-1 top-6 self-end z-50">
@@ -14,14 +18,8 @@ const THEMES = ["Light", "Dark", "System"]
   >
     <span class="sr-only">Elige el tema</span>
     <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
-    <MoonIcon
-      id="dark"
-      class="theme-toggle-icon absolute size-5 transition-all"
-    />
-    <SystemIcon
-      id="system"
-      class="theme-toggle-icon absolute size-5 transition-all"
-    />
+    <MoonIcon id="dark" class="theme-toggle-icon absolute size-5 transition-all" />
+    <SystemIcon id="system" class="theme-toggle-icon absolute size-5 transition-all" />
   </button>
   <div
     transition:persist
@@ -30,9 +28,12 @@ const THEMES = ["Light", "Dark", "System"]
   >
     <ul>
       {
-        THEMES.map((theme) => (
-          <li class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
-            {theme}
+        THEMES.map(({ label, value }) => (
+          <li
+            class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm"
+            data-value={value}
+          >
+            {label}
           </li>
         ))
       }
@@ -110,13 +111,14 @@ const THEMES = ["Light", "Dark", "System"]
 
   document.querySelectorAll(".themes-menu-option").forEach((element) => {
     element.addEventListener("click", (e) => {
-      localStorage.setItem("theme", e.target.innerText.toLowerCase().trim())
+      const value = e.target.dataset.value
+      localStorage.setItem("theme", value)
       updateTheme()
     })
   })
 
-  document.addEventListener('astro:after-swap', () => {
-    updateTheme();
-    window.scrollTo({ left: 0, top: 0, behavior: 'instant' });
+  document.addEventListener("astro:after-swap", () => {
+    updateTheme()
+    window.scrollTo({ left: 0, top: 0, behavior: 'instant' })
   })
 </script>
