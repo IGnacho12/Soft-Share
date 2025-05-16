@@ -19,7 +19,7 @@ export function HTML_RENDERIZADO(programas) {
                 "
                 src="${programa.link_de_imagen}"
                 alt="${programa.nombre}"
-                onerror="this.onerror=null; this.src='/assets/error.webp'; this.title='La ruta de la imagen no es válida'; if (window.matchMedia('(prefers-color-scheme: dark)').matches) { this.style.filter='invert(100%)'; }"
+                onerror="this.onerror=null; this.src='/assets/error.svg'; this.title='La ruta de la imagen no es válida';"
               />
               <h3>
               <a rel="noreferrer" href="${programa.link_de_descarga}">
