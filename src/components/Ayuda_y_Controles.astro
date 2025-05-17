@@ -1,6 +1,3 @@
----
----
-
 <article class="z-10 hidden sm:block">
   <a
     class="help pt-3 fixed text-xl lg:text-2xl"
@@ -8,90 +5,65 @@
     href="https://n4chos-organization.gitbook.io/soft-share"
     >Ayuda & Documentación 📑</a
   >
+
   <button
     id="boton-mostrar-controles"
     class="fixed px-2 py-1 bg-slate-400/20 dark:text-[var(--reverse)] font-bold rounded-lg"
     >Ver Atajos</button
   >
 
-  <section
+  <form method="dialog">
+    <button id="ocultar-controles" class="hidden"></button>
+  </form>
+  <dialog
+  closedby="any"
     id="ver-controles"
-    class="ocultar-controles-animation z-[-1000] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 origin-center bg-[#fbfbfe] gap-3 w-2/5 place-content-between justify-between font-bold border-2 border-black rounded-lg"
+    class="z-10 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 origin-center bg-[#fbfbfe] gap-3 w-2/5 place-content-between justify-between font-bold border-2 border-black rounded-lg"
   >
-    <button
-      id="ocultar-controles"
-      class="fixed bottom-full right-0 bg rounded-full p-1"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
-        viewBox="0 0 24 24"
-        fill="red"
-        stroke="black"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="icon icon-tabler icons-tabler-outline icon-tabler-xbox-x"
-        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-          d="M12 21a9 9 0 0 0 9 -9a9 9 0 0 0 -9 -9a9 9 0 0 0 -9 9a9 9 0 0 0 9 9z"
-        ></path><path d="M9 8l6 8"></path><path d="M15 8l-6 8"></path></svg
-      ></button
-    >
     <div class="contenedor-padre">
       <div>Buscar</div>
       <div class="contenedor-key">
-        <kbd> Control </kbd>
-        <kbd> Espacio </kbd>
+        <kbd>Control</kbd>
+        <kbd>Espacio</kbd>
       </div>
     </div>
-
-    <!-- ------------------------------- -->
 
     <div class="contenedor-padre">
       <div>Recargar todos los programas</div>
-      <div class="contenedor-key">
-        <kbd>r</kbd>
-      </div>
+      <div class="contenedor-key"><kbd>r</kbd></div>
     </div>
-
-    <!-- ------------------------------- -->
 
     <div class="contenedor-padre">
       <div>Subir programa</div>
-      <div class="contenedor-key">
-        <kbd>s</kbd>
-      </div>
+      <div class="contenedor-key"><kbd>s</kbd></div>
     </div>
-  </section>
+  </dialog>
 </article>
+
 <style>
   #boton-mostrar-controles {
     top: 4rem;
     left: 0.5rem;
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.3s ease;
     align-items: center;
     border-radius: 6px;
     color: rgba(0, 0, 0, 0.7);
     border: none;
     user-select: none;
-    -webkit-user-select: none;
     touch-action: manipulation;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-decoration: none;
     backdrop-filter: blur(10px);
-    &:hover {
-      color: black;
-      box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.1);
-      text-decoration: underline;
-      text-decoration-thickness: 0.1em;
-      cursor: pointer;
-    }
+  }
+  #boton-mostrar-controles:hover {
+    color: black;
+    box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.1);
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    cursor: pointer;
   }
   a {
     top: 0.5rem;
     left: 0.5rem;
-    align-items: center;
     font-weight: bold;
     padding: 6px 14px;
     border-radius: 6px;
@@ -99,77 +71,21 @@
     border: none;
     box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
     user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    transition: box-shadow 0.3s ease;
     text-decoration: none;
     backdrop-filter: blur(10px);
-
-    &:hover {
-      box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.1);
-      text-decoration: underline;
-      text-decoration-thickness: 0.1em;
-      cursor: pointer;
-    }
   }
-
-  @keyframes mostrar-controles {
-    0% {
-      opacity: 0;
-
-      scale: 0.5;
-    }
-    100% {
-      opacity: 1; /* Cambia 100 a 1 */
-      scale: 1;
-    }
-  }
-  @keyframes ocultar-controles {
-    0% {
-      opacity: 1;
-      pointer-events: auto; /* Mantiene la interacción */
-    }
-    100% {
-      opacity: 0;
-      pointer-events: none; /* Evita interacción en estado oculto */
-      scale: 0;
-    }
-  }
-
-  #ver-controles {
-    opacity: 0; /* Oculto inicialmente */
-  }
-
-  /* Creamos un elemento after para el elemento ver controles para que la animación de la sombra sera mejor */
-  #ver-controles::after {
-    content: "";
-    border-radius: 8px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0px 0px 350px 20px rgba(0, 0, 0, 0.5);
-    opacity: 1;
-    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-  }
-
-  .ver-controles-animation {
-    opacity: 1; /* Hacer visible */
-    animation: mostrar-controles 0.5s cubic-bezier(0, 1, 0.58, 1) both;
-    z-index: 10;
-  }
-  .ocultar-controles-animation {
-    animation: ocultar-controles 0.5s cubic-bezier(0, 1, 0.58, 1) both;
-    z-index: 10;
+  a:hover {
+    box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.1);
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    cursor: pointer;
   }
 
   div.contenedor-padre {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 8px 12px 8px;
+    padding: 12px 8px;
     border-bottom: solid 1px black;
   }
   div.contenedor-padre:last-child {
@@ -180,14 +96,10 @@
     gap: 2px;
   }
   kbd {
-    display: flex;
-    box-sizing: border-box;
     font-size: 0.9em;
     background-color: rgba(13, 189, 27, 0.473);
     border-radius: 8px;
     padding: 0.5rem;
-    word-break: keep-all;
-    align-items: center;
     font-family: inherit;
     line-height: 1;
   }
@@ -196,27 +108,19 @@
     color: rgba(255, 255, 255, 0.7);
   }
   html.dark #boton-mostrar-controles:hover {
-    color: rgb(255, 255, 255);
+    color: white;
     box-shadow: 0px 1px 10px 1px rgba(255, 255, 255, 0.1);
   }
-
   html.dark div.contenedor-padre {
-    border-bottom: solid 1px rgb(255, 255, 255);
+    border-bottom: solid 1px white;
   }
-
-  html.dark #ver-controles::after {
-    box-shadow: 0px 0px 350px 20px black;
-  }
-
   html.dark kbd {
     color: black;
     background-color: rgba(13, 189, 13, 0.733);
   }
-
   html.dark div {
     color: var(--text-color);
   }
-
   html.dark #ver-controles {
     background-color: black;
     border-color: white;
@@ -231,12 +135,10 @@
   const BOTON_OCULTAR_CONTROLES = document.getElementById("ocultar-controles");
 
   BOTON_MOSTRAR_CONTROLES.addEventListener("click", () => {
-    CONTROLES.classList.remove("ocultar-controles-animation");
-    CONTROLES.classList.add("ver-controles-animation");
+    if (!CONTROLES.open) CONTROLES.showModal();
   });
 
   BOTON_OCULTAR_CONTROLES.addEventListener("click", () => {
-    CONTROLES.classList.add("ocultar-controles-animation");
-    CONTROLES.classList.remove("ver-controles-animation");
+    CONTROLES.close();
   });
 </script>
