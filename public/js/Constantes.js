@@ -34,16 +34,6 @@ export function HTML_RENDERIZADO(programas) {
     })
     .join("");
 
-  function cargarCSS(ruta) {
-    const head = document.head;
-    const link = document.createElement("link");
-
-    link.rel = "stylesheet";
-    link.href = ruta;
-
-    head.appendChild(link);
-  }
-  cargarCSS("/css/estilarProgramas.css");
   const CONTENEDOR_DE_PROGRAMAS = document.querySelector(".contenedor");
   CONTENEDOR_DE_PROGRAMAS.classList.remove("not-loaded");
 }
@@ -73,14 +63,5 @@ export function HTML_CARGANDO() {
 	<div class="spoke"></div>
 </div>
   `;
-  function cargarCSS(ruta) {
-    const head = document.head;
-    const link = document.createElement("link");
 
-    link.rel = "stylesheet";
-    link.href = ruta;
-
-    head.appendChild(link);
-  }
-  cargarCSS("/css/loader.css");
 }
