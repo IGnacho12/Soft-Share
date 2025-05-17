@@ -31,9 +31,9 @@ import Layout from "../layouts/Layout.astro";
     document.getElementById("commentsSection").innerHTML = programs
       .map(
         (comentario) => `
-          <article>
+          <article class='shadow-lg shadow-green-black border border-slate-200 dark:border-black dark:shadow-black'>
         <div>
-        <h3 class="bg-slate-400/40  text-[var(--reverse)]">${comentario.autor}</h3>
+        <h3 class="${getRandomElement(array)} dark:saturate-90 text-[var(--reverse)]">${comentario.autor}</h3>
         <span>${comentario.fecha}</span>
         </div>
         
@@ -55,31 +55,60 @@ import Layout from "../layouts/Layout.astro";
     }
     cargarCSS("/css/estilarComentarios.css");
   }
-  // function ColorParaLosNombres() {
-  //   const commentsSection = document.getElementById("commentsSection");
+  const array = [
+    "bg-blue-400/80", // Azul claro
+    "bg-purple-400/80", // Morado claro
+    "bg-indigo-400/80", // Azul noche más suave
+    "bg-purple-300/80", // Púrpura suave
+    "bg-slate-400/80", // Azul grisáceo claro
+    "bg-fuchsia-400/80", // Morado vino claro
+    "bg-indigo-300/80", // Azul violeta claro
+    "bg-cyan-300/80", // Azul petróleo claro
+    "bg-violet-300/80", // Púrpura petróleo claro
+  ];
 
-  //   const colors = [
-  //     "rgba(35, 45, 70, 0.8)", // Azul oscuro profundo
-  //     "rgba(60, 41, 83, 0.8)", // Morado oscuro clásico
-  //     "rgba(30, 30, 60, 0.8)", // Azul noche
-  //     "rgba(50, 25, 75, 0.8)", // Púrpura intenso
-  //     "rgba(40, 60, 90, 0.8)", // Azul grisáceo oscuro
-  //     "rgba(70, 40, 90, 0.8)", // Morado vino
-  //     "rgba(45, 35, 90, 0.8)", // Azul violeta denso
-  //     "rgba(20, 30, 60, 0.8)", // Azul petróleo
-  //     "rgba(25, 20, 50, 0.8)", // Púrpura petróleo
-  //   ];
-
-  //   const h3 = commentsSection.querySelectorAll("h3");
-  //   h3.forEach((El) => {
-  //     const color = colors[Math.floor(Math.random() * colors.length)];
-  //     El.style.backgroundColor = `${color}`;
-  //   });
-  // }
+  // Función para obtener de manera aleatoria un color
+  function getRandomElement(array) {
+    const randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex];
+  }
 </script>
 
-<style>
-  h2 {
-    margin-bottom: 2rem;
+<style is:global>
+  #commentsSection article {
+    margin-bottom: 3rem;
+    padding: 1rem;
+    border-radius: 10px;
+    word-break: break-word; 
+    overflow-wrap: break-word;
+    backdrop-filter: blur(10px); 
   }
+
+  #commentsSection h3 {
+    border-radius: 6px;
+    padding: 2px 6px;
+    min-width: fit-content;
+  }
+
+  #commentsSection p {
+    font-style: italic;
+    margin-left: 1rem;
+    padding: 1rem;
+  }
+
+  #commentsSection span {
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-align: end;
+  }
+
+  #commentsSection div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #commentsSection p {
+    text-wrap: auto;
+  }
+
 </style>
