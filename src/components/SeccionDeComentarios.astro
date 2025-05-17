@@ -42,18 +42,6 @@ import Layout from "../layouts/Layout.astro";
         `
       )
       .join("");
-    // ColorParaLosNombres();
-    function cargarCSS(ruta: string) {
-      const head = document.head;
-      const link = document.createElement("link");
-
-      link.rel = "stylesheet";
-      link.href = ruta;
-
-      head.appendChild(link);
-      console.log("CSS cargado:", ruta, "\n");
-    }
-    cargarCSS("/css/estilarComentarios.css");
   }
   const array = [
     "bg-blue-400/80", // Azul claro
