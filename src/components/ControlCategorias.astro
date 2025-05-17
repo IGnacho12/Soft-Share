@@ -178,10 +178,11 @@
     transition: all 0.4s ease;
     user-select: none;
     cursor: pointer;
+    display: inline-block;
   }
 
   .allCategories input:checked + label {
-    background-color: rgba(0, 255, 0, 0.178);
+    background-color: rgba(5, 204, 5, 0.178);
     color: var(--reverse);
     font-weight: normal;
     transition: all 0.4s ease;
@@ -189,10 +190,8 @@
     border-radius: 2px;
     font-weight: bold;
   }
-  @media (prefers-color-scheme: dark) {
-    .allCategories input:checked + label {
-      background-color: rgba(25, 0, 255, 0.5);
-    }
+  html.dark .allCategories input:checked + label {
+    background-color: rgba(16, 0, 241, 0.801);
   }
 </style>
 
