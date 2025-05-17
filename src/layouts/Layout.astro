@@ -49,24 +49,6 @@ const { title } = Astro.props;
     <slot />
   </body>
   <style is:global>
-    /* :root {
-      color-scheme: light dark;
-      --background-color: #fbfbfe;
-      --text-color: #00000;
-      --text-gray: #666;
-      --blue: #2f27ce;
-      --reverse: rgb(0, 0, 0);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --background-color: #1a1a1a;
-        --text-color: #d1d5db;
-        --text-gray: #aaa;
-        --blue: #8f94ff;
-        --reverse: rgb(255, 255, 255);
-      }
-    } */
     @font-face {
       font-family: "geist";
       src: url("/fonts/GeistVF.woff2");
@@ -131,22 +113,6 @@ const { title } = Astro.props;
     article.contenedor {
       display: grid;
       gap: 9px 3px;
-    }
-
-    @media (max-width: 730px) {
-      article.contenedor {
-        grid-template-columns: 100%;
-      }
-    }
-    @media (min-width: 730px) and (max-width: 1200px) {
-      article.contenedor {
-        grid-template-columns: 50% 50%;
-      }
-    }
-    @media (min-width: 1200px) {
-      article.contenedor {
-        grid-template-columns: 33.33% 33.33% 33.33%;
-      }
     }
 
     div.div-container {
