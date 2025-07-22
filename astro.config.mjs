@@ -7,7 +7,7 @@ export default defineConfig({
   // Configuración de salida (ideal para Vercel serverless)
   // Necesario para usar endpoints API y compatibilidad SSR
   output: "server",
-
+  adapter: vercel(),
   vite: {
     plugins: [tailwindcss()],
   }
