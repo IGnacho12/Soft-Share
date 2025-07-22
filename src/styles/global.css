@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Base styles */
+body {
+  font-family: "Onest Variable";
+}
+
+html.dark {
+  @apply text-slate-200;
+}
+
+h1 {
+  @apply text-5xl font-bold mb-4;
+}
+
+h2 {
+  @apply text-4xl font-bold mb-3;
+}
+
+h3 {
+  @apply text-3xl font-bold mb-2;
+}
+
+h4 {
+  @apply text-2xl font-bold mb-1;
+}
+
+p {
+  @apply text-xl mb-4 text-pretty;
+}
+
+hr {
+  @apply mb-2 border-1 border-slate-300 dark:border-slate-700;
+}
+
+/* Estilos personalizados para la página de programas */
+#formularioDeProgramas h1 {
+  @apply text-4xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 to-slate-600 dark:from-slate-100 dark:to-slate-400 text-transparent bg-clip-text;
+}
+
+#formularioDeProgramas h3 {
+  @apply text-xl font-semibold hover:underline mb-0;
+}
+
+#formularioDeProgramas span {
+  @apply block mt-2 text-gray-800 dark:text-gray-300;
+}
+
+#formularioDeProgramas .div-container {
+  @apply px-4 py-1 rounded-md bg-white dark:bg-gray-800 shadow-md hover:border-blue-400 border-2 border-transparent;
+}
+
+#formularioDeProgramas header {
+  @apply flex items-center gap-2;
+}
+
+#formularioDeProgramas img {
+  @apply h-8 w-8 object-cover rounded-md;
+}
+
+/* Estilos para los checkboxes de las categorias */
+
+input[type="checkbox"]:checked + label {
+  @apply bg-green-400/20 font-bold underline underline-offset-2 decoration-2 transition-all;
+}
+
+/* En modo oscuro */
+html.dark input[type="checkbox"]:checked + label {
+  @apply bg-blue-800 text-white;
+}
+
+/* Formulario para subir programas */
+.input-group input:focus ~ label,
+.input-group input:valid ~ label {
+  @apply bg-white dark:bg-black font-semibold;
+}

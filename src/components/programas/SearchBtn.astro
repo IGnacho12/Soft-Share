@@ -1,0 +1,36 @@
+---
+
+---
+
+<div class="flex justify-start mt-4">
+  <div class="flex items-center gap-2">
+    <input
+      id="inputSearch"
+      type="text"
+      placeholder="Buscar programas..."
+      class="transition-all duration-300 ease-in-out focus:outline-none bg-white dark:bg-slate-800 text-black dark:text-white px-4 py-2 rounded-md border-2 border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-blue-500 w-0 focus:w-[15em] md:w-[15em] font-bold"
+    />
+    <button id="btnSearch" class="btn p-2 hover:rotate-6 transition-transform">
+      <img
+        id="imgSearch"
+        src="/search.svg"
+        alt="Buscar"
+        class="w-6 h-6 dark:invert"
+      />
+    </button>
+  </div>
+</div>
+
+<script type="module">
+  import { initBusquedaYCategorias } from "../utils/duo.js";
+  document.addEventListener("astro:page-load", () => {
+    initBusquedaYCategorias();
+  });
+  initBusquedaYCategorias();
+</script>
+
+<style>
+  .btn:hover {
+    rotate: 6deg;
+  }
+</style>

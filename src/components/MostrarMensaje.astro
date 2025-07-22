@@ -1,0 +1,53 @@
+<div
+  id="id-alerta"
+  class="alert-container fixed bottom-1 left-1 items-center p-4 text-sm border-2 rounded-lg bg-gray-900 transition-all opacity-1 duration-300"
+  role="alert"
+>
+  <svg
+    class="h-4 mr-3"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+  >
+    <path
+      d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+    ></path>
+  </svg>
+  <div class="font-bold">
+    <span id="alerta-titulo" class="underline underline-offset-1 decoration-2"
+      >Mensaje</span
+    ><span>:</span>
+    <span id="alerta-mensaje"></span>
+  </div>
+</div>
+
+<style>
+  .animation {
+    animation: show-wait-no-show 7s ease-in-out;
+  }
+
+  #id-alerta {
+    opacity: 0;
+    transform: translateX(-600px);
+  }
+
+  @keyframes show-wait-no-show {
+    0% {
+      display: inline-flex;
+      opacity: 1;
+      transform: translateX(-600px);
+    }
+    10% {
+      transform: translateX(0px);
+    }
+    95% {
+      transform: translateX(0px);
+    }
+    100% {
+      transform: translateX(-600px);
+      display: none;
+      opacity: 1;
+    }
+  }
+</style>

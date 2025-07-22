@@ -1,0 +1,81 @@
+---
+import LayoutMD from "../layouts/LayoutMD.astro";
+import "./src/styles/md.css";
+
+const { id } = Astro.params;
+
+// Documentación de Problemas, Guías de Rendimiento, Pro Tips.
+const pages = import.meta.glob([
+  "../pages/problemas/*.md",
+  "../pages/rendimiento/*.md",
+]);
+
+const matchedEntry = Object.entries(pages).find(([path]) =>
+  path.includes(`${id}.md`)
+);
+
+// Si no existe el problema, redirigir a 404
+if (!matchedEntry) {
+  return Astro.redirect("/404");
+}
+
+const module = (await matchedEntry[1]()) as { Content: any };
+const { Content } = module;
+---
+
+<!-- Lite youtube por si tiene algun iframe la documentanción -->
+<script
+  type="module"
+  src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"
+></script>
+
+<LayoutMD>
+  <main
+    class="w-11/12 lg:w-5/6 xl:w-9/12 h-full mt-16 bg-slate-50 dark:bg-slate-950 border-2 border-slate-700 rounded-sm self-center mx-auto py-4 px-8"
+  >
+    {
+      Content ? (
+        <Content />
+      ) : (
+        <p class="text-red-600 font-bold">Problema no encontrado: {id}</p>
+      )
+    }
+  </main>
+</LayoutMD>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    // Cargar cuando se cambia de página
+    createCopyButton();
+  });
+  // Cargar la primera vez que se ingresa a la pagina
+  createCopyButton();
+
+  function createCopyButton() {
+    document.querySelectorAll("pre").forEach((pre, index) => {
+      // Crear el contenedor relativo
+      const wrapper = document.createElement("div");
+      wrapper.className = "relative";
+
+      // Crear botón
+      const btn = document.createElement("button");
+      btn.textContent = "Copiar";
+      btn.className =
+        "absolute top-2 right-2 px-2 py-1 text-xs border rounded transition-all bg-slate-100 hover:bg-slate-200 border-slate-300 hover:border-slate-400 text-slate-800 dark:bg-slate-700 dark:hover:bg-slate-600 dark:border-slate-600 dark:hover:border-slate-500 dark:text-slate-100 select-none";
+
+      // Copiar texto del <pre>
+      btn.addEventListener("click", () => {
+        const text = pre.innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          btn.textContent = "Copiado!";
+          setTimeout(() => (btn.textContent = "Copiar"), 1500);
+        });
+      });
+
+      // Insertar
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+      wrapper.appendChild(btn);
+    });
+  }
+</script>

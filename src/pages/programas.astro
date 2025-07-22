@@ -1,0 +1,464 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SearchBtn from "../components/programas/SearchBtn.astro";
+import Categories from "../components/programas/Categories.astro";
+import MostrarMensaje from "../components/MostrarMensaje.astro";
+import "../styles/global.css";
+---
+
+<Layout title="Soft Share">
+  <main class="w-10/12 mx-auto">
+    <MostrarMensaje />
+    <!-- HERO -->
+    <section class="flex flex-col text-center place-self-center mb-2">
+      <h1
+        class="font-bold mt-2 pb-0 text-5xl lg:text-7xl bg-gradient-to-r dark:from-slate-100 dark:to-slate-400 from-slate-950 to-slate-500 text-transparent dark:text-transparent bg-clip-text"
+      >
+        TU REPOSITORIO DE PROGRAMAS
+      </h1>
+      <p
+        class="text-lg w-10/12 place-self-center font-semibold text-black dark:text-slate-400"
+      >
+        <span class="text-[#0047aa] dark:text-[#0096aa] saturate-200"
+          >Explora</span
+        >,
+        <span class="text-[#008f39] dark:text-[#008f5f] saturate-200"
+          >Descarga</span
+        > y
+        <span class="text-[#6200a8] dark:text-[#6200a8] saturate-200"
+          >Comparte</span
+        >
+        recursos informáticos. Desde scripts básicos hasta software completo y crackeado.
+        <span class="text-[#bd00aa] dark:text-[#9700bd] saturate-200">Aquí</span
+        >
+        puedes <span>conseguir y compartir</span> con los <span>demás.</span>
+      </p>
+    </section>
+
+    <!-- SEARCH BTN -->
+    <Categories />
+    <div class="flex flex-row justify-between">
+      <SearchBtn />
+
+      <div class="flex flex-row justify-around gap-12">
+        <a
+          href="#uploadProgram"
+          class="transition-all duration-300 ease-in-out focus:outline-none bg-white dark:bg-slate-800 text-black dark:text-gray-400 px-4 py-2 rounded-md border-2 border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-blue-500 w-auto md:w-auto font-bold mt-4 hover:bg-slate-100 dark:hover:bg-slate-700"
+        >
+          Subir Programa
+        </a>
+        <button
+          class="transition-all duration-300 ease-in-out focus:outline-none bg-white dark:bg-slate-800 text-black px-4 py-2 dark:text-gray-400 rounded-md border-2 border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-blue-500 w-auto md:w-auto font-bold mt-4 hover:bg-slate-100 dark:hover:bg-slate-700"
+        >
+          Agregar Comentarios
+        </button>
+      </div>
+    </div>
+
+    <!-- PROGRAMAS -->
+    <article
+      id="formularioDeProgramas"
+      class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-9 mt-4 mx-auto min-h-[30vh]"
+    >
+      <!-- Los programas se cargarán aquí -->
+    </article>
+
+    <!-- Forumulario para subir los programas -->
+    <article>
+      <h1
+        class="font-bold text-3xl lg:text-6xl text-center mt-16 scroll-mt-16"
+        id="uploadProgram"
+      >
+        Subir Tus Programas
+      </h1>
+      <form id="programForm">
+        <div class="input-group">
+          <input
+            type="text"
+            id="nombre"
+            minlength="2"
+            maxlength="20"
+            title="Ingresa el nombre de tu soft 🚀 (máximo 20 caracteres)"
+            required
+          />
+          <label class="text-red" for="nombre">Nombre</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            id="link_de_imagen"
+            title="Ingresa el link de la imagen que contiene el logo de tu soft 🚀"
+            required
+          />
+          <label for="link_de_imagen">Link de Imagen</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            id="link_de_descarga"
+            name="link_de_descarga"
+            title="Ingresa el link directo de descarga de tu soft 🚀"
+            required
+          />
+          <label for="link_de_descarga">Link de Descarga</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            id="detalles"
+            maxlength="80"
+            title="Ingresa los detalles de tu soft 🚀 (máximo 80 caracteres)"
+            required
+          />
+          <label for="detalles">Detalles</label>
+        </div>
+
+        <section class="display flex flex-col items-center">
+          <h3 class="flex items-center">Categoría</h3>
+          <!-- The second value will be selected initially -->
+          <select name="select" id="select-categoria">
+            <option value="Archivo" selected>Archivo</option>
+            <option value="Utilidad">Utilidad</option>
+            <option value="Activador">Activador</option>
+            <option value="Juego">Juego</option>
+            <option value="Media">Media</option>
+            <option value="Hardware">Hardware</option>
+            <option value="Optimización">Optimización</option>
+            <option value="Múltiple">Múltiple</option>
+            <option value="Seguridad">Seguridad</option>
+            <option value="Estilo">Estilo</option>
+            <option value="Gestión de archivos">Gestión de archivos</option>
+          </select>
+          <span class="text-gray-600 dark:text-gray-400 text-sm font-bold"
+            >Segunda categoría opcional</span
+          >
+          <select name="select2" id="select-categoria2">
+            <option value="Ninguna" selected>Ninguna</option>
+            <option value="Archivo">Archivo</option>
+            <option value="Utilidad">Utilidad</option>
+            <option value="Activador">Activador</option>
+            <option value="Juego">Juego</option>
+            <option value="Media">Media</option>
+            <option value="Hardware">Hardware</option>
+            <option value="Optimización">Optimización</option>
+            <option value="Múltiple">Múltiple</option>
+            <option value="Seguridad">Seguridad</option>
+            <option value="Estilo">Estilo</option>
+            <option value="Gestión de archivos">Gestión de archivos</option>
+          </select>
+        </section>
+
+        <button type="submit" id="black-button">Enviar</button>
+      </form>
+
+      <div class="h-128"></div>
+    </article>
+  </main>
+
+  <script type="module">
+    import { cargarTodosLosProgramas } from "../utils/programasUtils.js";
+    document.addEventListener("astro:page-load", () => {
+      cargarTodosLosProgramas();
+    });
+    cargarTodosLosProgramas();
+  </script>
+</Layout>
+
+<script type="module">
+  import mostrarMensaje from "/utils/mostrarMensaje.js";
+  document.addEventListener("astro:page-load", () => {
+    let categoriaSeleccionada = ["Archivo"];
+    let categoriaSeleccionada2 = ["Ninguna"];
+    // Obtener valor de la primera categoría
+    const select = document.getElementById("select-categoria");
+    select.addEventListener("change", function () {
+      const selectedOption = this.options[select.selectedIndex];
+      categoriaSeleccionada = [selectedOption.value];
+    });
+
+    // Obtener valor de la segunda categoría
+    const select2 = document.getElementById("select-categoria2");
+    select2.addEventListener("change", function () {
+      const selectedOption2 = this.options[select2.selectedIndex];
+      categoriaSeleccionada2 = [selectedOption2.value];
+    });
+
+    // Aquí va tu código JavaScript actual
+    document
+      .getElementById("programForm")
+      .addEventListener("submit", async (event) => {
+        event.preventDefault(); // Evitar que el formulario recargue la página
+        console.log("se persiono el bootn para subir programa");
+
+        const submitButton = document.getElementById("black-button");
+        submitButton.disabled = true; // Deshabilita el botón para evitar múltiples envíos
+
+        // Juntar el valor de las categorías si se establecieron 2
+        let categoriaSeleccionadaFinal = ["Archivo"];
+
+        // Ejecutar esto si el usuario eligió una segunda categoría
+        if (categoriaSeleccionada2[0] !== "Ninguna") {
+          // Comparar los valores de las categorías
+          if (categoriaSeleccionada[0] === categoriaSeleccionada2[0]) {
+            mostrarMensaje(
+              "error",
+              "No puedes seleccionar 2 categorías iguales"
+            );
+            submitButton.disabled = false; // Reactivar el botón
+            return; // Detener la ejecución si las categorías son iguales
+          }
+          // Combinar las categorías si son diferentes
+          categoriaSeleccionadaFinal = [
+            `${categoriaSeleccionada[0]}, ${categoriaSeleccionada2[0]}`,
+          ];
+        } else {
+          categoriaSeleccionadaFinal = [...categoriaSeleccionada];
+        }
+
+        // Obtener los valores del formulario (Inputs de nombre, imagen, descarga y detalles)
+        const nombre = document.getElementById("nombre").value;
+        const link_de_imagen = document.getElementById("link_de_imagen").value;
+        const link_de_descarga =
+          document.getElementById("link_de_descarga").value;
+        const detalles = document.getElementById("detalles").value;
+
+        console.log(
+          nombre,
+          link_de_imagen,
+          link_de_descarga,
+          detalles,
+          "deamasom"
+        );
+        console.log(categoriaSeleccionadaFinal);
+
+        // Obtener los valores del select (Categoría)
+        console.log("paso 2");
+
+        // ---------- PASO 2: Validar URLs ---------- //
+        function isValidURL(url) {
+          try {
+            new URL(url);
+            return true; // La URL es válida
+          } catch (e) {
+            return false; // La URL no es válida
+          }
+        }
+
+        if (!isValidURL(link_de_descarga) || !isValidURL(link_de_imagen)) {
+          mostrarMensaje("error", "No se han ingresado URL válidas");
+          submitButton.disabled = false; // Reactivar el botón
+          return;
+        }
+        console.log("termianos de comprobar la url");
+
+        const responseg = await fetch(`/api/get`);
+        const dbContent = await responseg.json(); // Obtener los datos de la base de datos
+        const arrayFinal = [];
+        dbContent.forEach((object) => {
+          for (const key in object) {
+            arrayFinal.push(object[key]);
+          }
+        });
+
+        // Array con los valores ingresados por el usuario
+        const userValuesArray = [nombre, link_de_descarga, detalles];
+
+        // ☝️ No se debe poner el valor de categoría selecionada ya que eso si se debe poder repetir.
+        // Omiti el valor de imagen ya que algunas imagenes si quiero que se repitan pero como soy un vago, simplemente lo quito de la comprobación. 😺
+        // Respuestas correspondientes a cada valor ingresado
+        const respuestasDuplicado = [
+          "Soft-Share ya tiene un recurso con ese nombre 😵",
+          "Soft-Share ya tiene un recurso con ese link de descarga 😵",
+          "Soft-Share ya tiene un recurso con esos detalles 😵",
+        ];
+
+        // Verificar si alguno de los valores ingresados ya existe en los registros
+        for (let i = 0; i < userValuesArray.length; i++) {
+          if (arrayFinal.includes(userValuesArray[i])) {
+            mostrarMensaje("error", respuestasDuplicado[i]);
+            submitButton.disabled = false; // Reactivar el botón
+            console.log(
+              "ya existe un programa con alguono de los isguientes valores"
+            );
+            return;
+          }
+        }
+        // ---------- PASO 4: Insertar datos en la base de datos ---------- //
+
+        // console.log(`La categoría seleccionada es ${categoriaSeleccionada}`);
+        const response = await fetch(`/api/uploadProgram`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nombre,
+            link_de_imagen,
+            link_de_descarga,
+            detalles,
+            categoriaSeleccionadaFinal,
+          }),
+        });
+
+        categoriaSeleccionada = ["Archivo"];
+        categoriaSeleccionada2 = ["Ninguna"];
+
+        console.log("terminacion del paso 4");
+
+        if (response.ok) {
+          mostrarMensaje("exito", "El programa se ha guardado con éxito ✅");
+          // console.log(response)
+          document.getElementById("programForm").reset(); // Limpia el formulario después del éxito
+        } else {
+          mostrarMensaje("error", "Error al guardar el programa");
+        }
+        document.addEventListener("astro:page-load", () => {
+          subirPrograma();
+        });
+      });
+  });
+</script>
+<style>
+  :root {
+    --conic-gradient: conic-gradient(
+      #ff2e2e,
+      #ff831e,
+      #fcff51,
+      #58ff57,
+      #575fff,
+      #d257ff,
+      #ff57e5,
+      #ff1556
+    );
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .input-group {
+    position: relative;
+    margin: 10px 0;
+  }
+
+  .input-group label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    padding: 0 5px;
+    pointer-events: none;
+    transition: 0.2s;
+  }
+
+  .input-group input {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    padding: 0 15px;
+    background: transparent;
+    border: 2px solid #ccc;
+    outline: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+
+  .input-group input:focus ~ label,
+  .input-group input:valid ~ label {
+    top: 0;
+    font-size: 14px;
+    background-color:;
+  }
+
+  #black-button {
+    height: 2.5em;
+    width: 6.5em;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid black;
+    transition:
+      transform,
+      box-shadow 0.3s ease;
+    margin-top: 20px;
+    align-self: center;
+  }
+
+  #black-button:hover {
+    box-shadow: 0px 1px 15px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  #black-button::before {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 350%;
+    background: var(--conic-gradient);
+  }
+
+  #black-button::after {
+    content: "Enviar";
+    position: absolute;
+    background-color: white;
+    width: 95%;
+    height: 89%;
+    border-radius: 0.4em;
+    font-size: 1rem;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;
+    z-index: 1;
+  }
+
+  #black-button:hover::before {
+    animation: spin 1.5s infinite linear;
+  }
+
+  @keyframes slidebg {
+    to {
+      background-position: 20vw;
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  select {
+    margin-top: 0.3rem;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 2px 5px;
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    grid-auto-flow: column;
+    gap: 2px;
+    font-weight: bold;
+  }
+
+  html.dark select {
+    background-color: black;
+    color: white;
+  }
+</style>

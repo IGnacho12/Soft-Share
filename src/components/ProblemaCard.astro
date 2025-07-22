@@ -1,0 +1,35 @@
+---
+// ProblemaCard.astro
+import Button from "./Button.astro";
+const { titulo, descripcion, videoId, linkProblema, videoUrl } = Astro.props;
+---
+
+<script
+  type="module"
+  src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"
+></script>
+
+<article
+  class="rounded-lg shadow-xl w-full flex flex-col items-center space-y-4 border-1 border-slate-300 dark:border-slate-800"
+>
+  <lite-youtube videoid={videoId}></lite-youtube>
+
+  <article class="p-4 flex flex-col flex-grow justify-between h-full">
+    <article>
+      <h4 class="text-lg pb-2">
+        {titulo}
+      </h4>
+
+      <p class="text-sm text-slate-400">
+        {descripcion}
+      </p>
+    </article>
+
+    <div class="flex gap-x-4 mt-auto">
+      <Button link={linkProblema}>Ver Problema</Button>
+      <Button link={videoUrl}>
+        <img class="size-8" src="assets/youtube.svg" alt="" />Ver Video
+      </Button>
+    </div>
+  </article>
+</article>
