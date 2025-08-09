@@ -1,35 +1,44 @@
 ---
-// ProblemaCard.astro
-import Button from "./Button.astro";
-const { titulo, descripcion, videoId, linkProblema, videoUrl } = Astro.props;
+const { titulo, descripcion, linkProblema } = Astro.props;
 ---
 
-<script
-  type="module"
-  src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"
-></script>
+<li class="border border-slate-300 dark:border-slate-700 rounded-md overflow-hidden">
+  <div class="flex justify-between items-center px-4 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+    <a
+      href=`${titulo}-problema`
+      class="font-semibold text-lg text-slate-900 dark:text-slate-100 hover:underline flex-grow"
+    >
+      {titulo}
+    </a>
 
-<article
-  class="rounded-lg shadow-xl w-full flex flex-col items-center space-y-4 border-1 border-slate-300 dark:border-slate-800"
->
-  <lite-youtube videoid={videoId}></lite-youtube>
+    <button
+      type="button"
+      aria-expanded="false"
+      aria-label="Mostrar descripción"
+      class="ml-4 p-1 rounded hover:bg-slate-300 dark:hover:bg-slate-700 transition"
+      onClick={`const desc = document.getElementById('desc-${titulo.replace(/\s+/g,'-')}'); 
+                const expanded = desc.style.maxHeight && desc.style.maxHeight !== '0px'; 
+                desc.style.maxHeight = expanded ? '0' : desc.scrollHeight + 'px'; 
+                this.setAttribute('aria-expanded', !expanded);`}
+    >
+      <svg
+        class="w-5 h-5 text-slate-500 transition-transform duration-300"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </button>
+  </div>
 
-  <article class="p-4 flex flex-col flex-grow justify-between h-full">
-    <article>
-      <h4 class="text-lg pb-2">
-        {titulo}
-      </h4>
-
-      <p class="text-sm text-slate-400">
-        {descripcion}
-      </p>
-    </article>
-
-    <div class="flex gap-x-4 mt-auto">
-      <Button link={linkProblema}>Ver Problema</Button>
-      <Button link={videoUrl}>
-        <img class="size-8" src="assets/youtube.svg" alt="" />Ver Video
-      </Button>
-    </div>
-  </article>
-</article>
+  <div
+    id={`desc-${titulo.replace(/\s+/g,'-')}`}
+    class="overflow-hidden px-4 text-sm text-slate-600 dark:text-slate-300 transition-max-height duration-300"
+    style="max-height: 0;"
+  >
+    <p class="py-3">{descripcion}</p>
+  </div>
+</li>

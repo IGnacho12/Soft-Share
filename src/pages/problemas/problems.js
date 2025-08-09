@@ -35,4 +35,9 @@ export const problemas = [
     videoId: "m023S1FqHhA",
     videoUrl: "https://www.youtube.com/watch?v=m023S1FqHhA&ab_channel=1x1Pixel",
   },
+  {
+    id: 6,
+    titulo: "Activar la Ejecución de Scripts",
+    descripcion: "Solución al error 'error is not active the exec scripts'. :D",
+  },
 ];

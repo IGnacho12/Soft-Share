@@ -1,5 +1,5 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro"
+import ThemeToggle from "./ThemeToggle.astro";
 
 const navItems = [
   {
@@ -14,27 +14,66 @@ const navItems = [
   },
 
   {
-    title: "Pro Tips",
-    label: "pro-tips",
-    url: "/pro-tips",
-  },
-  {
     title: "Herramientas",
     label: "herramientas",
     url: "/herramientas",
-  }
-]
+  },
+];
 ---
+
 <header class="fixed top-0 z-10 flex justify-center w-full mx-auto mt-2">
   <nav
     class="overflow-x-auto whitespace-nowrap max-w-full sm:overflow-visible rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] text-sm font-medium text-gray-600 dark:text-gray-200 px-3"
   >
     <div class="inline-flex items-center min-w-max">
-      <!-- Ícono de inicio -->
-      <a href="/" class="mr-2">
-        <img class="size-6 dark:invert hover:scale-110 transition-transform" src="home.svg" />
-      </a>
+      <!-- Botones para moverse atrás y adelante -->
+      <div class="mr-2 flex items-center space-x-2">
+        <!-- Botón ir atrás -->
+        <button
+          id="btn-back"
+          type="button"
+          aria-label="Volver"
+          class="p-1 rounded transition"
+          onClick="history.back()"
+        >
+          <svg
+            class="w-6 h-6 text-gray-600/85 dark:text-gray-300/85 hover:text-gray-600 hover:dark:text-gray-300"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
 
+        <!-- Botón ir adelante -->
+        <button
+          id="btn-fordward"
+          type="button"
+          aria-label="Adelante"
+          class="p-1 rounded  transition"
+          onClick="history.forward()"
+        >
+          <svg
+            class="w-6 h-6 text-gray-600/85 dark:text-gray-300/85 hover:text-gray-600 hover:dark:text-gray-300"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
       <!-- Links -->
       {
         navItems.map((link) => (
@@ -54,46 +93,45 @@ const navItems = [
   </nav>
 </header>
 
-
 <script>
   document.addEventListener("astro:page-load", () => {
-    const sections = document.querySelectorAll("section")
-    const navItems = document.querySelectorAll("header nav a")
+    const sections = document.querySelectorAll("section");
+    const navItems = document.querySelectorAll("header nav a");
 
     const callback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           navItems.forEach((item) => {
             if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("text-blue-500")
+              item.classList.add("text-blue-500");
             } else {
-              item.classList.remove("text-blue-500")
+              item.classList.remove("text-blue-500");
             }
-          })
+          });
         }
-      })
-    }
+      });
+    };
 
     const observer = new IntersectionObserver(callback, {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
-    })
+    });
 
     sections.forEach((section) => {
-      observer.observe(section)
-    })
+      observer.observe(section);
+    });
 
     document.onvisibilitychange = () => {
       if (document.visibilityState === "hidden") {
-        observer.disconnect()
+        observer.disconnect();
       } else {
         sections.forEach((section) => {
-          observer.observe(section)
-        })
+          observer.observe(section);
+        });
       }
-    }
-  })
+    };
+  });
 </script>
 
 <style>

@@ -1,0 +1,15 @@
+# Activar la ejecución de scripts en PowerShell
+
+Para poder ejecutar scripts en PowerShell, es necesario cambiar la política de ejecución para permitirlo. 
+
+---
+
+## Pasos para activar la ejecución de scripts
+1. Abre **PowerShell** como **administrador**.
+2. Copia y pega el siguiente comando y presiona Enter:
+
+```powershell
+Set-ExecutionPolicy Unrestricted
+```
+
+Y listo, una vez se ejecute, ya puedes cerrar la ventana, y la ejecución de scripts estará activada.

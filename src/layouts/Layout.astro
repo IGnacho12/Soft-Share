@@ -14,7 +14,11 @@ import { ClientRouter } from "astro:transitions";
     <title>Soft Share - Repositorio de tus programas</title>
     <ClientRouter />
   </head>
-  <body class="flex flex-col min-h-screen relative">
+  <body class="flex flex-col min-h-screen relative" >
+    <!-- Github Repository -->
+    <a class="p-2 z-50 w-fit fixed" target="_blank" href="https://github.com/IGnacho12/Soft-Share">
+      <img class="dark:inverted dark:invert" src="assets/github.svg" alt="">
+    </a>
     <!-- Fondos -->
     <!-- Fondo modo claro  -->
     <div
@@ -52,7 +56,7 @@ import { ClientRouter } from "astro:transitions";
     margin: 0;
     width: 100%;
     min-height: 100%;
-    font-family: 'ones';
+    font-family: 'ones', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   /* Oculta la barra de scroll pero mantiene el scroll funcional */
@@ -65,4 +69,8 @@ import { ClientRouter } from "astro:transitions";
   html::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
   }
+
+  html {
+  overflow-y: scroll;
+}
 </style>
