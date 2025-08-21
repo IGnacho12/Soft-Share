@@ -51,7 +51,7 @@ hr {
 }
 
 #formularioDeProgramas .div-container {
-  @apply px-4 py-1 rounded-md bg-white dark:bg-gray-800 shadow-md hover:border-blue-400 border-2 border-transparent;
+  @apply px-4 py-1 rounded-md bg-white dark:bg-gray-800 shadow-md  hover:border-blue-400 border-2 border-transparent;
 }
 
 #formularioDeProgramas header {
