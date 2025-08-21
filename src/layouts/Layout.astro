@@ -9,15 +9,19 @@ import { ClientRouter } from "astro:transitions";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Soft Share - Repositorio de tus programas</title>
     <ClientRouter />
   </head>
-  <body class="flex flex-col min-h-screen relative" >
+  <body class="flex flex-col min-h-screen relative">
     <!-- Github Repository -->
-    <a class="p-2 z-50 w-fit fixed" target="_blank" href="https://github.com/IGnacho12/Soft-Share">
-      <img class="dark:inverted dark:invert" src="assets/github.svg" alt="">
+    <a
+      class="p-2 z-50 w-fit fixed"
+      target="_blank"
+      href="https://github.com/IGnacho12/Soft-Share"
+    >
+      <img class="dark:inverted dark:invert" src="assets/github.svg" alt="" />
     </a>
     <!-- Fondos -->
     <!-- Fondo modo claro  -->
@@ -29,7 +33,15 @@ import { ClientRouter } from "astro:transitions";
     <!-- Fondo modo oscuro  -->
     <!-- Gradiente que se queda fijo arriba -->
     <div
-      class="hidden dark:block absolute top-0 left-0 w-full h-96 -z-10 bg-no-repeat bg-[radial-gradient(ellipse_80%_120%_at_50%_0%,rgba(120,119,198,0.3),rgba(0,0,0,0))]"
+      class="hidden dark:block absolute top-0 left-0 w-full h-96 -z-10 bg-no-repeat bg-[radial-gradient(ellipse_80%_120%_at_50%_0%,rgba(120,119,198,0.3),rgba(0,0,0,0))]
+         dark:bg-[radial-gradient(ellipse_80%_120%_at_50%_0%,rgba(120,119,198,0.15),rgba(0,0,0,0))]"
+    >
+    </div>
+    <div
+      class="block absolute inset-0 -z-10 w-full min-h-screen
+         bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)]
+         bg-[size:6rem_4rem]
+         dark:bg-[linear-gradient(to_right,#171717_1px,transparent_1px),linear-gradient(to_bottom,#171717_1px,transparent_1px)]"
     >
     </div>
 
@@ -48,19 +60,19 @@ import { ClientRouter } from "astro:transitions";
 
 <style>
   @font-face {
-    font-family: 'ones';
-    src: url('/Onest-Variable.ttf');
+    font-family: "ones";
+    src: url("/Onest-Variable.ttf");
   }
   html,
   body {
     margin: 0;
     width: 100%;
     min-height: 100%;
-    font-family: 'ones', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "ones", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 
   /* Oculta la barra de scroll pero mantiene el scroll funcional */
-  html  {
+  html {
     overflow-y: scroll; /* Asegura que el scroll esté activo */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge */
@@ -71,6 +83,6 @@ import { ClientRouter } from "astro:transitions";
   }
 
   html {
-  overflow-y: scroll;
-}
+    overflow-y: scroll;
+  }
 </style>
