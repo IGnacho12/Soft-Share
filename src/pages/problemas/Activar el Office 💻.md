@@ -1,4 +1,7 @@
-# Activar Windows y Office
+---
+title: "Activar el Office 💻"
+description: "Guía para poder activar el office, esto incluye cualquier versión del mismo, p. ej. Office 2013, 2016, 2019, etc."
+---
 
 Una forma **rápida y segura** de activar Windows y Office. El metodo a utilzar es mucho más confiable y seguro que otros (por ej: KMS Activate) porque el código de lo que estas ejecutando es libre, puedes verlo, modificarlo y distribuirlo. Tiene mucho reconocimiento y visibilidad también.
 ### 🔗 Autor  

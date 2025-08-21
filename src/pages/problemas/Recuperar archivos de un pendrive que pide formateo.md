@@ -1,4 +1,7 @@
-# Recuperar archivos de un pendrive que pide formateo usando Recuva
+---
+title: "Recuperar archivos de un pendrive que pide formateo"
+description: "Pendrive presentar el error -> 'Debes formatear esta unidad para poder usarla' <- Tal vez el pendrive no pueda recuperarse... ¡Pero te enseño a recuperar tus archivos! ;D"
+---
 
 El pendrive _"solicita formateo"_ para poder usarlo. Te muestro **cómo recuperar los archivos del pendrive con nombre, fecha y ¡gratis!**
 

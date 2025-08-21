@@ -1,23 +1,44 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ProblemaCard from "../components/ProblemaCard.astro";
-import { problemas } from '../pages/problemas/problems';
+
+// 1. Importamos dinámicamente TODOS los archivos Markdown de la carpeta problemas.
+//    Esto devuelve un objeto con paths como keys y funciones loader como values.
+const modules = import.meta.glob("../pages/problemas/*.md");
+
+// 2. Recorremos todos los módulos y cargamos su contenido.
+//    - Cada loader() devuelve un objeto con { Content, frontmatter }.
+//    - Extraemos solo frontmatter (title, description) y generamos un slug a partir del nombre del archivo.
+//    - El slug se usará como parte de la URL (ej: activarWindows.md → activarWindows-problema).
+const problemas = await Promise.all(
+  Object.entries(modules).map(async ([path, loader]) => {
+    // Cargamos el archivo .md
+    const { frontmatter = {} } = await loader();
+
+    // Normalizamos el path (soporta / en Linux/Mac y \ en Windows).
+    const slug = path.split(/[/\\]/).pop().replace(".md", "");
+
+    // Retornamos un objeto listo para usar en la UI
+    return { slug, ...frontmatter };
+  })
+);
 ---
 
 <Layout title="Problemas & Soluciones">
   <main class="w-10/12 max-w-4xl mx-auto mt-6">
-    <h1
-      class="font-bold pb-4 text-4xl lg:text-5xl bg-gradient-to-r dark:from-slate-100 dark:to-slate-400 from-slate-950 to-slate-500 text-transparent bg-clip-text text-center"
-    >
+    <!-- Título principal de la página -->
+    <h1 class="font-bold pb-4 text-4xl lg:text-5xl text-center bg-gradient-to-r dark:from-slate-100 dark:to-slate-400 from-slate-950 to-slate-500 text-transparent bg-clip-text">
       PROBLEMAS & SOLUCIONES
     </h1>
 
+    <!-- Listado dinámico de problemas -->
     <ul class="space-y-3">
-      {problemas.map(problema => (
+      {problemas.map(p => (
         <ProblemaCard
-          key={problema.id}
-          titulo={problema.titulo}
-          descripcion={problema.descripcion}
+          key={p.slug}                           // clave única para cada problema
+          titulo={p.title ?? "Sin título"}       // título desde el frontmatter (o fallback)
+          descripcion={p.description ?? "Sin descripción"} // descripción desde el frontmatter (o fallback)
+          href={`/problemas/${p.slug}-problema`} // link a la página de detalle
         />
       ))}
     </ul>

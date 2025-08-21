@@ -4,46 +4,29 @@ import "../styles/md.css";
 
 const { id } = Astro.params;
 
-// Documentación de Problemas, Guías de Rendimiento, Pro Tips.
-const pages = import.meta.glob([
-  "../pages/problemas/*.md",
-  "../pages/rendimiento/*.md",
-]);
+const pages = import.meta.glob("../pages/problemas/*.md");
 
-const matchedEntry = Object.entries(pages).find(([path]) =>
+const entry = Object.entries(pages).find(([path]) =>
   path.includes(`${id}.md`)
 );
 
-// Si no existe el problema, redirigir a 404
-if (!matchedEntry) {
+if (!entry) {
   return Astro.redirect("/404");
 }
 
-const module = (await matchedEntry[1]()) as { Content: any };
+const module: any = await entry[1](); // 👈 casteamos a `any` para acceder sin error TS
 const { Content } = module;
+const fm = module.frontmatter || {}; // 👈 aseguramos que exista
 ---
 
-<!-- Lite youtube por si tiene algun iframe la documentanción -->
-<script
-  type="module"
-  src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"
-></script>
-
 <LayoutMD>
-  <main
-    class="w-11/12 lg:w-5/6 xl:w-9/12 h-full mt-16 bg-slate-50 dark:bg-slate-950 border-2 border-slate-700 rounded-sm self-center mx-auto py-4 px-8"
-  >
-    {
-      Content ? (
-        <Content />
-      ) : (
-        <p class="text-red-600 font-bold">Problema no encontrado: {id}</p>
-      )
-    }
-  </main>
-  <div class="p-12">
+  <main class="w-11/12 lg:w-5/6 xl:w-9/12 mt-16 bg-slate-50 dark:bg-slate-950 border-2 border-slate-700 rounded-sm mx-auto py-4 px-8 mb-24">
+    <h1 class="text-2xl font-bold mb-4">{fm.title}</h1>
+    <p class="text-gray-600 dark:text-gray-400 mb-6">{fm.description}</p>
 
-  </div>
+    {Content ? <Content /> : <p class="text-red-600 font-bold">Problema no encontrado</p>}
+  </main>
+
 </LayoutMD>
 
 <script>

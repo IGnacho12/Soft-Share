@@ -3,10 +3,10 @@ const { titulo, descripcion, linkProblema } = Astro.props;
 ---
 
 <li class="border border-slate-300 dark:border-slate-700 rounded-md overflow-hidden">
-  <div class="flex justify-between items-center px-4 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+  <div class="flex group  justify-between items-center px-4 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors duration-100">
     <a
       href=`${titulo}-problema`
-      class="font-semibold text-lg text-slate-900 dark:text-slate-100 hover:underline flex-grow"
+      class="font-semibold text-lg text-slate-900 dark:text-slate-100  flex-grow"
     >
       {titulo}
     </a>
@@ -15,14 +15,14 @@ const { titulo, descripcion, linkProblema } = Astro.props;
       type="button"
       aria-expanded="false"
       aria-label="Mostrar descripción"
-      class="ml-4 p-1 rounded hover:bg-slate-300 dark:hover:bg-slate-700 transition"
+      class="ml-4 px-2 py-1 rounded hover:bg-slate-300 dark:hover:bg-slate-700 transition"
       onClick={`const desc = document.getElementById('desc-${titulo.replace(/\s+/g,'-')}'); 
                 const expanded = desc.style.maxHeight && desc.style.maxHeight !== '0px'; 
                 desc.style.maxHeight = expanded ? '0' : desc.scrollHeight + 'px'; 
                 this.setAttribute('aria-expanded', !expanded);`}
     >
       <svg
-        class="w-5 h-5 text-slate-500 transition-transform duration-300"
+        class="w-5 h-5 text-slate-500 transition-transform duration-300 group-hover:text-slate-700 dark:group-hover:text-slate-300 group-hover:animate-shake"
         fill="none"
         stroke="currentColor"
         stroke-width="2"
@@ -42,3 +42,6 @@ const { titulo, descripcion, linkProblema } = Astro.props;
     <p class="py-3">{descripcion}</p>
   </div>
 </li>
+
+
+
