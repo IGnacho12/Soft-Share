@@ -1,5 +1,5 @@
 ---
-title: "Activar la ejecución de Scripts"
+title: "Activar la Ejecución de Scripts"
 description: "Solución al error -> 'No se puede cargar el archivo X porque la ejecución de scripts está deshabilitada en este sistema' <- :D"
 ---
 
