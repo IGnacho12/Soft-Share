@@ -1,6 +1,6 @@
 ---
-title: "Activar el Windows 💥"
-description: "Activa tu sistema Windows sin pagar, esto incluye todas sus versiones 10, 11 y variaciones de cada una."
+title: "Guía para activar cualquier versión de Windows y Microsoft Office permanentemente ⭐"
+description: "Guía sencilla para activar cualquier versión de Windows y/o Microsoft Office"
 ---
 
 
@@ -9,7 +9,6 @@ Una forma **rápida y segura** de activar Windows y Office. El metodo a utilzar 
 [GitHub – massgravel / Microsoft-Activation-Scripts](https://github.com/massgravel/Microsoft-Activation-Scripts)
 
 > Repositorio en GitHub con los scripts para activación de Microsoft
-
 
 ---
 
@@ -26,7 +25,9 @@ irm https://get.activated.win | iex
    - Presiona `1` Si deseas activar Windows
    - Presiona `2` Si deseas activar Office
 
-  > ⚠️ **Activar Office Importante**  
+  > ⚠️ **Si vas a Activar Office Importante**  
   > Si decides activar office luego deberás presionar el número `2` y esperar.
+
+  
 
 5. Esperar a que finalize.
