@@ -17,6 +17,7 @@
     "astro": "^5.10.2",
     "dotenv": "^17.0.1",
     "marked": "^16.0.0",
+    "mousetrap": "^1.6.5",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {

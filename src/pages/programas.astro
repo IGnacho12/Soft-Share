@@ -4,6 +4,7 @@ import SearchBtn from "../components/programas/SearchBtn.astro";
 import Categories from "../components/programas/Categories.astro";
 import MostrarMensaje from "../components/MostrarMensaje.astro";
 import "../styles/global.css";
+import Mousetrap from "mousetrap";
 ---
 
 <Layout title="Soft Share">
@@ -156,6 +157,36 @@ import "../styles/global.css";
 
       <div class="h-128"></div>
     </article>
+    <!-- Scripts atajos de teclado -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.5/mousetrap.min.js"
+      integrity="sha512-+Jg3Ynmj9hse704K48H6rBBI3jdNBjReRGBCxUWFfOz3yVurnJFWtAWssDAsGtzWYw89xFWPxShuj2T6E9EOpg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <script type="module">
+      // Atajo: Ctrl+S
+      Mousetrap.bind("ctrl+shift+k", (e) => {
+        e.preventDefault();
+        document.getElementById("inputSearch").focus();
+      });
+      Mousetrap.bind("s", (e) => {
+        e.preventDefault();
+        if (!document.getElementById("inputSearch").focus()) {
+          const uploadSection = document.querySelector("#uploadProgram");
+          if (uploadSection) {
+            uploadSection.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        }
+      });
+
+      // Atajo: Shift+K
+      Mousetrap.bind("shift+k", () => {
+        console.log("Shortcut Shift+K ejecutado en Astro");
+      });
+    </script>
   </main>
 
   <script type="module">
@@ -321,6 +352,7 @@ import "../styles/global.css";
       });
   });
 </script>
+
 <style>
   :root {
     --conic-gradient: conic-gradient(
